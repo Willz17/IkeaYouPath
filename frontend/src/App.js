@@ -1,11 +1,11 @@
 import "./App.css";
-import NewSearch from "./components/NewSearch"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <div className="App">
-      <h4>Nordics Team</h4>
-      <NewSearch />
+      <NavBar />
     </div>
   );
 }
