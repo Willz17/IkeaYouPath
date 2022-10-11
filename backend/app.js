@@ -29,6 +29,14 @@ app.use("/api/products", products_router);
 // "/api/cart"
 app.use("/api/cart", cart_router);
 
+app.use((error, req, res, next) => {
+  if (res.headerSent) {
+    return next(error);
+  }
+  res.status(error.code || 500);
+  res.json({ message: error.message } || "An Unknown error occured");
+});
+
 app.listen(PORT, () => {
   console.log(`Running at http://localhost:${PORT}/`);
 });
