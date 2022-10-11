@@ -42,3 +42,9 @@
 > | /api/products/                      | Get all products                                  | GET    |                         |
 > | /api/products/getProductByNameAndID | Get a specific product                            | GET    | {:name, :ID}            |
 > | /api/products/search/:term          | Search for product, by section or name _(filter)_ | GET    | {:term}                 |
+
+> Project board
+>
+> [Trello board](https://trello.com/invite/b/RGnhvL5z/3c26943152807981dca96904aa77f50b/nordics-team-dev)
+>
+> >
