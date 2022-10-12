@@ -9,13 +9,13 @@ const Settings = () => {
         <Row>
 
           <Nav.Item>
-            <Nav.Link href="/settings">
+            <Nav.Link href="/usersettings">
               <h2>User Settings</h2>
             </Nav.Link>
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link href="/settings">
+            <Nav.Link href="/appsettings">
               <h2>App Settings</h2>
             </Nav.Link>
           </Nav.Item>

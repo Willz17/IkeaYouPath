@@ -5,6 +5,8 @@ import NavBar from "./components/NavBar";
 import Settings from "./components/Settings";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import UserSettings from "./components/UserSettings";
+import AppSettings from "./components/AppSettings";
 
 const App = () => {
   return (
@@ -12,6 +14,8 @@ const App = () => {
       <NavBar/>
       <Routes>
         <Route path='/settings' element={<Settings />}/>
+        <Route path='/usersettings' element={<UserSettings />}/>
+        <Route path='/appsettings' element={<AppSettings />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<Signup />}/>
       </Routes>
