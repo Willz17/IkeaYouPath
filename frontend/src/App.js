@@ -1,13 +1,24 @@
 import "./App.css";
-import NewSearch from "./components/NewSearch"
+import "bootstrap/dist/css/bootstrap.min.css";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import NavBar from "./components/NavBar";
+import Account from "./components/Account";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import Settings from "./components/Settings";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h4>Nordics Team</h4>
-      <NewSearch />
-    </div>
+    <Router>
+      <NavBar/>
+      <Routes>
+        <Route path='/account' element={<Account />}/>
+        <Route path='/settings' element={<Settings />}/>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/signup' element={<Signup />}/>
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
