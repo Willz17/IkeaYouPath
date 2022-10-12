@@ -1,0 +1,16 @@
+.add_to_cart{
+    /* margin: 0 20% auto 20%; */
+    height: auto;
+    float: right;
+}
+
+.each_item{
+    /* margin: 0 10% 10% 10%; */
+    height: auto;
+    list-style-type: none;
+    float: left;
+}
+
+.ul_list{
+    padding-left: 0px;
+}

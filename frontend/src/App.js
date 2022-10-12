@@ -1,11 +1,12 @@
+// import { Profiler } from "react";
 import "./App.css";
-import NewSearch from "./components/NewSearch"
-
+// import ProductList from "./components/ProductList"
+import NewList from "./components/NewList"
 function App() {
   return (
     <div className="App">
       <h4>Nordics Team</h4>
-      <NewSearch />
+      <NewList />
     </div>
   );
 }
