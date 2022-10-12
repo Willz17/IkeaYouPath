@@ -1,8 +1,6 @@
 import "./App.css";
-import Cart from "./components/Cart";
-import React, { useState } from "react";
 
-import NewList from "./components/NewList"
+import React, { useState } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
@@ -11,6 +9,8 @@ import Account from "./components/Account";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Settings from "./components/Settings";
+import Cart from "./components/Cart";
+import NewList from "./components/NewList";
 
 const App = () => {
   const ItemList = [
@@ -31,11 +31,11 @@ const App = () => {
         <Route path='/settings' element={<Settings />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<Signup />}/>
+       < Route path='/cart' element={<Cart items={items} />}/>
+       <Route path='/search' element={<NewList />}/>
       </Routes>
     </Router>
-    <Cart item={items} />
-    <br><br>
-    <NewList />
+  
     </div>
   );
 };
