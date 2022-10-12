@@ -1,0 +1,30 @@
+button {
+    color: var(--label-color);
+    background-color: var(--background-color);
+    border-color: var(--border-color);
+  }
+.AddRemoveButton{
+    color: green;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+.SmallButtons{
+    padding: auto;
+    margin-left: 2px;
+    margin-right: 2px;
+
+}
+
+.RemoveForever{
+    color: red;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+.SubmitButton{
+    --label-color: hsl(0, 0%, 100%);
+    --background-color: hsl(230, 60%, 50%);
+    --border-color: hsl(230, 60%, 50%);
+    padding: 10px;
+    position: relative;
+    left: 190px
+}
