@@ -1,9 +1,9 @@
 require("dotenv").config();
 
 const sqlite3 = require("better-sqlite3");
-const prettyJson = require("prettyjson");
-const bcrypt = require("bcrypt");
 const crypto = require("crypto");
+
+const { passwordHasher, validatePassword } = require("./utils/password-crypto");
 
 const DB_URL = "backend/database/db.db";
 
@@ -33,7 +33,7 @@ const getAllProducts = () => {
  * @param {*} id   - Product ID
  * @returns - Product or error object on error.
  */
-const getProductByNameAndID = (name, id) => {
+const getProductByNameAndID = ({ name, id }) => {
   try {
     let query = `SELECT * FROM products WHERE id='${id}' AND name='${name}';`;
     let statement = db.prepare(query);
@@ -144,7 +144,7 @@ const addItemToCart = ({ email, product_ID, user_ID, Q }) => {
  * @param {*} email - Email of user who saved product to cart
  * @returns
  */
-const removeItemFromCart = (product_ID, email) => {
+const removeItemFromCart = ({ product_ID, email }) => {
   try {
     let query = "DELETE FROM cart WHERE p_ID= ? and u_email=? ;";
     let statement = db.prepare(query).run(product_ID, email);
@@ -167,25 +167,6 @@ const clearCart = (email) => {
   } catch (error) {
     return error;
   }
-};
-
-/**
- *
- * @param {*} password - Password to hash
- * @returns - Hashed and salted password
- */
-const passwordHasher = (password) => {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
-
-/**
- *
- * @param {*} password - Users password
- * @param {*} hash - Password hash returned from @getHash
- * @returns - True or false on valid/not valid
- */
-const validatePassword = (password, hash) => {
-  return bcrypt.compareSync(password, hash);
 };
 
 /**

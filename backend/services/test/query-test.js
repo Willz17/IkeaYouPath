@@ -19,7 +19,12 @@ console.log(
 );
 
 console.log(getAllProducts());
-console.log(getProductByNameAndID("Bed king size", 343232));
+console.log(
+  getProductByNameAndID({
+    name: "Bed king size",
+    id: 343232,
+  })
+);
 console.log(filter("Bedroom"));
 console.log("--------");
 console.log(filter("Queen king size"));
@@ -32,15 +37,20 @@ console.log(
   })
 );
 
-console.log(getUsersCart("wills@mail.com"));
 console.log(
   addItemToCart({
     email: "wills@mail.com",
-    p_ID: "RTYE342",
-    u_ID: "056bf61b-8188-4da0-87cf-8541fb9a8d63",
+    user_ID: "056bf61b-8188-4da0-87cf-8541fb9a8d63",
+    product_ID: "RTYE342",
     Q: 3,
   })
 );
+console.log(getUsersCart("wills@mail.com"));
 
 console.log(clearCart("wills@mail.com"));
-console.log(removeItemFromCart("44444", "wills@mail.com"));
+console.log(
+  removeItemFromCart({
+    product_ID: "44444",
+    email: "wills@mail.com",
+  })
+);
