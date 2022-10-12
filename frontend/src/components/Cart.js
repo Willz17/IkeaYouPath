@@ -15,7 +15,7 @@ function Cart(props) {
         <h1>CART</h1>
       </div>
       <div className="ListText">
-        {props.item.map((listItem) => (
+        {props.items.map((listItem) => (
           <CartItems
             name={listItem.name}
             section={listItem.section}

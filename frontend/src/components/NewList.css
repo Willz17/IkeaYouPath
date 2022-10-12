@@ -4,11 +4,13 @@
     float: right;
 }
 
+
 .each_item{
     /* margin: 0 10% 10% 10%; */
     height: auto;
     list-style-type: none;
     float: left;
+    width: 300px;
     /* text-align: center */
 }
 
