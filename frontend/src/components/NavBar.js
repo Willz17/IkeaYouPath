@@ -13,7 +13,7 @@ const NavBar = () => {
             <Nav.Link href='/'>Home</Nav.Link>
             <Nav.Link href='/'>Search</Nav.Link>
             <Nav.Link href='/'>Cart</Nav.Link>
-            <Nav.Link href='/settings'>Settings</Nav.Link>
+            <Nav.Link href='/account'>Account</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
