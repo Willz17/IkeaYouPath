@@ -23,28 +23,7 @@ const productList = [
         coordinates: {x:50, y:20}
     }
 ];
-const Products = {
-    Knives: {
-        name1: "First Knife",
-        name2: "Second Knife",
-        name3: "Third Knife",
-    },
-    Beds: {
-        name1: "First Bed",
-        name2: "Second Bed",
-        name3: "Third Bed",
-    }
-};
 
-// const people = [
-//   "Siri",
-//   "Alexa",
-//   "Google",
-//   "Facebook",
-//   "Twitter",
-//   "Linkedin",
-//   "Sinkedin",
-// ];
 
 const NewList = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -60,10 +39,7 @@ const NewList = () => {
     itemPrice.push(obj.price);
     itemSection.push(obj.section);
   })
-  var price = [];
   
-//   console.log(a);
-//   const theProductOfInterest = Products.Knives;
   React.useEffect(() => {
     const results = itemName.filter((person) =>
       person.toLowerCase().includes(searchTerm.toLowerCase())
