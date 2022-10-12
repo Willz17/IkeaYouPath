@@ -9,8 +9,19 @@
     height: auto;
     list-style-type: none;
     float: left;
+    /* text-align: center */
 }
 
 .ul_list{
     padding-left: 0px;
+}
+
+.price_tag{
+    margin: 0px;
+    
+}
+
+.section_tag{
+    margin: 0px;
+    font-size: 13px;
 }
