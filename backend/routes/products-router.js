@@ -2,21 +2,21 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 
 const {
-  getAllProducts,
-  getProductByName,
-  filter,
+  getProducts,
+  getSpecificProduct,
+  filterSearch,
 } = require("../controllers/products-controller");
 
 // GET all listed products
-// returns JSON array of product object
-router.get("/", getAllProducts);
+// returns JSON array of product object (TESTED)
+router.get("/", getProducts);
+
+// get product by section or name (filter) (TESTED)
+// return streamlined JSON array of object based on filter term
+router.get("/search/:term", filterSearch);
 
 // GET product by name
-// returns JSON object
-router.get("/:name/:ID", getProductByName);
-
-// get product by section or name (filter)
-// return streamlined JSON array of object based on filter term
-router.get("/search/:term", filter);
+// returns JSON object (TESTED)
+router.get("/:name/:ID", getSpecificProduct);
 
 module.exports = router;
