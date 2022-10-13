@@ -69,12 +69,12 @@ const NewList = () => {
                   addToCart.filter((en) => en.name === productList[index].name)
                     .length > 0
                 ) {
-                  console.log("already includes this item");
-                  console.log(addToCart)
+                  // console.log("already includes this item");
+                  // console.log(addToCart)
                 } else {
-                  addToCart.push(productList[index]);
-                  console.log("added!");
-                  console.log(addToCart)
+                  addToCart.push(productList[index]); //Send item to database that will be shown in the Cart page
+                  // console.log("added!");
+                  // console.log(addToCart)
                 }
               }}
             >
