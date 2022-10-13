@@ -5,10 +5,10 @@ const crypto = require("crypto");
 
 const { passwordHasher, validatePassword } = require("./utils/password-crypto");
 
-const DB_URL = "backend/database/db.db";
+const DB_URL = "../database/db.db";
 
-// const db = sqlite3(process.env.SQLITE3)
-const db = sqlite3(DB_URL);
+const db = sqlite3(process.env.SQLITE3);
+// const db = sqlite3(DB_URL);
 
 // >>>> [PRODUCTS] <<<<
 
@@ -50,6 +50,7 @@ const getProductByNameAndID = ({ name, id }) => {
  * @returns - JSON array of products if found, empty list or error object on error.
  */
 const filter = (term) => {
+  console.log("here", term);
   try {
     let query = `SELECT * FROM products WHERE name='${term}' OR section='${term}';`;
     let statement = db.prepare(query);

@@ -1,10 +1,15 @@
 const ProductSchema = require("../models/product");
 
-const getAllProducts = async (req, res, next) => {
+const {
+  getAllProducts,
+  getProductByNameAndID,
+  filter,
+} = require("../services/query-services");
+
+const getProducts = async (req, res, next) => {
   try {
-    const product = await ProductSchema.find();
-    const r_object = extract(product);
-    res.status(200).send(r_object);
+    const data = getAllProducts();
+    res.json(data);
   } catch (e) {
     const error = new Error(e.message);
     error.code = 404;
@@ -12,31 +17,16 @@ const getAllProducts = async (req, res, next) => {
   }
 };
 
-function extract(product) {
-  return {
-    id: product._id,
-    name: product.name,
-    price: `${product.price} SEK`,
-    coordinates: {
-      x: product.x,
-      y: product.y,
-    },
-  };
-}
-
-const getProductByNameAndID = async (req, res, next) => {
+const getSpecificProduct = async (req, res, next) => {
   const p_name = req.params.name; // not unique
   const id = req.params.ID;
+
   try {
-    await ProductSchema.findOne(
-      {
-        name: p_name,
-        _id: id,
-      },
-      (error, product) => {
-        res.status(200).send(product);
-      }
-    );
+    const data = getProductByNameAndID({
+      name: p_name,
+      id: id,
+    });
+    res.json(data);
   } catch (e) {
     const error = new Error(`Product ${res.params.name} doesn't exist`);
     error.code = 404;
@@ -45,18 +35,11 @@ const getProductByNameAndID = async (req, res, next) => {
 };
 
 // section
-const filter = async (req, res, next) => {
+const filterSearch = async (req, res, next) => {
   const term = req.params.term;
-
   try {
-    await ProductSchema.find(
-      {
-        $or: [{ name: term }, { section: term }],
-      },
-      (err, products) => {
-        res.status(200).send(products);
-      }
-    );
+    const data = filter(term);
+    res.json(data);
   } catch (e) {
     const error = new Error(e.message);
     error.code = 404;
@@ -64,6 +47,6 @@ const filter = async (req, res, next) => {
   }
 };
 
-module.exports.getAllProducts = getAllProducts;
-module.exports.getProductByName = getProductByNameAndID;
-module.exports.filter = filter;
+module.exports.getProducts = getProducts;
+module.exports.getSpecificProduct = getSpecificProduct;
+module.exports.filterSearch = filterSearch;
