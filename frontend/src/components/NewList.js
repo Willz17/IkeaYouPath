@@ -7,12 +7,13 @@ import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 
+
 const productList = [
   {
     name: "First knife",
     price: "20",
     section: "Knives",
-    image:
+    img:
       "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
@@ -20,7 +21,7 @@ const productList = [
     name: "Second knife",
     price: "15",
     section: "Knives",
-    image:
+    img:
       "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
@@ -28,7 +29,7 @@ const productList = [
     name: "Third knife",
     price: "30",
     section: "Knives",
-    image:
+    img:
       "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
@@ -38,7 +39,8 @@ const NewList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResults] = useState();
 
-  let addToCart = [];
+  let addToCart = []; 
+
   const createCards = (itemName, itemImage, itemSection, itemPrice) => {
     let solution;
     solution = itemName.map((item, index) => (
@@ -68,9 +70,11 @@ const NewList = () => {
                     .length > 0
                 ) {
                   console.log("already includes this item");
+                  console.log(addToCart)
                 } else {
                   addToCart.push(productList[index]);
                   console.log("added!");
+                  console.log(addToCart)
                 }
               }}
             >
@@ -81,7 +85,7 @@ const NewList = () => {
       </Card>
     ));
     setResults(solution);
-    return solution;
+    return addToCart;
   };
 
   const fetchItems = (event) => {
@@ -96,7 +100,7 @@ const NewList = () => {
       itemName.push(obj.name);
       itemPrice.push(obj.price);
       itemSection.push(obj.section);
-      itemImage.push(obj.image);
+      itemImage.push(obj.img);
     });
     createCards(itemName, itemImage, itemSection, itemPrice);
   };
