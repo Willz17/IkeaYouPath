@@ -11,16 +11,15 @@ import Signup from "./components/Signup";
 import Settings from "./components/Settings";
 import Cart from "./components/Cart";
 import NewList from "./components/NewList";
+import Home from "./components/Home";
 
-const App = () => {
-  
-   // const [items,setItems] = useState(ItemList);
-  
+const App = () => {  
   return (
   <div>
     <Router>
       <NavBar/>
       <Routes>
+        <Route path='/home' element={<Home />}/>
         <Route path='/account' element={<Account />}/>
         <Route path='/settings' element={<Settings />}/>
         <Route path='/login' element={<Login />}/>
