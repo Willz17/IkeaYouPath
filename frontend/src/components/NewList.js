@@ -6,28 +6,31 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const productList = [
   {
     name: "First knife",
     price: "20",
     section: "Knives",
-    image: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
+    image:
+      "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
   {
     name: "Second knife",
     price: "15",
     section: "Knives",
-    image: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
+    image:
+      "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
   {
     name: "Third knife",
     price: "30",
     section: "Knives",
-    image: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
+    image:
+      "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
 ];
@@ -35,16 +38,16 @@ const productList = [
 const NewList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResults] = useState();
-//   const [sendToCart, setSendToCart] = useState();
+  const [sendToCart, setSendToCart] = useState();
 
   const fetchItems = (event) => {
     // console.log(searchTerm);
     //get data from API with searchTerm as input, productList = get(searchTerm)
     event.preventDefault();
-    var itemName = [];
-    var itemPrice = [];
-    var itemSection = [];
-    var itemImage = [];
+    let itemName = [];
+    let itemPrice = [];
+    let itemSection = [];
+    let itemImage = [];
     productList.forEach((obj) => {
       itemName.push(obj.name);
       itemPrice.push(obj.price);
@@ -68,7 +71,12 @@ const NewList = () => {
           </div>
 
           <div className="col-md-2">
-            <Button className="pull-right" variant="primary" onCLick={buttonClickHandler}>
+            <Button
+              className="pull-right"
+              variant="primary"
+              type="button"
+              onClick={buttonClickHandler}
+            >
               Add to Shoppinglist
             </Button>{" "}
           </div>
@@ -79,15 +87,21 @@ const NewList = () => {
   };
   const buttonClickHandler = (e) => {
     e.preventDefault();
+
     let sendInfo;
     const data = productList[0];
-    sendInfo = <Link
-    to={{
-      pathname: "./Cart",
-      state: data // your data array of objects
-    }}
-  ></Link>
-  }
+    sendInfo = (
+      <Link
+        to={{
+          pathname: "./Cart",
+          state: data, // your data array of objects
+        }}
+      ></Link>
+    );
+    setSendToCart(sendInfo);
+
+    // return sendInfo;
+  };
 
   return (
     <div>
@@ -115,6 +129,7 @@ const NewList = () => {
         </Container>
       </Row>
       {result}
+      {sendToCart}
     </div>
   );
 };
