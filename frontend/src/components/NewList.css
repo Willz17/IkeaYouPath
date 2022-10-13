@@ -1,29 +1,5 @@
-.add_to_cart{
-    /* margin: 0 20% auto 20%; */
-    height: auto;
-    float: right;
-}
-
-
-.each_item{
-    /* margin: 0 10% 10% 10%; */
-    height: auto;
-    list-style-type: none;
-    float: left;
-    width: 300px;
-    /* text-align: center */
-}
-
-.ul_list{
-    padding-left: 0px;
-}
-
-.price_tag{
-    margin: 0px;
-    
-}
-
-.section_tag{
-    margin: 0px;
-    font-size: 13px;
-}
+/* .form-control{
+    width: 30%;
+    margin-left: 25%;
+    margin-top: 2rem;
+} */
