@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { Link } from "react-router-dom";
 
 const productList = [
   {
@@ -38,22 +37,9 @@ const productList = [
 const NewList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResults] = useState();
-  const [sendToCart, setSendToCart] = useState();
 
-  const fetchItems = (event) => {
-    // console.log(searchTerm);
-    //get data from API with searchTerm as input, productList = get(searchTerm)
-    event.preventDefault();
-    let itemName = [];
-    let itemPrice = [];
-    let itemSection = [];
-    let itemImage = [];
-    productList.forEach((obj) => {
-      itemName.push(obj.name);
-      itemPrice.push(obj.price);
-      itemSection.push(obj.section);
-      itemImage.push(obj.image);
-    });
+  let addToCart = [];
+  const createCards = (itemName, itemImage, itemSection, itemPrice) => {
     let solution;
     solution = itemName.map((item, index) => (
       <Card className="p-2" bg="light" style={{ width: "auto" }}>
@@ -74,33 +60,45 @@ const NewList = () => {
             <Button
               className="pull-right"
               variant="primary"
-              type="button"
-              onClick={buttonClickHandler}
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                if (
+                  addToCart.filter((en) => en.name === productList[index].name)
+                    .length > 0
+                ) {
+                  console.log("already includes this item");
+                } else {
+                  addToCart.push(productList[index]);
+                  console.log("added!");
+                }
+              }}
             >
               Add to Shoppinglist
-            </Button>{" "}
+              </Button>{" "}
           </div>
         </Row>
       </Card>
     ));
     setResults(solution);
+    return solution;
   };
-  const buttonClickHandler = (e) => {
-    e.preventDefault();
 
-    let sendInfo;
-    const data = productList[0];
-    sendInfo = (
-      <Link
-        to={{
-          pathname: "./Cart",
-          state: data, // your data array of objects
-        }}
-      ></Link>
-    );
-    setSendToCart(sendInfo);
-
-    // return sendInfo;
+  const fetchItems = (event) => {
+    // console.log(searchTerm);
+    //get data from API with searchTerm as input, productList = get(searchTerm)
+    event.preventDefault();
+    let itemName = [];
+    let itemPrice = [];
+    let itemSection = [];
+    let itemImage = [];
+    productList.forEach((obj) => {
+      itemName.push(obj.name);
+      itemPrice.push(obj.price);
+      itemSection.push(obj.section);
+      itemImage.push(obj.image);
+    });
+    createCards(itemName, itemImage, itemSection, itemPrice);
   };
 
   return (
@@ -129,7 +127,6 @@ const NewList = () => {
         </Container>
       </Row>
       {result}
-      {sendToCart}
     </div>
   );
 };
