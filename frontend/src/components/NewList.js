@@ -12,18 +12,21 @@ const productList = [
     name: "First knife",
     price: "20€",
     section: "Knives",
+    image: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
   {
     name: "Second knife",
     price: "15€",
     section: "Knives",
+    image: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
   {
     name: "Third knife",
     price: "30€",
     section: "Knives",
+    image: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
 ];
@@ -33,16 +36,18 @@ const NewList = () => {
   const [result, setResults] = useState();
 
   const fetchItems = (event) => {
-    console.log(searchTerm);
+    // console.log(searchTerm);
     //get data from API with searchTerm as input, productList = get(searchTerm)
     event.preventDefault();
     var itemName = [];
     var itemPrice = [];
     var itemSection = [];
+    var itemImage = [];
     productList.forEach((obj) => {
       itemName.push(obj.name);
       itemPrice.push(obj.price);
       itemSection.push(obj.section);
+      itemImage.push(obj.image);
     });
     let solution;
     solution = itemName.map((item, index) => (
@@ -50,7 +55,7 @@ const NewList = () => {
         <Row className="align-items-center">
           <div className="col-md-3">
             <img
-              src="https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI="
+              src={itemImage[index]}
               alt="..."
               className="img-thumbnail"
             ></img>
