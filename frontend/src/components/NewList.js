@@ -6,25 +6,26 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
+import {Link} from 'react-router-dom';
 
 const productList = [
   {
     name: "First knife",
-    price: "20€",
+    price: "20",
     section: "Knives",
     image: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
   {
     name: "Second knife",
-    price: "15€",
+    price: "15",
     section: "Knives",
     image: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
   {
     name: "Third knife",
-    price: "30€",
+    price: "30",
     section: "Knives",
     image: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
@@ -34,6 +35,7 @@ const productList = [
 const NewList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResults] = useState();
+//   const [sendToCart, setSendToCart] = useState();
 
   const fetchItems = (event) => {
     // console.log(searchTerm);
@@ -61,12 +63,12 @@ const NewList = () => {
             ></img>
           </div>
           <div className="col-md-7">
-            {itemName[index]} <p>{"Price: " + itemPrice[index]}</p>{" "}
+            {itemName[index]} <p>{"Price: $" + itemPrice[index]}</p>{" "}
             <p>{"Section: " + itemSection[index]}</p>
           </div>
 
           <div className="col-md-2">
-            <Button className="pull-right" variant="primary">
+            <Button className="pull-right" variant="primary" onCLick={buttonClickHandler}>
               Add to Shoppinglist
             </Button>{" "}
           </div>
@@ -75,6 +77,18 @@ const NewList = () => {
     ));
     setResults(solution);
   };
+  const buttonClickHandler = (e) => {
+    e.preventDefault();
+    let sendInfo;
+    const data = productList[0];
+    sendInfo = <Link
+    to={{
+      pathname: "./Cart",
+      state: data // your data array of objects
+    }}
+  ></Link>
+  }
+
   return (
     <div>
       <Row className="align-items-center">
