@@ -12,7 +12,7 @@ const NavBar = () => {
           <Nav className="me-auto">
             <Nav.Link href='/home'>Home</Nav.Link>
             <Nav.Link href='/search'>Search</Nav.Link>
-            <Nav.Link href='/cart'>Cart</Nav.Link>
+            <Nav.Link href='/shoppinglist'>Shopping List</Nav.Link>
             <Nav.Link href='/account'>Account</Nav.Link>
           </Nav>
         </Navbar.Collapse>
