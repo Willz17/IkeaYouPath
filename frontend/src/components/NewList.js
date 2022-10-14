@@ -6,31 +6,28 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-
+import Alert from "react-bootstrap/Alert";
 
 const productList = [
   {
     name: "First knife",
     price: "20",
     section: "Knives",
-    img:
-      "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
+    img: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
   {
     name: "Second knife",
     price: "15",
     section: "Knives",
-    img:
-      "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
+    img: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
   {
     name: "Third knife",
     price: "30",
     section: "Knives",
-    img:
-      "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
+    img: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
     coordinates: { x: 50, y: 20 },
   },
 ];
@@ -38,13 +35,13 @@ const productList = [
 const NewList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResults] = useState();
-
-  let addToCart = []; 
+  const [alerter, setAlerter] = useState();
+  let addToCart = [];
 
   const createCards = (itemName, itemImage, itemSection, itemPrice) => {
     let solution;
     solution = itemName.map((item, index) => (
-      <Card className="p-2" bg="light" style={{ width: "auto" }}>
+      <Card className="p-3" bg="light" style={{ width: "auto" }}>
         <Row className="align-items-center">
           <div className="col-md-3">
             <img
@@ -69,17 +66,31 @@ const NewList = () => {
                   addToCart.filter((en) => en.name === productList[index].name)
                     .length > 0
                 ) {
-                  // console.log("already includes this item");
-                  // console.log(addToCart)
+                  setAlerter(
+                    <Alert key="warning" variant="warning">
+                      Item already added!
+                    </Alert>
+                  );
+                  // After 2 seconds we want the alert to dissapear
+                  setTimeout(() => {
+                    setAlerter("");
+                  }, 2000);
                 } else {
                   addToCart.push(productList[index]); //Send item to database that will be shown in the Cart page
-                  // console.log("added!");
-                  // console.log(addToCart)
+                  setAlerter(
+                    <Alert key="success" variant="success">
+                      Added {itemName[index]} to list!
+                    </Alert>
+                  );
+                  // After 2 seconds we want the alert to dissapear
+                  setTimeout(() => {
+                    setAlerter("");
+                  }, 2000);
                 }
               }}
             >
               Add to Shoppinglist
-              </Button>{" "}
+            </Button>{" "}
           </div>
         </Row>
       </Card>
@@ -127,6 +138,7 @@ const NewList = () => {
                 </Button>
               </div>
             </form>
+            {alerter}
           </div>
         </Container>
       </Row>
