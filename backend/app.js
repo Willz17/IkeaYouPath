@@ -8,6 +8,13 @@ const user_router = require("./routes/user-router");
 const PORT = 4000;
 const app = express();
 app.use(express.json());
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
 // 'api/products'
 app.use("/api/products", products_router);
