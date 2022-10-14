@@ -19,13 +19,14 @@ const App = () => {
     <Router>
       <NavBar/>
       <Routes>
+        <Route exact path='' element={<Home />}/>
         <Route path='/home' element={<Home />}/>
         <Route path='/account' element={<Account />}/>
         <Route path='/settings' element={<Settings />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<Signup />}/>
-       < Route path='/shoppinglist' element={<Cart />}/>
-       <Route path='/search' element={<NewList />}/>
+        <Route path='/shoppinglist' element={<Cart />}/>
+        <Route path='/search' element={<NewList />}/>
       </Routes>
     </Router>
   
