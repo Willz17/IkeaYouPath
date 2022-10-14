@@ -71,6 +71,7 @@ const NewList = () => {
 
           <div className="col-md-3">
             <Button
+            className="align-self-end"
               variant="primary"
               type="submit"
               size="sm"
@@ -81,7 +82,7 @@ const NewList = () => {
                     .length > 0
                 ) {
                   setAlerter(
-                    <Alert key="warning" variant="warning">
+                    <Alert key="warning" variant="warning" style={{position: "fixed", zIndex: "9999", right: "40%"}}>
                       Item already added!
                     </Alert>
                   );
@@ -92,7 +93,7 @@ const NewList = () => {
                 } else {
                   addToCart.push(productList[index]); //Send item to database that will be shown in the Cart page
                   setAlerter(
-                    <Alert key="success" variant="success">
+                    <Alert key="success" variant="success" style={{position: "fixed", zIndex: "9999", right: "40%"}}>
                       Added {itemName[index]} to list!
                     </Alert>
                   );
@@ -132,7 +133,7 @@ const NewList = () => {
 
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = "/cart";
+    let path = "/shoppinglist";
     navigate(path);
   };
 
