@@ -15,11 +15,17 @@ button {
 
 }
 
-.RemoveForever{
-    color: red;
-    font-size: 0.75rem;
-    font-weight: bold;
+.Remove{
+    background-color: red;
+    color: black;
+    font-size: 10px;
+    font-style: normal;
+    border-radius: 2px;
+    margin-right: 20px;
+    width: 40px;
+    height: 20px;
 }
 .SubmitButton{
-    margin-left: 633px;
+    width: 25px;
+    height: 25px;
 }
