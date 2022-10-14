@@ -64,12 +64,12 @@ const NewList = () => {
               className="img-thumbnail"
             ></img>
           </div>
-          <div className="col-md-7">
+          <div className="col-md-6">
             {itemName[index]} <p>{"Price: $" + itemPrice[index]}</p>{" "}
             <p>{"Section: " + itemSection[index]}</p>
           </div>
 
-          <div className="col-md-2">
+          <div className="col-md-3">
             <Button
               variant="primary"
               type="submit"
@@ -137,7 +137,7 @@ const NewList = () => {
   };
 
   return (
-    <div>
+    <Container className="align-items-center" style={{ padding: "0px"}}>
       <Row className="align-items-center">
         <Container>
           <div>
@@ -168,7 +168,7 @@ const NewList = () => {
         I am at IKEA
       </Button>
       </div>
-    </div>
+    </Container>
   );
 };
 
