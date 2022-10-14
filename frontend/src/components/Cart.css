@@ -1,41 +1,8 @@
-.Background{
-    background-color: teal;
-    margin: 0.5rem auto;
-    width: 40rem;
-    height: 28rem;
-    margin: 0.5rem auto;
-    border-radius: 12px;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-    
-}
-.card{
-    padding: 0.2rem;
-    background-color: grey;
-    margin: 0.5rem auto;
-    border-radius: 12px;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-    width: 10rem;
-    max-width: 95%;
-    position: relative;
-    top: 4px;
-    
-}
 .ListText{
     color:black;
     font-size: 0.75rem;
     font-weight: bold;
     font-style: italic;
-}
-.FinalPrice{
-    margin-left: 580px;
-    margin-bottom: 5px;
-    border-style: solid;
-    border-width: 0.1px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-    width: 10rem;
-    height: 2.2rem;
 }
 
 .imageCenter{
