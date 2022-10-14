@@ -2,7 +2,6 @@ import "./CartItems.css";
 import React, { useState } from "react";
 import Row from "react-bootstrap/esm/Row";
 import Container from "react-bootstrap/esm/Container";
-import Form from "react-bootstrap/Form";
 
 function CartItems(props) {
   const [addNumber, setAddNumber] = useState(1);

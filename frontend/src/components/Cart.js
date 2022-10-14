@@ -81,23 +81,6 @@ function Cart(props) {
     }
   });
 
-  const [addNumber, setAddNumber] = useState(1);
-  const [addedItem, setAddedItem] = useState("");
-  const [nameColor, setNameColor] = useState("");
-
-  const handleAdded = () => {
-    if (addedItem === "") {
-      setAddedItem("Item collected.");
-    } else if (addedItem === "Item collected.") {
-      setAddedItem("");
-    }
-    if (nameColor === "") {
-      setNameColor("bg-success text-white");
-    } else if (nameColor === "bg-success text-white") {
-      setNameColor("");
-    }
-  };
-
   return (
     <Container>
       <Row>
