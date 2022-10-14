@@ -40,7 +40,7 @@
 > | /api/users/login                          | Login                                             | POST   | {email, password}                |
 > | /api/users/cart                           | Add product to cart                               | POST   | {email, product_ID, user_ID, Q } |
 > | /api/users/cart/:email                    | Get user's cart                                   | GET    |                                  |
-> | /api/users/cart/remove/:product_ID/:email | Remove item from user's cart                      | DELETE |                                  |
+> | /api/users/cart/remove/:product_ID/:email | Remove product from user's cart                   | DELETE |                                  |
 > | /api/users/cart/clear/:email              | Clear user's cart                                 | DELETE |                                  |
 > | /api/products/                            | Get all products                                  | GET    |                                  |
 > | /api/products/getProductByNameAndID       | Get a specific product                            | GET    | {:name, :ID}                     |
@@ -57,10 +57,10 @@
 
 > | Name                                                | Use                         |
 > | --------------------------------------------------- | --------------------------- |
-> | [Node js](https://nodejs.org/en/)                   | API development             |
-> | [Express Js](https://www.npmjs.com/package/express) | API development Framework   |
-> | [React JS](https://reactjs.org/)                    | Frontend Development        |
 > | [Sqlite](https://www.sqlite.org/index.html)         | Locally hosted SQL database |
+> | [Express Js](https://www.npmjs.com/package/express) | API development Framework   |
+> | [Node js](https://nodejs.org/en/)                   | API development             |
+> | [React JS](https://reactjs.org/)                    | Frontend Development        |
 
 ## _Development dependencies_
 
@@ -68,7 +68,7 @@
 > | ---------------------------------------------------------------- | ----------------------------------------- |
 > | [cors](https://www.npmjs.com/package/cors)                       | Node.js middleware to handle cors options |
 > | [better-sqlite3](https://www.npmjs.com/package/better-sqlite3)   | Sqlite library                            |
-> | [dotenv](https://www.npmjs.com/package/dotenv)                   | Save and local env varaibles              |
+> | [dotenv](https://www.npmjs.com/package/dotenv)                   | Save and load env. varaibles              |
 > | [bcrypt](https://www.npmjs.com/package/bcrypt)                   | Hashing and password validation           |
 > | [axios](https://www.npmjs.com/package/axios)                     | Promise based library for HTTP API calls  |
 > | [bootstrap](https://www.npmjs.com/package/bootstrap)             | Stylizing                                 |
