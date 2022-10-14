@@ -7,28 +7,38 @@ import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
+import { useNavigate } from "react-router-dom";
 
 const productList = [
   {
-    name: "First knife",
-    price: "20",
-    section: "Knives",
-    img: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
-    coordinates: { x: 50, y: 20 },
+    name: "GLADELIG - Bowl",
+    id: 1,
+    section: "Tableware",
+    coordinates: {},
+    price: "13",
+    description:
+      "The beautiful sandy-glazed surface turns every meal into pure joy. Decorate your table with clean classic shapes and a strong crafted look. A timeless feel with a unique and decorative design.",
+    img: "https://www.ikea.com/gb/en/images/products/gladelig-bowl-grey__0799737_pe767611_s5.jpg?f=l",
   },
   {
-    name: "Second knife",
+    name: "GLADELIG - Plate",
+    id: 2,
+    section: "Tableware",
+    coordinates: {},
     price: "15",
-    section: "Knives",
-    img: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
-    coordinates: { x: 50, y: 20 },
+    description:
+      "The beautiful sandy-glazed surface turns every meal into pure joy. Decorate your table with clean classic shapes and a strong crafted look. A timeless feel with a unique and decorative design.        ",
+    img: "https://www.ikea.com/gb/en/images/products/gladelig-plate-grey__0799744_pe767614_s5.jpg?f=l",
   },
   {
-    name: "Third knife",
-    price: "30",
-    section: "Knives",
-    img: "https://media.istockphoto.com/photos/chefs-kitchen-knife-picture-id1092668906?k=20&m=1092668906&s=612x612&w=0&h=IzaoUoNJXe8P7FkB4MFKO09r0FVMlXvjfdabFmegCkI=",
-    coordinates: { x: 50, y: 20 },
+    name: "GLADELIG - Mug",
+    id: 3,
+    section: "Tableware",
+    coordinates: {},
+    price: "3",
+    description:
+      "The beautiful sandy-glazed surface turns every meal into pure joy. Decorate your table with clean classic shapes and a strong crafted look. A timeless feel with a unique and decorative design.",
+    img: "https://www.ikea.com/gb/en/images/products/gladelig-mug-grey__0800258_pe767830_s5.jpg?f=l",
   },
 ];
 
@@ -41,7 +51,11 @@ const NewList = () => {
   const createCards = (itemName, itemImage, itemSection, itemPrice) => {
     let solution;
     solution = itemName.map((item, index) => (
-      <Card className="p-3" bg="light" style={{ width: "auto" }}>
+      <Card
+        className="p-3"
+        bg="light"
+        style={{ width: "40%", display: "inline-block", margin: "1rem 1rem" }}
+      >
         <Row className="align-items-center">
           <div className="col-md-3">
             <img
@@ -57,9 +71,9 @@ const NewList = () => {
 
           <div className="col-md-2">
             <Button
-              className="pull-right"
               variant="primary"
               type="submit"
+              size="sm"
               onClick={(e) => {
                 e.preventDefault();
                 if (
@@ -116,6 +130,12 @@ const NewList = () => {
     createCards(itemName, itemImage, itemSection, itemPrice);
   };
 
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = "/cart";
+    navigate(path);
+  };
+
   return (
     <div>
       <Row className="align-items-center">
@@ -143,6 +163,11 @@ const NewList = () => {
         </Container>
       </Row>
       {result}
+      <div className="p-5">
+      <Button  color="primary" className=" px-4 " onClick={routeChange} style={{ position: "fixed", bottom: "3%", right: "20%" }}>
+        I am at IKEA
+      </Button>
+      </div>
     </div>
   );
 };
