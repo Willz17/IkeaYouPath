@@ -1,5 +1,30 @@
-/* .form-control{
-    width: 30%;
-    margin-left: 25%;
-    margin-top: 2rem;
-} */
+.btn-outline-secondary{
+    --bs-btn-hover-color: "";
+}
+.form-control:focus {
+    border-color: #ced4da;
+    -webkit-box-shadow: none;
+    /* box-shadow: none; */
+  }
+
+.rounded-left{
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+}
+.rounded-right{
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+}
+
+.no-round-top-left{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-color:#ced4da
+    
+}
+
+.btn-outline-secondary {
+    --bs-btn-hover-border-color: #ced4da;
+    --bs-btn-active-border-color: #ced4da;
+    --bs-btn-border-color: #ced4da;
+}

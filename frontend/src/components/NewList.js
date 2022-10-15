@@ -8,7 +8,7 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
-
+import "font-awesome/css/font-awesome.min.css";
 const productList = [
   {
     name: "GLADELIG - Bowl",
@@ -46,8 +46,22 @@ const NewList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResults] = useState();
   const [alerter, setAlerter] = useState();
+  const [showSearch, setShowSearch] = useState(false);
+  const [beforeSearch, setBeforeSearch] = useState(<div class="btn btn-outline-secondary bg-white border-end-0 rounded-left" onMouseDown={() => setBeforeSearch()}><i class="fa fa-search"></i></div>);
   let addToCart = [];
 
+  const formClickHandler = () => {
+    setBeforeSearch(); 
+    setShowSearch(
+      <button
+        class="btn btn-outline-secondary bg-white border-start-0 no-round-top-left rounded-right"
+        type="submit"
+      >
+        <i class="fa fa-search"></i>
+      </button>
+    );
+  }
+  
   const createCards = (itemName, itemImage, itemSection, itemPrice) => {
     let solution;
     solution = itemName.map((item, index) => (
@@ -71,7 +85,7 @@ const NewList = () => {
 
           <div className="col-md-3">
             <Button
-            className="align-self-end"
+              className="align-self-end"
               variant="primary"
               type="submit"
               size="sm"
@@ -82,7 +96,16 @@ const NewList = () => {
                     .length > 0
                 ) {
                   setAlerter(
-                    <Alert key="warning" variant="warning" style={{position: "fixed", zIndex: "9999", right: "40%"}}>
+                    <Alert
+                      key="warning"
+                      variant="warning"
+                      style={{
+                        position: "fixed",
+                        zIndex: "9999",
+                        right: "45%",
+                        top: "10%",
+                      }}
+                    >
                       Item already added!
                     </Alert>
                   );
@@ -93,7 +116,16 @@ const NewList = () => {
                 } else {
                   addToCart.push(productList[index]); //Send item to database that will be shown in the Cart page
                   setAlerter(
-                    <Alert key="success" variant="success" style={{position: "fixed", zIndex: "9999", right: "40%"}}>
+                    <Alert
+                      key="success"
+                      variant="success"
+                      style={{
+                        position: "fixed",
+                        zIndex: "9999",
+                        right: "40%",
+                        top: "10%",
+                      }}
+                    >
                       Added {itemName[index]} to list!
                     </Alert>
                   );
@@ -138,36 +170,48 @@ const NewList = () => {
   };
 
   return (
-    <Container className="align-items-center" style={{ padding: "0px"}}>
+    <Container className="align-items-center" style={{ padding: "0px" }}>
       <Row className="align-items-center">
         <Container>
-          <div>
+          <div >
             <form
               onSubmit={fetchItems}
               className="input-group mb-3 mt-5 w-75 center"
             >
+              {beforeSearch}
               <input
-                type="text"
-                className="form-control"
+                type="search"
+                className="form-control rounded-left rounded-right"
                 placeholder="Search for Item..."
-                onChange={(event) => setSearchTerm(event.target.value)}
+                onChange={(event) => {
+                  // setBeforeSearch();
+                  setSearchTerm(event.target.value);
+                }}
+                onClick={formClickHandler}
                 value={searchTerm}
               />
-              <div className="input-group-append">
-                <Button className="btn btn-outline" type="submit">
+              {/* <span className="input-group-append"> */}
+                {/* <Button className="btn btn-outline" type="submit">
                   Search
-                </Button>
-              </div>
+                </Button> */}
+                {showSearch}
+              {/* </span> */}
             </form>
             {alerter}
           </div>
         </Container>
       </Row>
       {result}
+      
       <div className="p-5">
-      <Button  color="primary" className=" px-4 " onClick={routeChange} style={{ position: "fixed", bottom: "3%", right: "20%" }}>
-        I am at IKEA
-      </Button>
+        <Button
+          color="primary"
+          className=" px-4 "
+          onClick={routeChange}
+          style={{ position: "fixed", bottom: "3%", right: "20%" }}
+        >
+          I am at IKEA
+        </Button>
       </div>
     </Container>
   );
