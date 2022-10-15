@@ -47,7 +47,7 @@ const NewList = () => {
   const [result, setResults] = useState();
   const [alerter, setAlerter] = useState();
   const [showSearch, setShowSearch] = useState(false);
-  const [beforeSearch, setBeforeSearch] = useState(<div class="btn btn-outline-secondary bg-white border-end-0 rounded-left" onMouseDown={() => setBeforeSearch()}><i class="fa fa-search"></i></div>);
+  const [beforeSearch, setBeforeSearch] = useState(<div class="btn btn-outline-secondary bg-white border-end-0 rounded-left" onMouseDown={() => setBeforeSearch()} ><i class="fa fa-search"></i></div>);
   let addToCart = [];
 
   const formClickHandler = () => {
