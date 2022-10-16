@@ -64,16 +64,17 @@
 
 ## _Development dependencies_
 
-> | Name                                                             | Use                                       |
-> | ---------------------------------------------------------------- | ----------------------------------------- |
-> | [cors](https://www.npmjs.com/package/cors)                       | Node.js middleware to handle cors options |
-> | [better-sqlite3](https://www.npmjs.com/package/better-sqlite3)   | Sqlite library                            |
-> | [dotenv](https://www.npmjs.com/package/dotenv)                   | Save and load env. varaibles              |
-> | [bcrypt](https://www.npmjs.com/package/bcrypt)                   | Hashing and password validation           |
-> | [axios](https://www.npmjs.com/package/axios)                     | Promise based library for HTTP API calls  |
-> | [bootstrap](https://www.npmjs.com/package/bootstrap)             | Stylizing                                 |
-> | [react-bootstrap](https://www.npmjs.com/package/react-bootstrap) | Stylizing                                 |
-> | [react-router](https://github.com/remix-run/react-router)        | Declaritive routing with react            |
+> | Name                                                             | Use                                                         |
+> | ---------------------------------------------------------------- | ----------------------------------------------------------- |
+> | [cors](https://www.npmjs.com/package/cors)                       | Node.js middleware to handle cors options                   |
+> | [nodemon](https://www.npmjs.com/package/nodemon)                 | Watch and automatically restart Node.js application changes |
+> | [better-sqlite3](https://www.npmjs.com/package/better-sqlite3)   | Sqlite library                                              |
+> | [dotenv](https://www.npmjs.com/package/dotenv)                   | Save and load env. varaibles                                |
+> | [bcrypt](https://www.npmjs.com/package/bcrypt)                   | Hashing and password validation                             |
+> | [axios](https://www.npmjs.com/package/axios)                     | Promise based library for HTTP API calls                    |
+> | [bootstrap](https://www.npmjs.com/package/bootstrap)             | Stylizing                                                   |
+> | [react-bootstrap](https://www.npmjs.com/package/react-bootstrap) | Stylizing                                                   |
+> | [react-router](https://github.com/remix-run/react-router)        | Declaritive routing with react                              |
 
 ### _Project board_
 
