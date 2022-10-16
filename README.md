@@ -59,8 +59,8 @@
 > | --------------------------------------------------- | --------------------------- |
 > | [Sqlite](https://www.sqlite.org/index.html)         | Locally hosted SQL database |
 > | [Express Js](https://www.npmjs.com/package/express) | API development Framework   |
-> | [Node js](https://nodejs.org/en/)                   | API development             |
 > | [React JS](https://reactjs.org/)                    | Frontend Development        |
+> | [Node js](https://nodejs.org/en/)                   | API development             |
 
 ## _Development dependencies_
 
