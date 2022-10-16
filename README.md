@@ -55,12 +55,12 @@
 
 ## _Technology stack_
 
-> | Name                                                | Use                         |
-> | --------------------------------------------------- | --------------------------- |
-> | [Sqlite](https://www.sqlite.org/index.html)         | Locally hosted SQL database |
-> | [Express Js](https://www.npmjs.com/package/express) | API development Framework   |
-> | [React JS](https://reactjs.org/)                    | Frontend Development        |
-> | [Node js](https://nodejs.org/en/)                   | API development             |
+> | Name                                                | Use                                |
+> | --------------------------------------------------- | ---------------------------------- |
+> | [Sqlite](https://www.sqlite.org/index.html)         | SQL database                       |
+> | [Express Js](https://www.npmjs.com/package/express) | Node js Framework                  |
+> | [React JS](https://reactjs.org/)                    | Frontend web Development framework |
+> | [Node js](https://nodejs.org/en/)                   | Backend web development framework  |
 
 ## _Development dependencies_
 
