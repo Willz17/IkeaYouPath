@@ -16,7 +16,7 @@ const Signup = () => {
   const registerNewUser = (event) => {
     console.log(event);
     event.preventDefault();
-    console.log(name, email);
+    console.log(email);
     const request_data = {
       name: `${firstName} ${lastName}`,
       email: email,
