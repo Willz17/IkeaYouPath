@@ -41,6 +41,7 @@ const productList = [
     img: "https://www.ikea.com/gb/en/images/products/gladelig-mug-grey__0800258_pe767830_s5.jpg?f=l",
   },
 ];
+let addToCart = [];
 
 const NewList = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -48,7 +49,6 @@ const NewList = () => {
   const [alerter, setAlerter] = useState();
   const [showSearch, setShowSearch] = useState(false);
   const [beforeSearch, setBeforeSearch] = useState(<div class="btn btn-outline-secondary bg-white border-end-0 rounded-left" onMouseDown={() => setBeforeSearch()} ><i class="fa fa-search"></i></div>);
-  let addToCart = [];
 
   const formClickHandler = () => {
     setBeforeSearch(); 
@@ -206,9 +206,9 @@ const NewList = () => {
       <div className="p-5">
         <Button
           color="primary"
-          className=" px-4 "
+          className=" px-4 rounded-left rounded-right"
           onClick={routeChange}
-          style={{ position: "fixed", bottom: "3%", right: "20%" }}
+          style={{ position: "fixed", bottom: "3%", right: "20%"}}
         >
           I am at IKEA
         </Button>

@@ -28,3 +28,7 @@
     --bs-btn-active-border-color: #ced4da;
     --bs-btn-border-color: #ced4da;
 }
+
+.btn-primary{
+    --bs-btn-bg: #21579D
+}
