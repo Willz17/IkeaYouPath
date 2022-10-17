@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import "./NewList.css";
-// import Card from "./Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
@@ -147,7 +146,6 @@ const NewList = () => {
   };
 
   const fetchItems = (event) => {
-    // console.log(searchTerm);
     //get data from API with searchTerm as input, productList = get(searchTerm)
     event.preventDefault();
     let itemName = [];
@@ -184,18 +182,12 @@ const NewList = () => {
                 className="form-control rounded-left rounded-right"
                 placeholder="Search for Item..."
                 onChange={(event) => {
-                  // setBeforeSearch();
                   setSearchTerm(event.target.value);
                 }}
                 onClick={formClickHandler}
                 value={searchTerm}
               />
-              {/* <span className="input-group-append"> */}
-                {/* <Button className="btn btn-outline" type="submit">
-                  Search
-                </Button> */}
                 {showSearch}
-              {/* </span> */}
             </form>
             {alerter}
           </div>
