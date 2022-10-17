@@ -4,6 +4,7 @@ import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/esm/Button";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { useNavigate } from "react-router-dom";
 
 import "./AddedItemsList.css"
 
@@ -59,6 +60,20 @@ function Cart(props) {
     totalPrice += parseFloat(obj);
   });
 
+  let navigate = useNavigate();
+
+  const routeChangeSearch = () => {
+    let path = "/search";
+    navigate(path);
+  };
+
+  const routeChangeNav = () => {
+    let path = "/shoppinglist";
+    navigate(path);
+  };
+
+  const [numItems, setNumItems] = useState(1);
+
   return (
     <Container>
       <Row className="pb-2">
@@ -76,14 +91,14 @@ function Cart(props) {
               <div className="col-6 text-left">
                 <Row>{itemName[index]}</Row>
                 <Row className="pt-5">
-                  <DropdownButton id="dd_menu" title="1">
-                    <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">2</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">3</Dropdown.Item>
+                  <DropdownButton id="dd_menu" title={numItems}>
+                    <Dropdown.Item>1</Dropdown.Item>
+                    <Dropdown.Item>2</Dropdown.Item>
+                    <Dropdown.Item>3</Dropdown.Item>
                   </DropdownButton>
                 </Row>
               </div>
-              <div className="col-3 text-left">$ {itemPrice[index]}</div>
+              <div className="col-3 text-left">${itemPrice[index]}</div>
             </Row>
           </Container>
         </Row>
@@ -107,7 +122,7 @@ function Cart(props) {
           </div>
           <div className="col-2"></div>
           <div className="col-4">
-            <h5 style={{ fontWeight: "bold" }}>$ {totalPrice}</h5>
+            <h5 style={{ fontWeight: "bold" }}>${totalPrice}</h5>
           </div>
         </Row>
       </Container>
@@ -116,17 +131,17 @@ function Cart(props) {
         <Button
           color="primary"
           className=" px-4 rounded-left rounded-right"
-          style={{ position: "fixed", bottom: "5%", right: "10%" }}
-        >
-          I am at IKEA
+          onClick={routeChangeNav}
+          style={{ position: "fixed", bottom: "5%", right: "10%" }}>
+            I am at IKEA
         </Button>
 
         <Button
           color="primary"
           className=" px-4 rounded-left rounded-right"
-          style={{ position: "fixed", bottom: "5%", left: "10%" }}
-        >
-          Add items
+          onClick={routeChangeSearch}
+          style={{ position: "fixed", bottom: "5%", left: "10%" }}>
+            Add items
         </Button>
       </div>
     </Container>
