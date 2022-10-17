@@ -58,8 +58,14 @@ const Settings = () => {
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="Suggest items based on your shopping list" />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="Suggest discounted items" />
+          </Form.Group>
           <Button variant="primary" type="submit" size="md" className="mt-3">
             Update
+          </Button>
+          <Button variant="danger" type="submit" size="md" className="mt-3 mx-4">
+            Logout
           </Button>
           </Form>
         </Row>

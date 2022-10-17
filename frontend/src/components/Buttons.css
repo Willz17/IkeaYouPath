@@ -1,25 +1,26 @@
-button {
-    color: var(--label-color);
-    background-color: var(--background-color);
-    border-color: var(--border-color);
-  }
-.AddRemoveButton{
-    color: green;
-    font-size: 0.75rem;
-    font-weight: bold;
+.Remove {
+  background-color: red;
+  color: black;
+  font-size: 10px;
+  font-style: normal;
+  border-radius: 2px;
+  margin-right: 20px;
+  width: 40px;
+  height: 20px;
 }
-.SmallButtons{
-    padding: auto;
-    margin-left: 2px;
-    margin-right: 2px;
+.radio{
+	color: green;
+	height: 25px;
+    width: 25px;
+
 
 }
 
-.RemoveForever{
-    color: red;
-    font-size: 0.75rem;
-    font-weight: bold;
-}
-.SubmitButton{
-    margin-left: 633px;
+.add-to-cart{
+  background-color: antiquewhite;
+  font-size: 10px;
+  border-radius: 1px;
+  width: auto;
+  height: auto;
+  margin-right: 25px;
 }
