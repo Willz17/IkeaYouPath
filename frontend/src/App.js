@@ -11,6 +11,7 @@ import Signup from "./components/Signup";
 import Settings from "./components/Settings";
 import Cart from "./components/Cart";
 import NewList from "./components/NewList";
+import AddedItemsList from "./components/AddedItemsList"
 import Home from "./components/Home";
 
 const App = () => {  
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<Signup />}/>
         <Route path='/shoppinglist' element={<Cart />}/>
+        <Route path='/cart' element={<AddedItemsList />}/>
         <Route path='/search' element={<NewList />}/>
       </Routes>
     </Router>
