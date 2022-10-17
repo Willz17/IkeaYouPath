@@ -97,6 +97,7 @@ const loginUser = ({ email, password }) => {
   try {
     let h = getHash(email)[0].password;
     console.log(h);
+    console.log(h);
     if (validatePassword(password, h)) {
       let query = `SELECT * FROM users WHERE email='${email}';`;
       let statement = db.prepare(query);
