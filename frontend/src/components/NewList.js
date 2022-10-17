@@ -15,7 +15,7 @@ let addToCart = [];
 
 const NewList = () => {
 
-  const PRODUCT_URL = "http://localhost:4000/api/products";
+  const PRODUCT_URL = "http://api-you-path/api/products";
   const [name, getName] = useState("");
   const [id, getId] = useState("");
   const [section, getSection] = useState("");
@@ -259,7 +259,7 @@ const fetchItems = (event) => {
 
 let navigate = useNavigate();
 const routeChange = () => {
-  let path = "/shoppinglist";
+  let path = "/welcome";
   navigate(path);
 };
 const getSpecificProduct = (event) => {
