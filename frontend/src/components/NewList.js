@@ -208,7 +208,7 @@ const createCards = (itemName, itemImage, itemSection, itemPrice) => {
                   setAlerter("");
                 }, 2000);
               } else {
-                addToCart.push(productList[index]); //Send item to database that will be shown in the Cart page
+                addToCart.push(productList[index].id); //Send item to database that will be shown in the Cart page
                 setAlerter(
                   <Alert
                     key="success"
@@ -286,6 +286,7 @@ return (
               placeholder="Search for Item..."
               onChange={(event) => {
                 setSearchTerm(event.target.value);
+                formClickHandler();
               }}
               onClick={formClickHandler}
               value={searchTerm}
