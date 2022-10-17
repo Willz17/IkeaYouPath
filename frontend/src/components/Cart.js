@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
+import axios from "axios";
 
 function Cart(props) {
   // Item Creation
@@ -46,7 +47,7 @@ function Cart(props) {
       image:
         "https://www.ikea.com/es/es/images/products/linanas-sofa-3-plazas-vissle-beige__1013894_pe829446_s5.jpg?f=s",
     },
-  ];
+  ]; 
 
   // Item attributes array
   let itemName = [];

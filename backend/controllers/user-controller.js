@@ -21,6 +21,7 @@ const login = async (req, res, next) => {
       email: req.body.email,
       password: req.body.password,
     });
+    console.log(data);
     res.json(data);
   } catch (e) {
     const error = new Error(e.message);
