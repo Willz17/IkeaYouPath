@@ -8,7 +8,7 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
-const productList = [
+let productList = [
   {
     name: "GLADELIG - Bowl",
     id: 1,
@@ -43,24 +43,121 @@ const productList = [
 let addToCart = [];
 
 const NewList = () => {
+  // let productList = allItems on API 
+  let itemName = [];
+  let itemPrice = [];
+  let itemSection = [];
+  let itemImage = [];
+  productList.forEach((obj) => {
+    itemName.push(obj.name);
+    itemPrice.push(obj.price);
+    itemSection.push(obj.section);
+    itemImage.push(obj.img);
+  });
   const [searchTerm, setSearchTerm] = useState("");
-  const [result, setResults] = useState();
+  const [result, setResults] = useState(
+    itemName.map((item, index) => (
+      <Card
+        className="p-3"
+        bg="light"
+        style={{ width: "40%", display: "inline-block", margin: "1rem 1rem" }}
+      >
+        <Row className="align-items-center">
+          <div className="col-md-3">
+            <img
+              src={itemImage[index]}
+              alt="..."
+              className="img-thumbnail"
+            ></img>
+          </div>
+          <div className="col-md-6">
+            {itemName[index]} <p>{"Price: $" + itemPrice[index]}</p>{" "}
+            <p>{"Section: " + itemSection[index]}</p>
+          </div>
+
+          <div className="col-md-3">
+            <Button
+              className="align-self-end"
+              variant="primary"
+              type="submit"
+              size="sm"
+              onClick={(e) => {
+                e.preventDefault();
+                if (
+                  addToCart.filter((en) => en.name === productList[index].name)
+                    .length > 0
+                ) {
+                  setAlerter(
+                    <Alert
+                      key="warning"
+                      variant="warning"
+                      style={{
+                        position: "fixed",
+                        zIndex: "9999",
+                        right: "45%",
+                        top: "10%",
+                      }}
+                    >
+                      Item already added!
+                    </Alert>
+                  );
+                  // After 2 seconds we want the alert to dissapear
+                  setTimeout(() => {
+                    setAlerter("");
+                  }, 2000);
+                } else {
+                  addToCart.push(productList[index]); //Send item to database that will be shown in the Cart page
+                  setAlerter(
+                    <Alert
+                      key="success"
+                      variant="success"
+                      style={{
+                        position: "fixed",
+                        zIndex: "9999",
+                        right: "40%",
+                        top: "10%",
+                      }}
+                    >
+                      Added {itemName[index]} to list!
+                    </Alert>
+                  );
+                  // After 2 seconds we want the alert to dissapear
+                  setTimeout(() => {
+                    setAlerter("");
+                  }, 2000);
+                }
+              }}
+            >
+              Add to Shoppinglist
+            </Button>{" "}
+          </div>
+        </Row>
+      </Card>
+    ))
+  );
   const [alerter, setAlerter] = useState();
   const [showSearch, setShowSearch] = useState(false);
-  const [beforeSearch, setBeforeSearch] = useState(<div class="btn btn-outline-secondary bg-white border-end-0 rounded-left" onMouseDown={() => setBeforeSearch()} ><i class="fa fa-search"></i></div>);
+  const [beforeSearch, setBeforeSearch] = useState(
+    <div
+      class="btn btn-outline-secondary grey-bg border-end-0 rounded-left"
+      onMouseDown={() => setBeforeSearch()}
+    >
+      <i class="fa fa-search"></i>
+    </div>
+  );
 
   const formClickHandler = () => {
-    setBeforeSearch(); 
+    setBeforeSearch();
     setShowSearch(
       <button
-        class="btn btn-outline-secondary bg-white border-start-0 no-round-top-left rounded-right"
+        class="btn btn-outline-secondary grey-bg border-start-0 no-round-top-left rounded-right"
         type="submit"
       >
         <i class="fa fa-search"></i>
       </button>
     );
-  }
-  
+  };
+
   const createCards = (itemName, itemImage, itemSection, itemPrice) => {
     let solution;
     solution = itemName.map((item, index) => (
@@ -148,10 +245,10 @@ const NewList = () => {
   const fetchItems = (event) => {
     //get data from API with searchTerm as input, productList = get(searchTerm)
     event.preventDefault();
-    let itemName = [];
-    let itemPrice = [];
-    let itemSection = [];
-    let itemImage = [];
+    itemName = [];
+    itemPrice = [];
+    itemSection = [];
+    itemImage = [];
     productList.forEach((obj) => {
       itemName.push(obj.name);
       itemPrice.push(obj.price);
@@ -171,7 +268,7 @@ const NewList = () => {
     <Container className="align-items-center" style={{ padding: "0px" }}>
       <Row className="align-items-center">
         <Container>
-          <div >
+          <div>
             <form
               onSubmit={fetchItems}
               className="input-group mb-3 mt-5 w-75 center"
@@ -187,20 +284,20 @@ const NewList = () => {
                 onClick={formClickHandler}
                 value={searchTerm}
               />
-                {showSearch}
+              {showSearch}
             </form>
             {alerter}
           </div>
         </Container>
       </Row>
       {result}
-      
+
       <div className="p-5">
         <Button
           color="primary"
           className=" px-4 rounded-left rounded-right"
           onClick={routeChange}
-          style={{ position: "fixed", bottom: "3%", right: "20%"}}
+          style={{ position: "fixed", bottom: "3%", right: "20%" }}
         >
           I am at IKEA
         </Button>
