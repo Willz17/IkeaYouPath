@@ -11,8 +11,9 @@ function Cart(props) {
   // Item Creation
   const ItemList = [
     {
-      name: "Cool Knife",
+      name: "Knife",
       section: "Section 1",
+      subSection: "Shelf 48",
       price: "50",
       coordinates: { x: 50, y: 30 },
       image:
@@ -21,6 +22,7 @@ function Cart(props) {
     {
       name: "Lamp",
       section: "Section 2",
+      subSection: "Shelf 12",
       price: "35",
       coordinates: { x: 70, y: 90 },
       image:
@@ -29,6 +31,7 @@ function Cart(props) {
     {
       name: "Table",
       section: "Section 3",
+      subSection: "Shelf 98",
       price: "60",
       coordinates: { x: 60, y: 76 },
       image:
@@ -37,6 +40,7 @@ function Cart(props) {
     {
       name: "Sofa",
       section: "Section 1",
+      subSection: "Shelf 58",
       price: "40",
       coordinates: { x: 78, y: 20 },
       image:
@@ -47,6 +51,7 @@ function Cart(props) {
   // Item attributes array
   let itemName = [];
   let itemSection = [];
+  let itemSubSection = [];
   let itemPrice = [];
   let itemCoordinates = [];
   let itemImage = [];
@@ -54,14 +59,10 @@ function Cart(props) {
   ItemList.forEach((obj) => {
     itemName.push(obj.name);
     itemSection.push(obj.section);
+    itemSubSection.push(obj.subSection);
     itemPrice.push(obj.price);
     itemCoordinates.push(obj.coordinates);
     itemImage.push(obj.image);
-  });
-
-  // Final Price
-  let FinalPrice = itemPrice.reduce((accumulator, value) => {
-    return parseInt(accumulator) + parseInt(value);
   });
 
   //Differentiate within Sections
@@ -80,99 +81,718 @@ function Cart(props) {
       ItemListTriggerSection3.push(obj);
     }
   });
+  console.log(ItemListTriggerSection2);
 
-  return (
-    <Container>
-      <Row>
-        <h2>Shop List</h2>
-      </Row>
+  //Recommendations popouts
+  //Recommendation Section 1
+  const [recommendation1, setRecomendation1] = useState(false);
+  const handleClickS1 = () => {
+    setRecomendation1(true);
+  };
+  //Recommendation Section 2
+  const [recommendation2, setRecomendation2] = useState(false);
+  const handleClickS2 = () => {
+    setRecomendation2(true);
+  };
+  //Recommendation Section 3
+  const [recommendation3, setRecomendation3] = useState(false);
+  const handleClickS3 = () => {
+    setRecomendation3(true);
+  };
 
-      <Row>
-        <Col className="col-md-10"></Col>
-        <Col className="col-md-2">
-          <Row>
-            <Button
-              size="sm"
-              type="button"
-              class="btn btn-secondary btn-lg"
-              className="mt-1 mb-1"
-              disabled
-            >
-              Total Price: ${FinalPrice}
-            </Button>
-          </Row>
-          <Row>
-            <Button size="sm" variant="success">
-              Display
-            </Button>
-          </Row>
-        </Col>
-      </Row>
+  //GENERAL LAYOUT
+  if (!recommendation1 && !recommendation2 && !recommendation3) {
+    return (
+      <Container>
+        <Row>
+          <h2>Shopping List</h2>
+        </Row>
 
-      <Row>
-        <Container
-          style={{ backgroundColor: "FloralWhite" }}
-          className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-        >
-          <Row className="text-center">
-          <div className="fs-6 col-6">Section 3</div>
-          <div className="fs-6 col-6">Current Section</div>
-          </Row>
-        </Container>
+        <Row>
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6 col-6">Section 1</div>
+              <div className="fs-6 col-6">Current Section</div>
+            </Row>
+          </Container>
 
-        {ItemListTriggerSection1.map((obj, index) => (
-          <CartItems
-            name={obj.name}
-            section={obj.section}
-            price={obj.price}
-            coordinates={obj.coordinates}
-            number={obj.number}
-            image={obj.image}
-          />
-        ))}
+          {ItemListTriggerSection1.map((obj, index) => (
+            <CartItems
+              name={obj.name}
+              section={obj.section}
+              subSection={obj.subSection}
+              price={obj.price}
+              coordinates={obj.coordinates}
+              number={obj.number}
+              image={obj.image}
+              length={ItemListTriggerSection1.length}
+            />
+          ))}
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row>
+              <div class="col-4"></div>
+              <div class="col-6">
+                <Button
+                  size="sm"
+                  style={{
+                    backgroundColor: "Bisque",
+                    color: "black",
+                    borderColor: "black",
+                  }}
+                  onClick={handleClickS1}
+                >
+                  <b>I feel inspired</b>
+                </Button>
+              </div>
+              <div class="col-2"></div>
+            </Row>
+          </Container>
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6 col-6">Section 2</div>
+              <div className="fs-6 col-6">1 min</div>
+            </Row>
+          </Container>
+          {ItemListTriggerSection2.map((obj, index) => (
+            <CartItems
+              name={obj.name}
+              section={obj.section}
+              subSection={obj.subSection}
+              price={obj.price}
+              coordinates={obj.coordinates}
+              number={obj.number}
+              image={obj.image}
+              length={ItemListTriggerSection1.length}
+            />
+          ))}
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row>
+              <div class="col-4"></div>
+              <div class="col-6">
+                <Button
+                  size="sm"
+                  style={{
+                    backgroundColor: "Bisque",
+                    color: "black",
+                    borderColor: "black",
+                  }}
+                  onClick={handleClickS2}
+                >
+                  <b>I feel inspired</b>
+                </Button>
+              </div>
+              <div class="col-2"></div>
+            </Row>
+          </Container>
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6 col-6">Section 3</div>
+              <div className="fs-6 col-6">2 min</div>
+            </Row>
+          </Container>
+          {ItemListTriggerSection3.map((obj, index) => (
+            <CartItems
+              name={obj.name}
+              section={obj.section}
+              subSection={obj.subSection}
+              price={obj.price}
+              coordinates={obj.coordinates}
+              number={obj.number}
+              image={obj.image}
+              length={ItemListTriggerSection1.length}
+            />
+          ))}
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row>
+              <div class="col-4"></div>
+              <div class="col-6">
+                <Button
+                  size="sm"
+                  style={{
+                    backgroundColor: "Bisque",
+                    color: "black",
+                    borderColor: "black",
+                  }}
+                  onClick={handleClickS3}
+                >
+                  <b>I feel inspired</b>
+                </Button>
+              </div>
+              <div class="col-2"></div>
+            </Row>
+          </Container>
+        </Row>
+      </Container>
+    );
+    {
+      /*RECOMMENDATIONS POP-UP S1*/
+    }
+    {
+      /*RECOMMENDATIONS POP-UP S1*/
+    }
+  } else if (recommendation1) {
+    return (
+      <Container>
+        <Row>
+          <h2>Shopping List</h2>
+        </Row>
 
-        <Container
-          style={{ backgroundColor: "FloralWhite" }}
-          className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-        >
-          <Row className="text-center">
-          <div className="fs-6 col-6">Section 2</div>
-          <div className="fs-6 col-6">1 min</div>
-          </Row>
-        </Container>
-        {ItemListTriggerSection2.map((obj, index) => (
-          <CartItems
-            name={obj.name}
-            section={obj.section}
-            price={obj.price}
-            coordinates={obj.coordinates}
-            number={obj.number}
-            image={obj.image}
-          />
-        ))}
+        <Row>
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 mt-3 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6 col-6">Section 1</div>
+              <div className="fs-6 col-6">Current Section</div>
+            </Row>
+          </Container>
 
-        <Container
-          style={{ backgroundColor: "FloralWhite" }}
-          className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-        >
-          <Row className="text-center">
-            <div className="fs-6 col-6">Section 3</div>
-            <div className="fs-6 col-6">2 min</div>
-          </Row>
-        </Container>
-        {ItemListTriggerSection3.map((obj, index) => (
-          <CartItems
-            name={obj.name}
-            section={obj.section}
-            price={obj.price}
-            coordinates={obj.coordinates}
-            number={obj.number}
-            image={obj.image}
-          />
-        ))}
-      </Row>
-    </Container>
-  );
+          {ItemListTriggerSection1.map((obj, index) => (
+            <CartItems
+              name={obj.name}
+              section={obj.section}
+              subSection={obj.subSection}
+              price={obj.price}
+              coordinates={obj.coordinates}
+              number={obj.number}
+              image={obj.image}
+              length={ItemListTriggerSection1.length}
+            />
+          ))}
+          <Container
+            style={{ backgroundColor: "Bisque" }}
+            className="mx-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6">Recommendations</div>
+            </Row>
+            <Row>
+              <div class="col-4">
+                <Row>
+                  <div>
+                    <img
+                      className="img-sizing"
+                      src={ItemListTriggerSection2[0].image}
+                    ></img>
+                  </div>
+                </Row>
+                <Row>
+                  <div>{ItemListTriggerSection2[0].name}</div>
+                </Row>
+                <Row>
+                  <button className="add-to-cart mx-2 p-1">Add to Cart</button>
+                </Row>
+              </div>
+              <div class="col-4">
+                <Row>
+                  <div>
+                    <img
+                      className="img-sizing"
+                      src={ItemListTriggerSection2[0].image}
+                    ></img>
+                  </div>
+                </Row>
+                <Row>
+                  <div>{ItemListTriggerSection2[0].name}</div>
+                </Row>
+                <Row>
+                  <button className="add-to-cart mx-2 p-1">Add to Cart</button>
+                </Row>
+              </div>
+              <div class="col-4">
+                <Row>
+                  <div>
+                    <img
+                      className="img-sizing"
+                      src={ItemListTriggerSection2[0].image}
+                    ></img>
+                  </div>
+                </Row>
+                <Row>
+                  <div>{ItemListTriggerSection2[0].name}</div>
+                </Row>
+                <Row>
+                  <button className="add-to-cart mx-2 p-1">Add to Cart</button>
+                </Row>
+              </div>
+            </Row>
+          </Container>
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6 col-6">Section 2</div>
+              <div className="fs-6 col-6">1 min</div>
+            </Row>
+          </Container>
+          {ItemListTriggerSection2.map((obj, index) => (
+            <CartItems
+              name={obj.name}
+              section={obj.section}
+              subSection={obj.subSection}
+              price={obj.price}
+              coordinates={obj.coordinates}
+              number={obj.number}
+              image={obj.image}
+              length={ItemListTriggerSection1.length}
+            />
+          ))}
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row>
+              <div class="col-4"></div>
+              <div class="col-6">
+                <Button
+                  size="sm"
+                  style={{
+                    backgroundColor: "Bisque",
+                    color: "black",
+                    borderColor: "black",
+                  }}
+                  onClick={handleClickS1}
+                >
+                  <b>I feel inspired</b>
+                </Button>
+              </div>
+              <div class="col-2"></div>
+            </Row>
+          </Container>
+
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6 col-6">Section 3</div>
+              <div className="fs-6 col-6">2 min</div>
+            </Row>
+          </Container>
+          {ItemListTriggerSection3.map((obj, index) => (
+            <CartItems
+              name={obj.name}
+              section={obj.section}
+              subSection={obj.subSection}
+              price={obj.price}
+              coordinates={obj.coordinates}
+              number={obj.number}
+              image={obj.image}
+              length={ItemListTriggerSection1.length}
+            />
+          ))}
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row>
+              <div class="col-4"></div>
+              <div class="col-6">
+                <Button
+                  size="sm"
+                  style={{
+                    backgroundColor: "Bisque",
+                    color: "black",
+                    borderColor: "black",
+                  }}
+                  onClick={handleClickS1}
+                >
+                  <b>I feel inspired</b>
+                </Button>
+              </div>
+              <div class="col-2"></div>
+            </Row>
+          </Container>
+        </Row>
+      </Container>
+    );
+    {
+      /*RECOMMENDATIONS POP-UP S2*/
+    }
+    {
+      /*RECOMMENDATIONS POP-UP S2*/
+    }
+  } else if (recommendation2) {
+    return (
+      <Container>
+        <Row>
+          <h2>Shopping List</h2>
+        </Row>
+
+        <Row>
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 mt-3 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6 col-6">Section 1</div>
+              <div className="fs-6 col-6">Current Section</div>
+            </Row>
+          </Container>
+
+          {ItemListTriggerSection1.map((obj, index) => (
+            <CartItems
+              name={obj.name}
+              section={obj.section}
+              subSection={obj.subSection}
+              price={obj.price}
+              coordinates={obj.coordinates}
+              number={obj.number}
+              image={obj.image}
+              length={ItemListTriggerSection1.length}
+            />
+          ))}
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row>
+              <div class="col-4"></div>
+              <div class="col-6">
+                <Button
+                  size="sm"
+                  style={{
+                    backgroundColor: "Bisque",
+                    color: "black",
+                    borderColor: "black",
+                  }}
+                  onClick={handleClickS1}
+                >
+                  <b>I feel inspired</b>
+                </Button>
+              </div>
+              <div class="col-2"></div>
+            </Row>
+          </Container>
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6 col-6">Section 2</div>
+              <div className="fs-6 col-6">1 min</div>
+            </Row>
+          </Container>
+          {ItemListTriggerSection2.map((obj, index) => (
+            <CartItems
+              name={obj.name}
+              section={obj.section}
+              subSection={obj.subSection}
+              price={obj.price}
+              coordinates={obj.coordinates}
+              number={obj.number}
+              image={obj.image}
+              length={ItemListTriggerSection1.length}
+            />
+          ))}
+
+          <Container
+            style={{ backgroundColor: "Bisque" }}
+            className="mx-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6">Recommendations</div>
+            </Row>
+            <Row>
+              <div class="col-4">
+                <Row>
+                  <div>
+                    <img
+                      className="img-sizing"
+                      src={ItemListTriggerSection2[0].image}
+                    ></img>
+                  </div>
+                </Row>
+                <Row>
+                  <div>{ItemListTriggerSection2[0].name}</div>
+                </Row>
+                <Row>
+                  <button className="add-to-cart mx-2 p-1">Add to Cart</button>
+                </Row>
+              </div>
+              <div class="col-4">
+                <Row>
+                  <div>
+                    <img
+                      className="img-sizing"
+                      src={ItemListTriggerSection2[0].image}
+                    ></img>
+                  </div>
+                </Row>
+                <Row>
+                  <div>{ItemListTriggerSection2[0].name}</div>
+                </Row>
+                <Row>
+                  <button className="add-to-cart mx-2 p-1">Add to Cart</button>
+                </Row>
+              </div>
+              <div class="col-4">
+                <Row>
+                  <div>
+                    <img
+                      className="img-sizing"
+                      src={ItemListTriggerSection2[0].image}
+                    ></img>
+                  </div>
+                </Row>
+                <Row>
+                  <div>{ItemListTriggerSection2[0].name}</div>
+                </Row>
+                <Row>
+                  <button className="add-to-cart mx-2 p-1">Add to Cart</button>
+                </Row>
+              </div>
+            </Row>
+          </Container>
+
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6 col-6">Section 3</div>
+              <div className="fs-6 col-6">2 min</div>
+            </Row>
+          </Container>
+          {ItemListTriggerSection3.map((obj, index) => (
+            <CartItems
+              name={obj.name}
+              section={obj.section}
+              subSection={obj.subSection}
+              price={obj.price}
+              coordinates={obj.coordinates}
+              number={obj.number}
+              image={obj.image}
+              length={ItemListTriggerSection1.length}
+            />
+          ))}
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row>
+              <div class="col-4"></div>
+              <div class="col-6">
+                <Button
+                  size="sm"
+                  style={{
+                    backgroundColor: "Bisque",
+                    color: "black",
+                    borderColor: "black",
+                  }}
+                  onClick={handleClickS1}
+                >
+                  <b>I feel inspired</b>
+                </Button>
+              </div>
+              <div class="col-2"></div>
+            </Row>
+          </Container>
+        </Row>
+        {/*RECOMMENDATIONS POP-UP S3*/}
+        {/*RECOMMENDATIONS POP-UP S3*/}
+      </Container>
+    );
+  } else if (recommendation3) {
+    return (
+      <Container>
+        <Row>
+          <h2>Shopping List</h2>
+        </Row>
+
+        <Row>
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 mt-3 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6 col-6">Section 1</div>
+              <div className="fs-6 col-6">Current Section</div>
+            </Row>
+          </Container>
+
+          {ItemListTriggerSection1.map((obj, index) => (
+            <CartItems
+              name={obj.name}
+              section={obj.section}
+              subSection={obj.subSection}
+              price={obj.price}
+              coordinates={obj.coordinates}
+              number={obj.number}
+              image={obj.image}
+              length={ItemListTriggerSection1.length}
+            />
+          ))}
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row>
+              <div class="col-4"></div>
+              <div class="col-6">
+                <Button
+                  size="sm"
+                  style={{
+                    backgroundColor: "Bisque",
+                    color: "black",
+                    borderColor: "black",
+                  }}
+                  onClick={handleClickS1}
+                >
+                  <b>I feel inspired</b>
+                </Button>
+              </div>
+              <div class="col-2"></div>
+            </Row>
+          </Container>
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6 col-6">Section 2</div>
+              <div className="fs-6 col-6">1 min</div>
+            </Row>
+          </Container>
+          {ItemListTriggerSection2.map((obj, index) => (
+            <CartItems
+              name={obj.name}
+              section={obj.section}
+              subSection={obj.subSection}
+              price={obj.price}
+              coordinates={obj.coordinates}
+              number={obj.number}
+              image={obj.image}
+              length={ItemListTriggerSection1.length}
+            />
+          ))}
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row>
+              <div class="col-4"></div>
+              <div class="col-6">
+                <Button
+                  size="sm"
+                  style={{
+                    backgroundColor: "Bisque",
+                    color: "black",
+                    borderColor: "black",
+                  }}
+                  onClick={handleClickS1}
+                >
+                  <b>I feel inspired</b>
+                </Button>
+              </div>
+              <div class="col-2"></div>
+            </Row>
+          </Container>
+
+          <Container
+            style={{ backgroundColor: "FloralWhite" }}
+            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6 col-6">Section 3</div>
+              <div className="fs-6 col-6">2 min</div>
+            </Row>
+          </Container>
+          {ItemListTriggerSection3.map((obj, index) => (
+            <CartItems
+              name={obj.name}
+              section={obj.section}
+              subSection={obj.subSection}
+              price={obj.price}
+              coordinates={obj.coordinates}
+              number={obj.number}
+              image={obj.image}
+              length={ItemListTriggerSection1.length}
+            />
+          ))}
+
+          <Container
+            style={{ backgroundColor: "Bisque" }}
+            className="mx-2 square border border-1 rounded mb-0 w-100"
+          >
+            <Row className="text-center">
+              <div className="fs-6">Recommendations</div>
+            </Row>
+            <Row>
+              <div class="col-4">
+                <Row>
+                  <div>
+                    <img
+                      className="img-sizing"
+                      src={ItemListTriggerSection2[0].image}
+                    ></img>
+                  </div>
+                </Row>
+                <Row>
+                  <div>{ItemListTriggerSection2[0].name}</div>
+                </Row>
+                <Row>
+                  <button className="add-to-cart mx-2 p-1">Add to Cart</button>
+                </Row>
+              </div>
+              <div class="col-4">
+                <Row>
+                  <div>
+                    <img
+                      className="img-sizing"
+                      src={ItemListTriggerSection2[0].image}
+                    ></img>
+                  </div>
+                </Row>
+                <Row>
+                  <div>{ItemListTriggerSection2[0].name}</div>
+                </Row>
+                <Row>
+                  <button className="add-to-cart mx-2 p-1">Add to Cart</button>
+                </Row>
+              </div>
+              <div class="col-4">
+                <Row>
+                  <div>
+                    <img
+                      className="img-sizing"
+                      src={ItemListTriggerSection2[0].image}
+                    ></img>
+                  </div>
+                </Row>
+                <Row>
+                  <div>{ItemListTriggerSection2[0].name}</div>
+                </Row>
+                <Row>
+                  <button className="add-to-cart mx-2 p-1">Add to Cart</button>
+                </Row>
+              </div>
+            </Row>
+          </Container>
+        </Row>
+      </Container>
+    );
+  }
 }
 
 export default Cart;
