@@ -1,46 +1,80 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./Margin.css";
+import { useState } from "react";
+import axios from "axios";
 
 const Signup = () => {
+  const REGISTER_URL = "http://localhost:4000/api/users/register";
+  // const [userData, setState] = useState[{}];
+
+  const [name, setFirstName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const registerNewUser = (event) => {
+    console.log(event);
+    event.preventDefault();
+    console.log(name, email);
+    const request_data = {
+      name: name,
+      email: email,
+      password: password,
+    };
+
+    axios.post(REGISTER_URL, request_data, { mode: "no-cors" });
+  };
+
   return (
     <div>
-    <Form>
-    <Form.Group className="mb-3" controlId="formBasicText">
-        <Form.Label>First name</Form.Label>
-        <Form.Control type="text" placeholder="First name" />
-      </Form.Group>
+      <Form onSubmit={registerNewUser}>
+        <Form.Group className="mb-3" controlId="formBasicText">
+          <Form.Label>First name</Form.Label>
+          <Form.Control type="text" placeholder="First name" />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicText">
-        <Form.Label>Last name</Form.Label>
-        <Form.Control type="text" placeholder="Last name" />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicText">
+          <Form.Label>Last name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Last name"
+            onChange={(event) => setFirstName(event.target.value)}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Repeat password</Form.Label>
-        <Form.Control type="password" placeholder="Repeat password" />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Repeat password</Form.Label>
+          <Form.Control type="password" placeholder="Repeat password" />
+        </Form.Group>
 
-      <Form.Group className="mb-3">
-      <Form.Text className="text-muted">
-          We'll never share your information with anyone else.
-        </Form.Text>
-      </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Text className="text-muted">
+            We'll never share your information with anyone else.
+          </Form.Text>
+        </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Signup
-      </Button>
-    </Form>
+        <Button variant="primary" type="submit" onSubmit={registerNewUser}>
+          Signup
+        </Button>
+      </Form>
     </div>
   );
 };
