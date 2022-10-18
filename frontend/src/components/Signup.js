@@ -8,16 +8,17 @@ const Signup = () => {
   const REGISTER_URL = "http://localhost:4000/api/users/register";
   // const [userData, setState] = useState[{}];
 
-  const [name, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const registerNewUser = (event) => {
     console.log(event);
     event.preventDefault();
-    console.log(name, email);
+    console.log(email);
     const request_data = {
-      name: name,
+      name: `${firstName} ${lastName}`,
       email: email,
       password: password,
     };
@@ -30,7 +31,9 @@ const Signup = () => {
       <Form onSubmit={registerNewUser}>
         <Form.Group className="mb-3" controlId="formBasicText">
           <Form.Label>First name</Form.Label>
-          <Form.Control type="text" placeholder="First name" />
+          <Form.Control type="text" placeholder="First name" 
+          onChange={(event) => setFirstName(event.target.value)}
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicText">
@@ -38,7 +41,7 @@ const Signup = () => {
           <Form.Control
             type="text"
             placeholder="Last name"
-            onChange={(event) => setFirstName(event.target.value)}
+            onChange={(event) => setLastName(event.target.value)}
           />
         </Form.Group>
 
@@ -58,11 +61,6 @@ const Signup = () => {
             placeholder="Password"
             onChange={(event) => setPassword(event.target.value)}
           />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Repeat password</Form.Label>
-          <Form.Control type="password" placeholder="Repeat password" />
         </Form.Group>
 
         <Form.Group className="mb-3">
