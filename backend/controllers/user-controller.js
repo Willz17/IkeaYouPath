@@ -1,4 +1,4 @@
-const { registerUser, loginUser } = require("../services/query-services");
+const { registerUser, login } = require("../services/user-services");
 
 const register = async (req, res, next) => {
   try {
@@ -17,7 +17,7 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   try {
-    const data = loginUser({
+    const data = login({
       email: req.body.email,
       password: req.body.password,
     });

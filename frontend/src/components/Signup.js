@@ -4,9 +4,10 @@ import "./Margin.css";
 import { useState } from "react";
 import axios from "axios";
 
+import env from "react-dotenv";
+
 const Signup = () => {
-  const REGISTER_URL = "http://localhost:4000/api/users/register";
-  // const [userData, setState] = useState[{}];
+  const REGISTER_URL = env.API_SIGN_UP;
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -31,8 +32,10 @@ const Signup = () => {
       <Form onSubmit={registerNewUser}>
         <Form.Group className="mb-3" controlId="formBasicText">
           <Form.Label>First name</Form.Label>
-          <Form.Control type="text" placeholder="First name" 
-          onChange={(event) => setFirstName(event.target.value)}
+          <Form.Control
+            type="text"
+            placeholder="First name"
+            onChange={(event) => setFirstName(event.target.value)}
           />
         </Form.Group>
 
@@ -69,7 +72,7 @@ const Signup = () => {
           </Form.Text>
         </Form.Group>
 
-        <Button variant="primary" type="submit" onSubmit={registerNewUser}>
+        <Button variant="primary" type="submit">
           Signup
         </Button>
       </Form>
