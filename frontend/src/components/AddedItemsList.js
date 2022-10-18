@@ -75,7 +75,7 @@ function Cart(props) {
   const [numItems, setNumItems] = useState(1);
 
   return (
-    <Container>
+    <Container className="p-5">
       <Row className="pb-2">
         <h2>Your shopping cart</h2>
       </Row>

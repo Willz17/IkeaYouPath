@@ -18,7 +18,7 @@ const Home = () => {
   let navigate = useNavigate();
 
   return (
-    <Container>
+    <Container className="p-5">
       <Row className="text-center mt-5 pb-3">
         <h1><b>Hej and welcome to IKEA Kållered.</b></h1>
       </Row>
@@ -38,13 +38,13 @@ const Home = () => {
 
       <Row className="pt-4" style={{width: "50%", float: "right"}}>
       <Button className="rounded-left rounded-right" onClick={routeChangeInspired}>
-        <h3>I feel inspired</h3>
+        <h4>I feel inspired</h4>
       </Button>
       </Row>
 
       <Row className="pt-4" style={{width: "50%"}}>
       <Button className="rounded-left rounded-right" onClick={routeChangeHurry}>
-        <h3>I'm in a hurry</h3>
+        <h4>I'm in a hurry</h4>
       </Button>
       </Row>
     </Container>
