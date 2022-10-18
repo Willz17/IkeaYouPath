@@ -48,83 +48,7 @@ const NewList = () => {
     itemImage.push(obj.img);
   });
   const [searchTerm, setSearchTerm] = useState("");
-  const [result, setResults] = useState(
-    itemName.map((item, index) => (
-      <Card
-        className="p-3"
-        bg="light"
-        style={{ width: "40%", display: "inline-block", margin: "1rem 1rem" }}
-      >
-        <Row className="align-items-center">
-          <div className="col-md-3">
-            <img src={item.img} alt="..." className="img-thumbnail"></img>
-          </div>
-          <div className="col-md-6">
-            {item.name} <p>{"Price: $" + item.price}</p>{" "}
-            <p>{"Section: " + item.section}</p>
-          </div>
-
-          <div className="col-md-3">
-            <Button
-              className="align-self-end"
-              variant="primary"
-              type="submit"
-              size="sm"
-              onClick={(e) => {
-                console.log(productList[index]);
-                e.preventDefault();
-                if (
-                  addToCart.filter((en) => en.name === productList[index].name)
-                    .length > 0
-                ) {
-                  setAlerter(
-                    <Alert
-                      key="warning"
-                      variant="warning"
-                      style={{
-                        position: "fixed",
-                        zIndex: "9999",
-                        right: "45%",
-                        top: "10%",
-                      }}
-                    >
-                      Item already added!
-                    </Alert>
-                  );
-                  // After 2 seconds we want the alert to dissapear
-                  setTimeout(() => {
-                    setAlerter("");
-                  }, 2000);
-                } else {
-                  addToCart.push(productList[index]); //Send item to database that will be shown in the Cart page
-                  setAlerter(
-                    <Alert
-                      key="success"
-                      variant="success"
-                      style={{
-                        position: "fixed",
-                        zIndex: "9999",
-                        right: "40%",
-                        top: "10%",
-                      }}
-                    >
-                      Added {productList[index].name} to list!
-                    </Alert>
-                  );
-                  // After 2 seconds we want the alert to dissapear
-                  setTimeout(() => {
-                    setAlerter("");
-                  }, 2000);
-                }
-              }}
-            >
-              Add to Shoppinglist
-            </Button>{" "}
-          </div>
-        </Row>
-      </Card>
-    ))
-  );
+  const [result, setResults] = useState();
 
   const [alerter, setAlerter] = useState();
   const [showSearch, setShowSearch] = useState(false);
@@ -153,9 +77,13 @@ const NewList = () => {
     let solution;
     solution = itemName.map((item, index) => (
       <Card
-        className="p-3"
-        bg="light"
-        style={{ width: "40%", display: "inline-block", margin: "1rem 1rem" }}
+        className="p-3 shift-it-to-left"
+        style={{
+          width: "40%",
+          display: "inline-block",
+          margin: "1rem 1rem",
+          border: "none",
+        }}
       >
         <Row className="align-items-center">
           <div className="col-md-3">
@@ -163,17 +91,24 @@ const NewList = () => {
               src={itemImage[index]}
               alt="..."
               className="img-thumbnail"
+              style={{ border: "none" }}
             ></img>
           </div>
-          <div className="col-md-6">
-            {itemName[index]} <p>{"Price: $" + itemPrice[index]}</p>{" "}
-            <p>{"Section: " + itemSection[index]}</p>
+          <div className="col-md-6 fontStyling">
+            {itemName[index]}{" "}
+            <p className="priceStyling">
+              <span className="dollarStyling">$</span>
+              {+itemPrice[index]}{" "}
+              <p className="sectionStyling">
+                {"Section: " + itemSection[index]}
+              </p>
+            </p>
           </div>
 
           <div className="col-md-3">
             <Button
-              className="align-self-end"
-              variant="primary"
+              className="align-self-end rounded-left rounded-right"
+              variant="warning"
               type="submit"
               size="sm"
               onClick={(e) => {
@@ -223,7 +158,12 @@ const NewList = () => {
                 }
               }}
             >
-              Add to Shoppinglist
+              <img
+                src="addBasket.png"
+                alt="addBasket"
+                className="pb-1"
+                style={{ width: "1.4rem" }}
+              ></img>
             </Button>{" "}
           </div>
         </Row>
@@ -263,10 +203,13 @@ const NewList = () => {
   };
 
   return (
-    <Container className="align-items-center" style={{ padding: "0px" }}>
+    <Container
+      className="align-items-center shift-it-to-left px-3"
+      style={{ padding: "0px" }}
+    >
       <Row className="align-items-center">
         <Container>
-          <div>
+          <div className="shift-it-to-left">
             <form
               onSubmit={getSpecificProduct}
               className="input-group mb-3 mt-5 w-75 center"
@@ -275,7 +218,7 @@ const NewList = () => {
               {/* {productList.map(p => <div>{p.name}</div>)} */}
               <input
                 type="search"
-                className="form-control rounded-left rounded-right"
+                className="form-control rounded-left rounded-right align-items-center"
                 placeholder="Search for Item..."
                 onChange={(event) => {
                   setSearchTerm(event.target.value);

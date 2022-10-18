@@ -41,3 +41,27 @@
 .grey-bg{
     background-color: #f5f5f5;
 }
+
+.shift-it-to-left{
+    text-align: left;
+}
+
+.fontStyling{
+    font-weight: bold;
+    font-size: small;
+}
+
+.priceStyling{
+    font-size: large;
+    font-weight: bold;
+}
+
+.sectionStyling{
+    font-weight: bold;
+    font-size: small;
+}
+
+.dollarStyling{
+    font-weight: bold;
+    font-size: small;
+}
