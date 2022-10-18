@@ -7,11 +7,11 @@ const userSchema = new Schema({
     required: true,
   },
   email: {
-    type: email,
+    type: String,
     required: true,
   },
   password: {
-    type: password,
+    type: String,
     required: true,
   },
   cart: {
