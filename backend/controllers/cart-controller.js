@@ -3,7 +3,7 @@ const {
   addItemToCart,
   clearCart,
   removeItemFromCart,
-} = require("../services/cart-services");
+} = require("../services/query-services");
 
 const getCart = (req, res, next) => {
   try {

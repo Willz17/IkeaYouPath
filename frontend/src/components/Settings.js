@@ -6,7 +6,7 @@ import "./Margin.css";
 
 const Settings = () => {
   return (
-    <Container className="pt-4">
+    <Container>
       <h2>User Settings</h2>
       <Container>
         <Form>
@@ -40,7 +40,7 @@ const Settings = () => {
             <Form.Control type="password" placeholder="Repeat new password" />
           </Form.Group>
 
-          <Form.Group className="mb-5">
+          <Form.Group className="mb-3">
             <Form.Text className="text-muted">
               We will never share your information with anyone else.
             </Form.Text>
@@ -53,7 +53,7 @@ const Settings = () => {
         <Row>
           <Form>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Dark mode" className="align-items-left !important"/>
+            <Form.Check type="checkbox" label="Dark mode" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="Suggest items based on your shopping list" />
@@ -61,10 +61,10 @@ const Settings = () => {
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="Suggest discounted items" />
           </Form.Group>
-          <Button variant="primary" type="submit" size="lg" className="mt-4" style={{width: "35%"}}>
+          <Button variant="primary" type="submit" size="md" className="mt-3">
             Update
           </Button>
-          <Button variant="danger" type="submit" size="lg" className="mt-4 mx-4" style={{width: "35%"}}>
+          <Button variant="danger" type="submit" size="md" className="mt-3 mx-4">
             Logout
           </Button>
           </Form>

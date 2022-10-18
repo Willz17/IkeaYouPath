@@ -8,19 +8,19 @@
   width: 40px;
   height: 20px;
 }
-.checkbox1{
-	height: 30px;
-  width: 30px;
+.radio{
+	color: green;
+	height: 25px;
+    width: 25px;
 
 
 }
 
-.expanse-remove{
-  background-color: white;
+.add-to-cart{
+  background-color: antiquewhite;
   font-size: 10px;
   border-radius: 1px;
   width: auto;
   height: auto;
   margin-right: 25px;
-  align-self: center;
 }

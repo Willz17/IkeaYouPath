@@ -68,14 +68,14 @@ function Cart(props) {
   };
 
   const routeChangeNav = () => {
-    let path = "/welcome";
+    let path = "/shoppinglist";
     navigate(path);
   };
 
   const [numItems, setNumItems] = useState(1);
 
   return (
-    <Container className="p-5">
+    <Container>
       <Row className="pb-2">
         <h2>Your shopping cart</h2>
       </Row>
@@ -132,7 +132,7 @@ function Cart(props) {
           color="primary"
           className=" px-4 rounded-left rounded-right"
           onClick={routeChangeNav}
-          style={{ position: "fixed", bottom: "3%", right: "10%" }}>
+          style={{ position: "fixed", bottom: "5%", right: "10%" }}>
             I am at IKEA
         </Button>
 
@@ -140,7 +140,7 @@ function Cart(props) {
           color="primary"
           className=" px-4 rounded-left rounded-right"
           onClick={routeChangeSearch}
-          style={{ position: "fixed", bottom: "3%", left: "10%" }}>
+          style={{ position: "fixed", bottom: "5%", left: "10%" }}>
             Add items
         </Button>
       </div>

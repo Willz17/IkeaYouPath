@@ -10,11 +10,17 @@ const productsSchema = new Schema({
     type: String,
     required: true,
   },
-  section: {
-    type: String,
-    required: true,
+  coordinates: {
+    x: {
+      type: String,
+      required: true,
+    },
+    y: {
+      type: String,
+      required: true,
+    },
   },
-  img: {
+  section: {
     type: String,
     required: true,
   },

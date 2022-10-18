@@ -1,13 +1,13 @@
 import Container from "react-bootstrap/esm/Container";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
-import "./Margin.css"
 
 const Account = () => {
   return (
-    <Container className="pt-4">
+    <Container>
       <Nav activeKey="/settings">
-        <Row className="align-text-left">
+        <Row>
+
           <Nav.Item>
             <Nav.Link href="/settings">
               <h2>Settings</h2>
