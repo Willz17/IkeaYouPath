@@ -16,12 +16,12 @@ import Home from "./components/Home";
 
 const App = () => {  
   return (
-  <div>
+  <div >
     <Router>
-      <NavBar/>
+      <NavBar />
       <Routes>
-        <Route exact path='' element={<Home />}/>
-        <Route path='/home' element={<Home />}/>
+        <Route exact path='' element={<NewList />}/>
+        <Route path='/welcome' element={<Home />}/>
         <Route path='/account' element={<Account />}/>
         <Route path='/settings' element={<Settings />}/>
         <Route path='/login' element={<Login />}/>
@@ -31,7 +31,6 @@ const App = () => {
         <Route path='/search' element={<NewList />}/>
       </Routes>
     </Router>
-  
     </div>
   );
 };
