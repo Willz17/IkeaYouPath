@@ -1,5 +1,6 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/esm/Row";
 import "./Margin.css";
 import { useState } from "react";
 import axios from "axios";
@@ -64,16 +65,19 @@ const loginUser = (event) => {
         <Form.Control type="password" placeholder="Password"   
         onChange={(event) => setPassword(event.target.value)}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+
+      <Form.Group className="mb-3 justify-content-between" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Remember me" />
       </Form.Group>
       
-      <Button variant="primary" type="submit" onSubmit={loginUser}>
-        Login
-      </Button>
-      <Button variant="link" type="button" href="/signup">
-        Signup
-      </Button>
+      <Row className="justify-content-center pt-3">
+        <Button style={{width: "75%"}} variant="primary" type="submit" onSubmit={loginUser}>Login</Button>
+      </Row>
+
+      <Row className="justify-content-center pt-4">
+          <Button className="border" style={{width: "75%"}} variant="light" type="submit" href="/signup">Signup</Button>
+      </Row>
+
     </Form>
     </div>
   );

@@ -1,3 +1,11 @@
 Form {
     margin: 2rem;
 }
+
+.form-check{
+    text-align: left;
+}
+
+.nav-link{
+    text-align: left;
+}
