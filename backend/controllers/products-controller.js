@@ -1,10 +1,8 @@
-const ProductSchema = require("../models/product");
-
 const {
   getAllProducts,
   getProductByNameAndID,
   filter,
-} = require("../services/query-services");
+} = require("../services/product-services");
 
 const getProducts = async (req, res, next) => {
   try {
