@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/esm/Button";
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import { useNavigate } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import { Await, useNavigate } from "react-router-dom";
 
-import "./AddedItemsList.css"
+import axios from "axios";
+
+import { saveToLocale, getFromLocale } from "../utils/storage";
+
+import "./AddedItemsList.css";
 
 function Cart(props) {
-  const ItemList = [
+  const CARTER_URL = "https://api-you-path.azurewebsites.net/api/users/cart";
+  const SPECIFIC_PRODUCT_URL =
+    "https://api-you-path.azurewebsites.net/api/products";
+
+  let ItemList = [
     {
       name: "GLADELIG - Bowl",
       id: 1,
@@ -42,10 +50,56 @@ function Cart(props) {
     },
   ];
 
+  const [itemList, setItemList] = useState([]);
+
+  useEffect(() => {
+    if (getFromLocale("cred")) {
+      let email = getFromLocale("cred").email;
+      let list = [];
+      const fetchCart = async (email) => {
+        await axios
+          .get(CARTER_URL + `/${email}`, { mode: "no-cors" })
+          .then((res) => {
+            let result = res.data;
+
+            console.log(result);
+            for (let r of result) {
+              const item = getIt(r.name, r.p_ID);
+              console.log(item);
+              list.push(item);
+              console.log(r.name);
+            }
+            console.log(list);
+
+            // setItemList(list);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+
+      fetchCart(email);
+      setItemList(list);
+      console.log("list", list);
+    }
+  }, []);
+
+  let list = [];
+  const getIt = async (name, id) => {
+    await axios
+      .get(SPECIFIC_PRODUCT_URL + `/${name}/${id}`, { mode: "no-cors" })
+      .then((res) => {
+        console.log(res.data);
+        list.push(res.data);
+        return res.data;
+      });
+  };
+
   let itemName = [];
   let itemSubSection = [];
   let itemPrice = [];
   let itemImage = [];
+  console.log(list);
 
   ItemList.forEach((obj) => {
     itemName.push(obj.name);
@@ -73,7 +127,7 @@ function Cart(props) {
   };
 
   const [numItems, setNumItems] = useState(1);
-
+  console.log(itemList);
   return (
     <Container className="p-5">
       <Row className="pb-2">
@@ -132,16 +186,18 @@ function Cart(props) {
           color="primary"
           className=" px-4 rounded-left rounded-right"
           onClick={routeChangeNav}
-          style={{ position: "fixed", bottom: "3%", right: "10%" }}>
-            I am at IKEA
+          style={{ position: "fixed", bottom: "3%", right: "10%" }}
+        >
+          I am at IKEA
         </Button>
 
         <Button
           color="primary"
           className=" px-4 rounded-left rounded-right"
           onClick={routeChangeSearch}
-          style={{ position: "fixed", bottom: "3%", left: "10%" }}>
-            Add items
+          style={{ position: "fixed", bottom: "3%", left: "10%" }}
+        >
+          Add items
         </Button>
       </div>
     </Container>

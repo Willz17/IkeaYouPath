@@ -5,10 +5,12 @@ const {
   removeItemFromCart,
 } = require("../services/cart-services");
 
-const getCart = (req, res, next) => {
+const getCart = async (req, res, next) => {
   try {
     const email = req.params.email;
-    const data = getUsersCart(email);
+    console.log(email);
+    const data = await getUsersCart(email);
+    console.log("controller", data);
     res.json(data);
   } catch (e) {
     const error = new Error(e.message);
@@ -17,13 +19,14 @@ const getCart = (req, res, next) => {
   }
 };
 
-const addToCart = (req, res, next) => {
+const addToCart = async (req, res, next) => {
   try {
-    const data = addItemToCart({
-      email: req.body.email,
-      product_ID: req.body.product_ID,
-      user_ID: req.body.user_ID,
+    const data = await addItemToCart({
+      u_email: req.body.u_email,
+      p_ID: req.body.p_ID,
+      u_ID: req.body.u_ID,
       Q: req.body.Q,
+      name: req.body.name,
     });
     res.json(data);
   } catch (e) {
@@ -33,11 +36,11 @@ const addToCart = (req, res, next) => {
   }
 };
 
-const removeFromCart = (req, res, next) => {
+const removeFromCart = async (req, res, next) => {
   try {
-    const data = removeItemFromCart({
-      product_ID: req.params.product_ID,
-      email: req.params.email,
+    const data = await removeItemFromCart({
+      p_ID: req.params.p_ID,
+      u_email: req.params.u_email,
     });
     res.json(data);
   } catch (e) {
@@ -47,10 +50,10 @@ const removeFromCart = (req, res, next) => {
   }
 };
 
-const clearUsersCart = (req, res, next) => {
+const clearUsersCart = async (req, res, next) => {
   try {
     const email = req.params.email;
-    const data = clearCart(email);
+    const data = await clearCart(email);
     res.json(data);
   } catch (e) {
     const error = new Error(e.message);

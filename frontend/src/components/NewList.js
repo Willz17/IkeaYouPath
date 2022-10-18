@@ -9,13 +9,16 @@ import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
 import axios from "axios";
+import { saveToLocale, getFromLocale } from "../utils/storage";
 
 import env from "react-dotenv";
 
-let addToCart = [];
+let CARTED_IDS = [];
 
 const NewList = () => {
-  const PRODUCT_URL = env.API_GET_PRODUCTS;
+  const PRODUCT_URL = "https://api-you-path.azurewebsites.net/api/products";
+
+  const CARTER_URL = "https://api-you-path.azurewebsites.net/api/users/cart";
 
   const [productList, setProductList] = useState([]);
 
@@ -73,6 +76,46 @@ const NewList = () => {
     );
   };
 
+  const postItem = ({ u_ID, p_ID, u_email, name }) => {
+    const request_data = {
+      u_ID: u_ID,
+      p_ID: p_ID,
+      u_email: u_email,
+      name: name,
+    };
+
+    axios
+      .post(CARTER_URL, request_data, { mode: "no-cors" })
+      .then((res) => {
+        // console.log(res.data);
+        let data = res.data;
+        console.log(data);
+        console.log("Added to cart");
+
+        setAlerter(
+          <Alert
+            key="success"
+            variant="success"
+            style={{
+              position: "fixed",
+              zIndex: "9999",
+              right: "40%",
+              top: "10%",
+            }}
+          >
+            ${name} added to cart!
+          </Alert>
+        );
+        // After 2 seconds we want the alert to dissapear
+        setTimeout(() => {
+          setAlerter("");
+        }, 2000);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const createCards = (itemName, itemImage, itemSection, itemPrice) => {
     let solution;
     solution = itemName.map((item, index) => (
@@ -114,7 +157,7 @@ const NewList = () => {
               onClick={(e) => {
                 e.preventDefault();
                 if (
-                  addToCart.filter((en) => en.name === productList[index].name)
+                  CARTED_IDS.filter((en) => en.name === productList[index].name)
                     .length > 0
                 ) {
                   setAlerter(
@@ -136,25 +179,45 @@ const NewList = () => {
                     setAlerter("");
                   }, 2000);
                 } else {
-                  addToCart.push(productList[index].id); //Send item to database that will be shown in the Cart page
-                  setAlerter(
-                    <Alert
-                      key="success"
-                      variant="success"
-                      style={{
-                        position: "fixed",
-                        zIndex: "9999",
-                        right: "40%",
-                        top: "10%",
-                      }}
-                    >
-                      Added {productList[index].name} to list!
-                    </Alert>
-                  );
-                  // After 2 seconds we want the alert to dissapear
-                  setTimeout(() => {
-                    setAlerter("");
-                  }, 2000);
+                  CARTED_IDS.push(productList[index].id); //Send item to database that will be shown in the Cart page
+                  if (getFromLocale("cred")) {
+                    console.log("cred", getFromLocale("cred").email);
+
+                    let u_email = getFromLocale("cred").email;
+                    let u_ID = getFromLocale("cred").userID;
+
+                    postItem({
+                      u_ID: u_ID,
+                      p_ID: productList[index].id,
+                      u_email: u_email,
+                      name: productList[index].name,
+                    });
+
+                    console.log(productList);
+                    console.log(CARTED_IDS);
+                  } else {
+                    alert("You need to create an account");
+                    navigate("/signup");
+                  }
+
+                  // setAlerter(
+                  //   <Alert
+                  //     key="success"
+                  //     variant="success"
+                  //     style={{
+                  //       position: "fixed",
+                  //       zIndex: "9999",
+                  //       right: "40%",
+                  //       top: "10%",
+                  //     }}
+                  //   >
+                  //     Added {productList[index].name} to list!
+                  //   </Alert>
+                  // );
+                  // // After 2 seconds we want the alert to dissapear
+                  // setTimeout(() => {
+                  //   setAlerter("");
+                  // }, 2000);
                 }
               }}
             >
@@ -170,7 +233,7 @@ const NewList = () => {
       </Card>
     ));
     setResults(solution);
-    return addToCart;
+    return CARTED_IDS;
   };
 
   const fetchItems = (event) => {

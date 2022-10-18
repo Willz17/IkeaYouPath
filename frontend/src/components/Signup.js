@@ -11,7 +11,8 @@ import env from "react-dotenv";
 import "./Signup.css";
 
 const Signup = () => {
-  const REGISTER_URL = env.API_SIGN_UP;
+  const REGISTER_URL =
+    "https://api-you-path.azurewebsites.net/api/users/register";
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
