@@ -12,7 +12,7 @@ const products_router = require("./routes/products-router");
 const user_router = require("./routes/user-router");
 const user_schema = require("./models/user");
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 80;
 const app = express();
 app.use(express.json());
 
