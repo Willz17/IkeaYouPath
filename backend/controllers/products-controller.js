@@ -3,7 +3,6 @@ const {
   getProductByNameAndID,
   filter,
 } = require("../services/product-services");
-const p_schema = require("../models/product");
 
 const getProducts = async (req, res, next) => {
   try {
