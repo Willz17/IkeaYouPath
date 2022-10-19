@@ -18,7 +18,7 @@ const Account = () => {
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link onClick={clearLocale('cred')} href="/search">
+              <Nav.Link onClick={clearLocale} href="/search">
                 <h2>Logout</h2>
               </Nav.Link>
             </Nav.Item>
