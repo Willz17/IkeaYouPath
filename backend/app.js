@@ -5,8 +5,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const cors = require("cors");
-const { Connection, Request, TYPES } = require("tedious");
-let async = require("async");
 
 const products_router = require("./routes/products-router");
 const user_router = require("./routes/user-router");
@@ -19,19 +17,6 @@ app.use(express.json());
 mongoose.connect(process.env.MONGO_DB);
 const db = mongoose.connection;
 
-const ORIGINS = ["https://youpath.azurewebsites.net", "http://localhost:3000/"];
-const METHODS = [
-  "GET",
-  "PUT",
-  "POST",
-  "PATCH",
-  "UPDATE",
-  "HEAD",
-  "OPTIONS",
-  "DELETE",
-];
-const HEADERS = ["origin", "X-Requested-With", "Content-Type", "Accept"];
-
 db.on("error", (error) => {
   console.error(error);
 });
@@ -43,8 +28,6 @@ db.once("open", () => {
 app.use(
   cors({
     origin: "*",
-    // methods: METHODS,
-    // headers: HEADERS,
   })
 );
 

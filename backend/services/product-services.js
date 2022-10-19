@@ -34,17 +34,18 @@ const getProductByNameAndID = async ({ name, id }) => {
  * @returns - JSON array of products if found, empty list or error object on error.
  */
 const filter = async (term) => {
-  console.log(`/${term}/i`);
   try {
-    const data = await product_schema.find({
-      $or: [
-        { section: term },
-        {
-          name: term,
-        },
-      ],
-    });
-    return data;
+    const all = await getAllProducts(); // get all avialable ps
+    let products = [];
+    for (let item of all) {
+      if (
+        item.section.toString().toLowerCase().includes(term.toLowerCase()) ||
+        item.name.toString().toLowerCase().includes(term.toLowerCase())
+      ) {
+        products.push(item);
+      }
+    }
+    return products;
   } catch (e) {
     console.log("error", e);
     return e;

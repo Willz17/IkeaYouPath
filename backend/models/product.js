@@ -20,5 +20,16 @@ const productsSchema = new Schema({
   },
 });
 
+// productsSchema.index(
+//   { section: 1 },
+//   { collation: { locale: "en", strength: 2 } }
+// );
+
+// productsSchema.statics.filterSearch = function (term) {
+//   return this.find({ section: new RegExp("^" + term + "\\b", "ig") }).collation(
+//     { locale: "en", strength: 2 }
+//   );
+// };
+
 const ProductsSchema = mongoose.model("products", productsSchema, "products");
 module.exports = ProductsSchema;
