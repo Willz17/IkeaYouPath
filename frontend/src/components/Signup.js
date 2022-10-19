@@ -88,10 +88,6 @@ const Signup = () => {
           </Form.Text>
         </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Signup
-        </Button>
-
         <hr></hr>
 
         <Row className="pt-2 pb-3 mx-2">Which of these describe you best?</Row>

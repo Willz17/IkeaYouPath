@@ -17,41 +17,10 @@ function Cart(props) {
   const SPECIFIC_PRODUCT_URL =
     "https://api-you-path.azurewebsites.net/api/products";
 
-  let ItemList = [
-    {
-      name: "GLADELIG - Bowl",
-      id: 1,
-      section: "Tableware",
-      coordinates: {},
-      price: "12.99",
-      description:
-        "The beautiful sandy-glazed surface turns every meal into pure joy. Decorate your table with clean classic shapes and a strong crafted look. A timeless feel with a unique and decorative design.",
-      img: "https://www.ikea.com/gb/en/images/products/gladelig-bowl-grey__0799737_pe767611_s5.jpg?f=l",
-    },
-    {
-      name: "GLADELIG - Plate",
-      id: 2,
-      section: "Tableware",
-      coordinates: {},
-      price: "14.99",
-      description:
-        "The beautiful sandy-glazed surface turns every meal into pure joy. Decorate your table with clean classic shapes and a strong crafted look. A timeless feel with a unique and decorative design.        ",
-      img: "https://www.ikea.com/gb/en/images/products/gladelig-plate-grey__0799744_pe767614_s5.jpg?f=l",
-    },
-    {
-      name: "GLADELIG - Mug",
-      id: 3,
-      section: "Tableware",
-      coordinates: {},
-      price: "2.99",
-      description:
-        "The beautiful sandy-glazed surface turns every meal into pure joy. Decorate your table with clean classic shapes and a strong crafted look. A timeless feel with a unique and decorative design.",
-      img: "https://www.ikea.com/gb/en/images/products/gladelig-mug-grey__0800258_pe767830_s5.jpg?f=l",
-    },
-  ];
-
-  const [itemList, setItemList] = useState([]);
-
+  const [ItemList, setItemList] = useState([]);
+  const [showCards, setShowCards] = useState();
+  const [updater, setUpdater] = useState();
+  const [theList, setTheList] = useState();
   useEffect(() => {
     if (getFromLocale("cred")) {
       let email = getFromLocale("cred").email;
@@ -61,17 +30,10 @@ function Cart(props) {
           .get(CARTER_URL + `/${email}`, { mode: "no-cors" })
           .then((res) => {
             let result = res.data;
-
-            console.log(result);
             for (let r of result) {
-              const item = getIt(r.name, r.p_ID);
-              console.log(item);
+              const item = getIt(r.name, r.p_ID, result.length);
               list.push(item);
-              console.log(r.name);
             }
-            console.log(list);
-
-            // setItemList(list);
           })
           .catch((error) => {
             console.log(error);
@@ -79,27 +41,55 @@ function Cart(props) {
       };
 
       fetchCart(email);
-      setItemList(list);
-      console.log("list", list);
+      setItemList(anotherlist);
     }
   }, []);
 
-  let list = [];
-  const getIt = async (name, id) => {
+  let anotherlist = [];
+  const getIt = async (name, id, len) => {
     await axios
       .get(SPECIFIC_PRODUCT_URL + `/${name}/${id}`, { mode: "no-cors" })
       .then((res) => {
-        console.log(res.data);
-        list.push(res.data);
-        return res.data;
+        if (anotherlist.length < len) {
+          anotherlist.push(res.data);
+          createCards(anotherlist);
+          return res.data;
+        }
       });
+  };
+
+  const createCards = (data) => {
+    setShowCards(
+      data.map((obj, index) => (
+        <Row>
+          <Container className="p-1 mb-0 w-100">
+            <hr></hr>
+            <Row>
+              <div className="col-3 text-right">
+                <img src={obj.img}></img>
+              </div>
+              <div className="col-6 text-left">
+                <Row>{obj.name}</Row>
+                <Row className="pt-5">
+                  <DropdownButton id="dd_menu" title={numItems}>
+                    <Dropdown.Item>1</Dropdown.Item>
+                    <Dropdown.Item>2</Dropdown.Item>
+                    <Dropdown.Item>3</Dropdown.Item>
+                  </DropdownButton>
+                </Row>
+              </div>
+              <div className="col-3 text-left">${obj.price}</div>
+            </Row>
+          </Container>
+        </Row>
+      ))
+    );
   };
 
   let itemName = [];
   let itemSubSection = [];
   let itemPrice = [];
   let itemImage = [];
-  console.log(list);
 
   ItemList.forEach((obj) => {
     itemName.push(obj.name);
@@ -127,36 +117,13 @@ function Cart(props) {
   };
 
   const [numItems, setNumItems] = useState(1);
-  console.log(itemList);
   return (
     <Container className="p-5">
       <Row className="pb-2">
         <h2>Your shopping cart</h2>
       </Row>
 
-      {itemName.map((obj, index) => (
-        <Row>
-          <Container className="p-1 mb-0 w-100">
-            <hr></hr>
-            <Row>
-              <div className="col-3 text-right">
-                <img src={itemImage[index]}></img>
-              </div>
-              <div className="col-6 text-left">
-                <Row>{itemName[index]}</Row>
-                <Row className="pt-5">
-                  <DropdownButton id="dd_menu" title={numItems}>
-                    <Dropdown.Item>1</Dropdown.Item>
-                    <Dropdown.Item>2</Dropdown.Item>
-                    <Dropdown.Item>3</Dropdown.Item>
-                  </DropdownButton>
-                </Row>
-              </div>
-              <div className="col-3 text-left">${itemPrice[index]}</div>
-            </Row>
-          </Container>
-        </Row>
-      ))}
+      {showCards}
 
       <Container className="pt-5">
         <Row className="text-left">
