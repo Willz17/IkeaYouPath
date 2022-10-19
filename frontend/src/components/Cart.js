@@ -1,8 +1,6 @@
 import "./Cart.css";
 import "./cart_navigation/Buttons.css";
 
-import "./Buttons.css";
-import CartItems from "./CartItems.js";
 import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
@@ -10,9 +8,7 @@ import SectionHeader from "./cart_navigation/SectionHeader";
 import Section_Item from "./cart_navigation/Section_Item";
 import ProgressBar from "./cart_navigation/ProgressBar";
 
-import { saveToLocale, getFromLocale } from "../utils/storage";
-
-import { saveToLocale, getFromLocale } from "../utils/storage";
+import { getFromLocale } from "../utils/storage";
 
 function Cart(props) {
   // Item Creation
@@ -211,8 +207,8 @@ function Cart(props) {
           <p>
             Next on your shopping list: <b>{naming}</b>
           </p>
-          </Row>
-          
+        </Row>
+
         <Row>
           <SectionHeader
             expandCollapse={() => expandCollapse()}
