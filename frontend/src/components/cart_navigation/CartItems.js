@@ -6,38 +6,22 @@ import React, { useState } from "react";
 
 function CartItems(props) {
   //Recommendations popouts
-  const [recommendation1, setRecomendation1] = useState(false);
-  const [recommendation2, setRecomendation2] = useState(false);
-  const [recommendation3, setRecomendation3] = useState(false);
+  const [recommendation, setRecomendation] = useState(false);
 
   const handleClick = () => {
-    if (props.section === "Section 1") {
-      if (recommendation1 === false) {
-        setRecomendation1(true);
-      } else {
-        setRecomendation1(false);
-      }
-    } else if (props.section === "Section 2") {
-      if (recommendation2 === false) {
-        setRecomendation2(true);
-      } else {
-        setRecomendation2(false);
-      }
-    } else if (props.section === "Section 3") {
-      if (recommendation3 === false) {
-        setRecomendation3(true);
-      } else {
-        setRecomendation3(false);
-      }
+    if (recommendation === false) {
+      setRecomendation(true);
+    } else {
+      setRecomendation(false);
     }
   };
 
   // Display Layout
-  if (!recommendation1 && !recommendation2 && !recommendation3) {
+  if (!recommendation) {
     return (
       <Container
         style={{ backgroundColor: "white" }}
-        className="mx-2 square border border-1 rounded mb-0 w-100"
+        className="mx-3 p-1 square border border-1 rounded"
       >
         <Row className="align-items-center">
           <div class="col-4">
@@ -59,16 +43,16 @@ function CartItems(props) {
           </div>
 
           <div class="align-items-left col-2">
-            <input class="checkbox1" type="checkbox" m onClick={handleClick} />
+            <input class="checkbox1" type="checkbox" onClick={handleClick} />
           </div>
         </Row>
       </Container>
     );
-  } else if (recommendation1 || recommendation2 || recommendation3) {
+  } else if (recommendation) {
     return (
       <Container
         style={{ backgroundColor: "white" }}
-        className="mx-2 square border border-1 rounded mb-0 w-100"
+        className="mx-3 p-1 square border border-1 rounded"
       >
         <Row className="align-items-center">
           <div class="col-4">
@@ -90,12 +74,12 @@ function CartItems(props) {
           </div>
 
           <div class="align-items-left col-2">
-            <input class="checkbox1" type="checkbox" m onClick={handleClick} />
+            <input class="checkbox1" type="checkbox" onClick={handleClick} />
           </div>
         </Row>
 
-        <Row className="text-center">
-          <div className="fs-6">Recommendations</div>
+        <Row className="">
+          <div className="fs-6 mb-2"><b>You might also like:</b></div>
         </Row>
         <Row>
           <div class="col-4">

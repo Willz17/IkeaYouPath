@@ -1,14 +1,16 @@
 import "./Cart.css";
+import "./cart_navigation/Buttons.css";
+
 import "./Buttons.css";
 import CartItems from "./CartItems.js";
 import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
+import SectionHeader from "./cart_navigation/SectionHeader";
+import Section_Item from "./cart_navigation/Section_Item";
+import ProgressBar from "./cart_navigation/ProgressBar";
 
-import Button from "react-bootstrap/esm/Button";
-
-import Col from "react-bootstrap/esm/Col";
-import axios from "axios";
+import { saveToLocale, getFromLocale } from "../utils/storage";
 
 import { saveToLocale, getFromLocale } from "../utils/storage";
 
@@ -17,39 +19,51 @@ function Cart(props) {
   let ItemList = [
     {
       name: "Knife",
-      section: "Section 1",
+      section: "Kitchen",
       subSection: "Shelf 48",
       price: "50",
-      coordinates: { x: 50, y: 30 },
       image:
         "https://www.militarysurplus.hu/eng_pm_Boker-Trench-Knive-Knife-40701_1.jpg",
     },
     {
       name: "Lamp",
-      section: "Section 3",
+      section: "Lighting",
       subSection: "Shelf 12",
       price: "35",
-      coordinates: { x: 70, y: 90 },
       image:
         "https://cdn.ambientedirect.com/chameleon/mediapool/thumbs/e/14/Artemide_Choose-Tavolo-Tischleuchte_498x498-ID1244137-f93b03546b4a9f1dc8091c19adbab9ad.jpg",
     },
     {
       name: "Table",
-      section: "Section 2",
+      section: "Dining Room",
       subSection: "Shelf 98",
       price: "60",
-      coordinates: { x: 60, y: 76 },
       image:
         "https://admincms.carlhansen.com/globalassets/products/dining-tables/ch327/ch327-boeg-190x95-cm-side.png?aspect=16:9&device=desktop&size=medium&display=standard",
     },
     {
       name: "Sofa",
-      section: "Section 3",
+      section: "Home Decoration",
       subSection: "Shelf 58",
       price: "40",
-      coordinates: { x: 78, y: 20 },
       image:
         "https://www.ikea.com/es/es/images/products/linanas-sofa-3-plazas-vissle-beige__1013894_pe829446_s5.jpg?f=s",
+    },
+    {
+      name: "Towel",
+      section: "Bathroom",
+      subSection: "Shelf 8",
+      price: "56",
+      image:
+        "https://www.ikea.com/ae/en/images/products/dimforsen-bath-towel-turquoise__1022793_pe832914_s5.jpg?f=xxxs",
+    },
+    {
+      name: "Pillow",
+      section: "Bedroom",
+      subSection: "Shelf 45",
+      price: "80",
+      image:
+        "https://www.target.com.au/medias/static_content/product/images/full/84/33/A1698433.jpg?impolicy=product_portrait_hero",
     },
   ];
 
@@ -58,7 +72,6 @@ function Cart(props) {
   let itemSection = [];
   let itemSubSection = [];
   let itemPrice = [];
-  let itemCoordinates = [];
   let itemImage = [];
 
   ItemList.forEach((obj) => {
@@ -66,34 +79,55 @@ function Cart(props) {
     itemSection.push(obj.section);
     itemSubSection.push(obj.subSection);
     itemPrice.push(obj.price);
-    itemCoordinates.push(obj.coordinates);
     itemImage.push(obj.image);
   });
 
   //Differentiate within Sections
-  const ItemListTriggerSection1 = [];
-  const ItemListTriggerSection2 = [];
-  const ItemListTriggerSection3 = [];
-
-  let section1Length = 0;
-  let section2Length = 0;
-  let section3Length = 0;
+  const ItemListTriggerDR = [];
+  const ItemListTriggerK = [];
+  const ItemListTriggerB = [];
+  const ItemListTriggerBT = [];
+  const ItemListTriggerHD = [];
+  const ItemListTriggerL = [];
 
   ItemList.forEach((obj) => {
-    if (obj.section === "Section 1") {
-      ItemListTriggerSection1.push(obj);
-      section1Length += 1;
+    if (obj.section === "Dining Room") {
+      ItemListTriggerDR.push(obj);
     }
-    if (obj.section === "Section 2") {
-      ItemListTriggerSection2.push(obj);
-      section2Length += 1;
+    if (obj.section === "Kitchen") {
+      ItemListTriggerK.push(obj);
     }
-    if (obj.section === "Section 3") {
-      ItemListTriggerSection3.push(obj);
-      section3Length += 1;
+    if (obj.section === "Bedroom") {
+      ItemListTriggerB.push(obj);
+    }
+    if (obj.section === "Bathroom") {
+      ItemListTriggerBT.push(obj);
+    }
+    if (obj.section === "Home Decoration") {
+      ItemListTriggerHD.push(obj);
+    }
+    if (obj.section === "Lighting") {
+      ItemListTriggerL.push(obj);
     }
   });
 
+  const [collapse, setCollapse] = useState(false);
+  const [naming, setNaming] = useState(ItemListTriggerDR[0].name);
+
+  const expandCollapse = () => {
+    if (collapse === false) {
+      setCollapse(true);
+      setNaming(ItemListTriggerK[0].name);
+    } else {
+      setNaming(ItemListTriggerDR[0].name);
+      setCollapse(false);
+    }
+  };
+
+  const testData1 = [{ bgcolor: "#21579D", completed: 0 }];
+  const testData2 = [{ bgcolor: "#21579D", completed: 17 }];
+
+  let minutes = 0;
   //Expand or collapse section
   const [addLabel1, setAddLabel1] = useState("Collapse");
   const [addLabel2, setAddLabel2] = useState("Collapse");
@@ -133,381 +167,78 @@ function Cart(props) {
 
   //GENERAL LAYOUT
 
-  if (!expansion1 && !expansion2 && !expansion3) {
+  if (!collapse) {
     return (
-      <Container>
-        <Row>
-          <h2>Shopping List</h2>
+      <Container className="mt-4">
+        <Row class="first-row">
+          <p>
+            Next on your shopping list: <b>{naming}</b>
+          </p>
         </Row>
-
         <Row>
-          <Container
-            style={{ backgroundColor: "white" }}
-            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-          >
-            <Row className="text-center">
-              <div className="fs-6 col-4">
-                <b>Section 1</b>
-              </div>
-              <div className="col-4">
-                <Button size="sm" variant="primary" onClick={handleClick1}>
-                  {addLabel1}
-                </Button>
-              </div>
-              <div className="fs-6 col-4">0 min</div>
-            </Row>
-          </Container>
-
-          {ItemListTriggerSection1.map((obj, index) => (
-            <CartItems
-              name={obj.name}
-              section={obj.section}
-              subSection={obj.subSection}
-              price={obj.price}
-              coordinates={obj.coordinates}
-              number={obj.number}
-              image={obj.image}
-              length={section1Length}
-              recImage={ItemListTriggerSection2[0].image}
-              recName={ItemListTriggerSection2[0].name}
-            />
-          ))}
-          <Container
-            style={{ backgroundColor: "white" }}
-            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-          >
-            <Row className="text-center">
-              <div className="fs-6 col-4">
-                <b>Section 2</b>
-              </div>
-              <div className="col-4">
-                {" "}
-                <Button size="sm" variant="primary" onClick={handleClick2}>
-                  {addLabel2}
-                </Button>
-              </div>
-              <div className="fs-6 col-4">1 min</div>
-            </Row>
-          </Container>
-          {ItemListTriggerSection2.map((obj, index) => (
-            <CartItems
-              name={obj.name}
-              section={obj.section}
-              subSection={obj.subSection}
-              price={obj.price}
-              coordinates={obj.coordinates}
-              number={obj.number}
-              image={obj.image}
-              length={section2Length}
-              recImage={ItemListTriggerSection1[0].image}
-              recName={ItemListTriggerSection1[0].name}
-            />
-          ))}
-
-          <Container
-            style={{ backgroundColor: "white" }}
-            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-          >
-            <Row className="text-center">
-              <div className="fs-6 col-4">
-                <b>Section 3</b>
-              </div>
-              <div className="col-4">
-                {" "}
-                <Button size="sm" variant="primary" onClick={handleClick3}>
-                  {addLabel3}
-                </Button>
-              </div>
-              <div className="fs-6 col-4">2 min</div>
-            </Row>
-          </Container>
-          {ItemListTriggerSection3.map((obj, index) => (
-            <CartItems
-              name={obj.name}
-              section={obj.section}
-              subSection={obj.subSection}
-              price={obj.price}
-              coordinates={obj.coordinates}
-              number={obj.number}
-              image={obj.image}
-              length={section3Length}
-              recImage={ItemListTriggerSection2[0].image}
-              recName={ItemListTriggerSection2[0].name}
-            />
-          ))}
+          <SectionHeader
+            expandCollapse={() => expandCollapse()}
+            secName={"Dining Room"}
+            time={minutes}
+          />
+          <Section_Item ItemListing={[ItemListTriggerDR, ItemListTriggerB]} />
+          <SectionHeader secName={"Kitchen"} time={1} />
+          <Section_Item ItemListing={[ItemListTriggerK, ItemListTriggerB]} />
+          <SectionHeader secName={"Bedroom"} time={2} />
+          <Section_Item ItemListing={[ItemListTriggerB, ItemListTriggerB]} />
+          <SectionHeader secName={"Bathroom"} time={3} />
+          <Section_Item ItemListing={[ItemListTriggerBT, ItemListTriggerB]} />
+          <SectionHeader secName={"Home Decoration"} time={3} />
+          <Section_Item ItemListing={[ItemListTriggerHD, ItemListTriggerB]} />
+          <SectionHeader secName={"Lighting"} time={4} />
+          <Section_Item ItemListing={[ItemListTriggerL, ItemListTriggerB]} />
         </Row>
+        <div className="align-items-center mt-2 px-2">
+          {testData1.map((item, idx) => (
+            <ProgressBar
+              key={idx}
+              bgcolor={item.bgcolor}
+              completed={item.completed}
+            />
+          ))}
+        </div>
       </Container>
     );
-  } else if (expansion1) {
+  } else if (collapse) {
     return (
       <Container>
+        <Row class="first-row">
+          <p>
+            Next on your shopping list: <b>{naming}</b>
+          </p>
+          </Row>
+          
         <Row>
-          <h2>Shopping List</h2>
+          <SectionHeader
+            expandCollapse={() => expandCollapse()}
+            secName={"Dining Room"}
+            time={minutes}
+          />
+          <SectionHeader secName={"Kitchen"} time={0} />
+          <Section_Item ItemListing={[ItemListTriggerK, ItemListTriggerB]} />
+          <SectionHeader secName={"Bedroom"} time={1} />
+          <Section_Item ItemListing={[ItemListTriggerB, ItemListTriggerB]} />
+          <SectionHeader secName={"Bathroom"} time={2} />
+          <Section_Item ItemListing={[ItemListTriggerBT, ItemListTriggerB]} />
+          <SectionHeader secName={"Home Decoration"} time={2} />
+          <Section_Item ItemListing={[ItemListTriggerHD, ItemListTriggerB]} />
+          <SectionHeader secName={"Lighting"} time={3} />
+          <Section_Item ItemListing={[ItemListTriggerL, ItemListTriggerB]} />
         </Row>
-
-        <Row>
-          <Container
-            style={{ backgroundColor: "white" }}
-            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-          >
-            <Row className="text-center">
-              <div className="fs-6 col-4">
-                <b>Section 1</b>
-              </div>
-              <div className="col-4">
-                <Button size="sm" variant="primary" onClick={handleClick1}>
-                  {addLabel1}
-                </Button>
-              </div>
-              <div className="fs-6 col-4">0 min</div>
-            </Row>
-          </Container>
-          <Container
-            style={{ backgroundColor: "white" }}
-            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-          >
-            <Row className="text-center">
-              <div className="fs-6 col-4">
-                <b>Section 2</b>
-              </div>
-              <div className="col-4">
-                {" "}
-                <Button size="sm" variant="primary" onClick={handleClick2}>
-                  {addLabel2}
-                </Button>
-              </div>
-              <div className="fs-6 col-4">1 min</div>
-            </Row>
-          </Container>
-          {ItemListTriggerSection2.map((obj, index) => (
-            <CartItems
-              name={obj.name}
-              section={obj.section}
-              subSection={obj.subSection}
-              price={obj.price}
-              coordinates={obj.coordinates}
-              number={obj.number}
-              image={obj.image}
-              length={section2Length}
-              recImage={ItemListTriggerSection1[0].image}
-              recName={ItemListTriggerSection1[0].name}
+        <div className=" align-items-center">
+          {testData2.map((item, idx) => (
+            <ProgressBar
+              key={idx}
+              bgcolor={item.bgcolor}
+              completed={item.completed}
             />
           ))}
-
-          <Container
-            style={{ backgroundColor: "white" }}
-            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-          >
-            <Row className="text-center">
-              <div className="fs-6 col-4">
-                <b>Section 3</b>
-              </div>
-              <div className="col-4">
-                {" "}
-                <Button size="sm" variant="primary" onClick={handleClick3}>
-                  {addLabel3}
-                </Button>
-              </div>
-              <div className="fs-6 col-4">2 min</div>
-            </Row>
-          </Container>
-          {ItemListTriggerSection3.map((obj, index) => (
-            <CartItems
-              name={obj.name}
-              section={obj.section}
-              subSection={obj.subSection}
-              price={obj.price}
-              coordinates={obj.coordinates}
-              number={obj.number}
-              image={obj.image}
-              length={section3Length}
-              recImage={ItemListTriggerSection2[0].image}
-              recName={ItemListTriggerSection2[0].name}
-            />
-          ))}
-        </Row>
-      </Container>
-    );
-  } else if (expansion2) {
-    return (
-      <Container>
-        <Row>
-          <h2>Shopping List</h2>
-        </Row>
-
-        <Row>
-          <Container
-            style={{ backgroundColor: "white" }}
-            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-          >
-            <Row className="text-center">
-              <div className="fs-6 col-4">
-                <b>Section 1</b>
-              </div>
-              <div className="col-4">
-                <Button size="sm" variant="primary" onClick={handleClick1}>
-                  {addLabel1}
-                </Button>
-              </div>
-              <div className="fs-6 col-4">0 min</div>
-            </Row>
-          </Container>
-
-          {ItemListTriggerSection1.map((obj, index) => (
-            <CartItems
-              name={obj.name}
-              section={obj.section}
-              subSection={obj.subSection}
-              price={obj.price}
-              coordinates={obj.coordinates}
-              number={obj.number}
-              image={obj.image}
-              length={section1Length}
-              recImage={ItemListTriggerSection2[0].image}
-              recName={ItemListTriggerSection2[0].name}
-            />
-          ))}
-          <Container
-            style={{ backgroundColor: "white" }}
-            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-          >
-            <Row className="text-center">
-              <div className="fs-6 col-4">
-                <b>Section 2</b>
-              </div>
-              <div className="col-4">
-                {" "}
-                <Button size="sm" variant="primary" onClick={handleClick2}>
-                  {addLabel2}
-                </Button>
-              </div>
-              <div className="fs-6 col-4">1 min</div>
-            </Row>
-          </Container>
-
-          <Container
-            style={{ backgroundColor: "white" }}
-            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-          >
-            <Row className="text-center">
-              <div className="fs-6 col-4">
-                <b>Section 3</b>
-              </div>
-              <div className="col-4">
-                {" "}
-                <Button size="sm" variant="primary" onClick={handleClick3}>
-                  {addLabel3}
-                </Button>
-              </div>
-              <div className="fs-6 col-4">2 min</div>
-            </Row>
-          </Container>
-          {ItemListTriggerSection3.map((obj, index) => (
-            <CartItems
-              name={obj.name}
-              section={obj.section}
-              subSection={obj.subSection}
-              price={obj.price}
-              coordinates={obj.coordinates}
-              number={obj.number}
-              image={obj.image}
-              length={section3Length}
-              recImage={ItemListTriggerSection2[0].image}
-              recName={ItemListTriggerSection2[0].name}
-            />
-          ))}
-        </Row>
-      </Container>
-    );
-  } else if (expansion3) {
-    return (
-      <Container>
-        <Row>
-          <h2>Shopping List</h2>
-        </Row>
-
-        <Row>
-          <Container
-            style={{ backgroundColor: "white" }}
-            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-          >
-            <Row className="text-center">
-              <div className="fs-6 col-4">
-                <b>Section 1</b>
-              </div>
-              <div className="col-4">
-                <Button size="sm" variant="primary" onClick={handleClick1}>
-                  {addLabel1}
-                </Button>
-              </div>
-              <div className="fs-6 col-4">0 min</div>
-            </Row>
-          </Container>
-
-          {ItemListTriggerSection1.map((obj, index) => (
-            <CartItems
-              name={obj.name}
-              section={obj.section}
-              subSection={obj.subSection}
-              price={obj.price}
-              coordinates={obj.coordinates}
-              number={obj.number}
-              image={obj.image}
-              length={section1Length}
-              recImage={ItemListTriggerSection2[0].image}
-              recName={ItemListTriggerSection2[0].name}
-            />
-          ))}
-          <Container
-            style={{ backgroundColor: "white" }}
-            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-          >
-            <Row className="text-center">
-              <div className="fs-6 col-4">
-                <b>Section 2</b>
-              </div>
-              <div className="col-4">
-                {" "}
-                <Button size="sm" variant="primary" onClick={handleClick2}>
-                  {addLabel2}
-                </Button>
-              </div>
-              <div className="fs-6 col-4">1 min</div>
-            </Row>
-          </Container>
-          {ItemListTriggerSection2.map((obj, index) => (
-            <CartItems
-              name={obj.name}
-              section={obj.section}
-              subSection={obj.subSection}
-              price={obj.price}
-              coordinates={obj.coordinates}
-              number={obj.number}
-              image={obj.image}
-              length={section2Length}
-              recImage={ItemListTriggerSection1[0].image}
-              recName={ItemListTriggerSection1[0].name}
-            />
-          ))}
-
-          <Container
-            style={{ backgroundColor: "white" }}
-            className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
-          >
-            <Row className="text-center">
-              <div className="fs-6 col-4">
-                <b>Section 3</b>
-              </div>
-              <div className="col-4">
-                {" "}
-                <Button size="sm" variant="primary" onClick={handleClick3}>
-                  {addLabel3}
-                </Button>
-              </div>
-              <div className="fs-6 col-4">2 min</div>
-            </Row>
-          </Container>
-        </Row>
+        </div>
       </Container>
     );
   }
