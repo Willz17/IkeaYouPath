@@ -15,29 +15,32 @@ function Cart(props) {
   // Item Creation
   let itemListTriggerDR2 = [
     {
-      name: "Knife",
-      section: "Kitchen",
-      subSection: "Shelf 48",
-      price: "50",
-      img:
-        "https://www.militarysurplus.hu/eng_pm_Boker-Trench-Knive-Knife-40701_1.jpg",
+      name: "ÅSVANG - Foam mattress",
+      "id": 52,
+      "section": "Bedroom",
+      "coordinates": {},
+      "price": "119",
+      "description": "Firm/white, 160x200 cm",
+      "img": "https://www.ikea.com/nl/en/images/products/asvang-foam-mattress-firm-white__0986619_pe818095_s5.jpg?f=s"
     },
     {
-      name: "Lamp",
-      section: "Lighting",
-      subSection: "Shelf 12",
-      price: "35",
-      img:
-        "https://cdn.ambientedirect.com/chameleon/mediapool/thumbs/e/14/Artemide_Choose-Tavolo-Tischleuchte_498x498-ID1244137-f93b03546b4a9f1dc8091c19adbab9ad.jpg",
+      "name": "ULLVIDE - Pillowcase",
+      "id": 25,
+      "section": "Bedroom",
+      "coordinates": {},
+      "price": "6",
+      "description": "White",
+      "img": "https://www.ikea.com/gb/en/images/products/ullvide-pillowcase-white__0607075_pe682722_s5.jpg?f=m"
     },
     {
-      name: "Table",
-      section: "Dining Room",
-      subSection: "Shelf 98",
-      price: "60",
-      img:
-        "https://admincms.carlhansen.com/globalassets/products/dining-tables/ch327/ch327-boeg-190x95-cm-side.png?aspect=16:9&device=desktop&size=medium&display=standard",
-    }
+      "name": "ULLVIDE - Fitted sheet",
+      "id": 26,
+      "section": "Bedroom",
+      "coordinates": {},
+      "price": "15",
+      "description": "White",
+      "img": "https://www.ikea.com/gb/en/images/products/ullvide-fitted-sheet-white__0604096_pe681036_s5.jpg?f=xl"
+    },
   ];
   const CARTER_URL = "https://api-you-path.azurewebsites.net/api/users/cart";
   const SPECIFIC_PRODUCT_URL =
@@ -97,7 +100,7 @@ function Cart(props) {
       }
       if (obj.section === "Kitchen" ) {
         ItemListTriggerK.push(obj);
-        console.log(obj);
+        // console.log(obj);
       }
       if (obj.section === "Bedroom" ) {
         ItemListTriggerB.push(obj);
@@ -112,25 +115,25 @@ function Cart(props) {
         ItemListTriggerL.push(obj);
       }
     });
-    setNaming(ItemListTriggerDR[0].name)
+    setNaming(ItemListTriggerB[0].name)
     setShowItems(
       <div>
-        <SectionHeader
-            expandCollapse={() => {setCollapse(true); setNaming(ItemListTriggerK[0].name) }}
-            secName={"Dining Room"}
+        
+        <SectionHeader expandCollapse={() => {setCollapse(true); setNaming(ItemListTriggerK[0].name) }}
+            secName={"Bedroom"}
             time={minutes}
           />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerDR.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <Section_Item ItemListing={[[...new Map(ItemListTriggerB.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
         <SectionHeader secName={"Kitchen"} time={1} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerK.map(item => [item['id'], item])).values()], ItemListTriggerB]} />
-        <SectionHeader secName={"Bedroom"} time={2} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerB.map(item => [item['id'], item])).values()], ItemListTriggerB]} />
+        <Section_Item ItemListing={[[...new Map(ItemListTriggerK.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <SectionHeader secName={"Dining Room"} time={2} />
+        <Section_Item ItemListing={[[...new Map(ItemListTriggerDR.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
         <SectionHeader secName={"Bathroom"} time={3} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerBT.map(item => [item['id'], item])).values()], ItemListTriggerB]} />
+        <Section_Item ItemListing={[[...new Map(ItemListTriggerBT.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
         <SectionHeader secName={"Home Decoration"} time={3} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerHD.map(item => [item['id'], item])).values()], ItemListTriggerB]} />
+        <Section_Item ItemListing={[[...new Map(ItemListTriggerHD.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
         <SectionHeader secName={"Lighting"} time={4} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerL.map(item => [item['id'], item])).values()], ItemListTriggerB]} />
+        <Section_Item ItemListing={[[...new Map(ItemListTriggerL.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
       </div>
     );
 
@@ -138,25 +141,25 @@ function Cart(props) {
       <div>
         <SectionHeader
             expandCollapse={() => {setCollapse(false); setNaming(ItemListTriggerDR[0].name) }}
-            secName={"Dining Room"}
+            secName={"Bedroom"}
             time={minutes}
           />
         <SectionHeader secName={"Kitchen"} time={1} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerK.map(item => [item['id'], item])).values()], ItemListTriggerB]} />
-        <SectionHeader secName={"Bedroom"} time={2} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerB.map(item => [item['id'], item])).values()], ItemListTriggerB]} />
+        <Section_Item ItemListing={[[...new Map(ItemListTriggerK.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <SectionHeader secName={"Dining Room"} time={2} />
+        <Section_Item ItemListing={[[...new Map(ItemListTriggerDR.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
         <SectionHeader secName={"Bathroom"} time={3} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerBT.map(item => [item['id'], item])).values()], ItemListTriggerB]} />
+        <Section_Item ItemListing={[[...new Map(ItemListTriggerBT.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
         <SectionHeader secName={"Home Decoration"} time={3} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerHD.map(item => [item['id'], item])).values()], ItemListTriggerB]} />
+        <Section_Item ItemListing={[[...new Map(ItemListTriggerHD.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
         <SectionHeader secName={"Lighting"} time={4} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerL.map(item => [item['id'], item])).values()], ItemListTriggerB]} />
+        <Section_Item ItemListing={[[...new Map(ItemListTriggerL.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
       </div>
     )
 
   };
   // Item attributes array
-  console.log(ItemList)
+  // console.log(ItemList)
   //Differentiate within Sections
 
   const [collapse, setCollapse] = useState(false);
