@@ -64,8 +64,8 @@ const Settings = () => {
           <Button variant="primary" type="submit" size="lg" className="mt-4" style={{width: "35%"}}>
             Update
           </Button>
-          <Button variant="danger" type="submit" size="lg" className="mt-4 mx-4" style={{width: "35%"}}>
-            Logout
+          <Button variant="secondary" type="submit" size="lg" className="mt-4 mx-4" style={{width: "35%"}} href="/account">
+            Back
           </Button>
           </Form>
         </Row>

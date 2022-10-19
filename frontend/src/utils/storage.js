@@ -15,5 +15,10 @@ const getFromLocale = (key) => {
   return null;
 };
 
+const clearLocale = (key) =>{
+  localStorage.removeItem(key)
+}
+
 module.exports.saveToLocale = saveToLocale;
 module.exports.getFromLocale = getFromLocale;
+module.exports.clearLocale = clearLocale;
