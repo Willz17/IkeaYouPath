@@ -12,6 +12,8 @@ import ProgressBar from "./cart_navigation/ProgressBar";
 
 import { saveToLocale, getFromLocale } from "../utils/storage";
 
+import { saveToLocale, getFromLocale } from "../utils/storage";
+
 function Cart(props) {
   // Item Creation
   let ItemList = [
