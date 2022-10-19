@@ -16,7 +16,7 @@ const getFromLocale = (key) => {
 };
 
 const clearLocale = (key) =>{
-  localStorage.removeItem(key)
+  localStorage.removeItem('cred')
 }
 
 module.exports.saveToLocale = saveToLocale;
