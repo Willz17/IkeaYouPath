@@ -15,13 +15,13 @@ function CartItems(props) {
       setRecomendation(false);
     }
   };
-
+  
   // Display Layout
   if (!recommendation) {
     return (
       <Container
         style={{ backgroundColor: "white" }}
-        className="mx-3 p-1 square border border-1 rounded"
+        className="mx-3 p-1 square"
       >
         <Row className="align-items-center">
           <div class="col-4">
@@ -52,7 +52,7 @@ function CartItems(props) {
     return (
       <Container
         style={{ backgroundColor: "white" }}
-        className="mx-3 p-1 square border border-1 rounded"
+        className="mx-3 p-1 square "
       >
         <Row className="align-items-center">
           <div class="col-4">
@@ -70,7 +70,7 @@ function CartItems(props) {
           </div>
 
           <div class="col-3">
-            <p>{props.subSection}</p>
+            <p>Shelf 44</p>
           </div>
 
           <div class="align-items-left col-2">
@@ -95,7 +95,7 @@ function CartItems(props) {
             </Row>
             <Row>
               <div className="recom-divs-subsection rounded">
-                {props.subSection}
+              Shelf 44
               </div>
             </Row>
           </div>
@@ -112,7 +112,7 @@ function CartItems(props) {
             </Row>
             <Row>
               <div className="recom-divs-subsection rounded">
-                {props.subSection}
+              Shelf 44
               </div>
             </Row>
           </div>
@@ -129,7 +129,7 @@ function CartItems(props) {
             </Row>
             <Row>
               <div className="recom-divs-subsection rounded">
-                {props.subSection}
+              Shelf 44
               </div>
             </Row>
           </div>
