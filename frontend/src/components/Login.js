@@ -8,10 +8,9 @@ import axios from "axios";
 import { saveToLocale, getFromLocale } from "../utils/storage";
 import { useNavigate } from "react-router-dom";
 
-
 const Login = () => {
   // const LOGIN_URL = "https://api-you-path.azurewebsites.net/api/users/login";
-  const LOGIN_URL = "https://api-you-path.azurewebsites.net/api/users/login";
+  const LOGIN_URL = "http://localhost:4000/api/users/login";
 
   const navigate = useNavigate();
 
@@ -74,7 +73,12 @@ const Login = () => {
         </Form.Group>
 
         <Row className="justify-content-center pt-3">
-          <Button style={{ width: "75%" }} variant="primary" type="submit" size="lg">
+          <Button
+            style={{ width: "75%" }}
+            variant="primary"
+            type="submit"
+            size="lg"
+          >
             Login
           </Button>
         </Row>

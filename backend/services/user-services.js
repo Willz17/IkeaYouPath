@@ -31,7 +31,7 @@ const registerUser = async ({ name, email, password }) => {
 const loginUser = async ({ email, password }) => {
   let res;
   await user_schema
-    .findOne({ email: email }, function (err, user) {
+    .findOne({ email: email }, async function (err, user) {
       try {
         if (user.validatePassword(password)) {
           res = user;
