@@ -1,7 +1,7 @@
 import "./Cart.css";
 import "./Buttons.css";
 import CartItems from "./CartItems.js";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 
@@ -10,9 +10,11 @@ import Button from "react-bootstrap/esm/Button";
 import Col from "react-bootstrap/esm/Col";
 import axios from "axios";
 
+import { saveToLocale, getFromLocale } from "../utils/storage";
+
 function Cart(props) {
   // Item Creation
-  const ItemList = [
+  let ItemList = [
     {
       name: "Knife",
       section: "Section 1",
@@ -49,7 +51,7 @@ function Cart(props) {
       image:
         "https://www.ikea.com/es/es/images/products/linanas-sofa-3-plazas-vissle-beige__1013894_pe829446_s5.jpg?f=s",
     },
-  ]; 
+  ];
 
   // Item attributes array
   let itemName = [];
@@ -67,7 +69,7 @@ function Cart(props) {
     itemCoordinates.push(obj.coordinates);
     itemImage.push(obj.image);
   });
-  
+
   //Differentiate within Sections
   const ItemListTriggerSection1 = [];
   const ItemListTriggerSection2 = [];
@@ -92,41 +94,40 @@ function Cart(props) {
     }
   });
 
-
   //Expand or collapse section
   const [addLabel1, setAddLabel1] = useState("Collapse");
   const [addLabel2, setAddLabel2] = useState("Collapse");
   const [addLabel3, setAddLabel3] = useState("Collapse");
-  const[expansion1, setExpansion1] = useState(false)
-  const[expansion2, setExpansion2] = useState(false)
-  const[expansion3, setExpansion3] = useState(false)
+  const [expansion1, setExpansion1] = useState(false);
+  const [expansion2, setExpansion2] = useState(false);
+  const [expansion3, setExpansion3] = useState(false);
 
   const handleClick1 = () => {
     if (addLabel1 === "Collapse") {
       setAddLabel1("Expand");
-      setExpansion1(true)
+      setExpansion1(true);
     } else {
       setAddLabel1("Collapse");
-      setExpansion1(false)
+      setExpansion1(false);
     }
   };
   const handleClick2 = () => {
     if (addLabel2 === "Collapse") {
       setAddLabel2("Expand");
-      setExpansion2(true)
+      setExpansion2(true);
     } else {
       setAddLabel2("Collapse");
-      setExpansion2(false)
+      setExpansion2(false);
     }
   };
 
   const handleClick3 = () => {
     if (addLabel3 === "Collapse") {
       setAddLabel3("Expand");
-      setExpansion3(true)
+      setExpansion3(true);
     } else {
       setAddLabel3("Collapse");
-      setExpansion3(false)
+      setExpansion3(false);
     }
   };
 
@@ -237,10 +238,10 @@ function Cart(props) {
         </Row>
       </Container>
     );
-  } else if((expansion1)){
-    return(
+  } else if (expansion1) {
+    return (
       <Container>
-                <Row>
+        <Row>
           <h2>Shopping List</h2>
         </Row>
 
@@ -326,11 +327,11 @@ function Cart(props) {
           ))}
         </Row>
       </Container>
-    )
-  } else if(expansion2){
-    return(
+    );
+  } else if (expansion2) {
+    return (
       <Container>
-                <Row>
+        <Row>
           <h2>Shopping List</h2>
         </Row>
 
@@ -417,11 +418,11 @@ function Cart(props) {
           ))}
         </Row>
       </Container>
-    )
-  } else if (expansion3){
-    return(
+    );
+  } else if (expansion3) {
+    return (
       <Container>
-                <Row>
+        <Row>
           <h2>Shopping List</h2>
         </Row>
 
@@ -508,7 +509,7 @@ function Cart(props) {
           </Container>
         </Row>
       </Container>
-    )
+    );
   }
 }
 

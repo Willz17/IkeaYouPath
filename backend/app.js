@@ -12,33 +12,12 @@ const products_router = require("./routes/products-router");
 const user_router = require("./routes/user-router");
 const user_schema = require("./models/user");
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_DB);
 const db = mongoose.connection;
-
-// Create connection to database
-let config = {
-  server: process.env.MS_SERVER,
-  authentication: {
-    type: "default",
-    options: {
-      userName: process.env.MS_LOGIN,
-      password: process.env.MS_SERVER_PASS,
-    },
-  },
-  connectionTimeout: 30,
-  port: 1433,
-  parseJson: true,
-  options: {
-    encrypt: true,
-    database: process.env.MS_SERVER_DB,
-  },
-};
-
-// let connection = new Connection(config);
 
 const ORIGINS = ["https://youpath.azurewebsites.net", "http://localhost:3000/"];
 const METHODS = [
@@ -63,9 +42,9 @@ db.once("open", () => {
 
 app.use(
   cors({
-    origin: ORIGINS,
-    methods: METHODS,
-    headers: HEADERS,
+    origin: "*",
+    // methods: METHODS,
+    // headers: HEADERS,
   })
 );
 
@@ -97,16 +76,6 @@ app.use((error, req, res, next) => {
   res.status(error.code || 500);
   res.json({ message: error.message } || "An Unknown error occured");
 });
-
-// Attempt to connect and execute queries if connection goes through
-// connection.on("connect", function (err) {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log("DB connected");
-//   }
-// });
-// connection.connect();
 
 app.listen(PORT, () => {
   console.log(`Running at http://localhost:${PORT}/`);

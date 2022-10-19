@@ -4,15 +4,19 @@ import Row from "react-bootstrap/esm/Row";
 import "./Margin.css";
 import { useState } from "react";
 import axios from "axios";
+import { saveToLocale, getFromLocale } from "../utils/storage";
+import { useNavigate } from "react-router-dom";
 
 import env from "react-dotenv";
 
 const Login = () => {
-  const LOGIN_URL = env.API_LOGIN;
+  // const LOGIN_URL = "https://api-you-path.azurewebsites.net/api/users/login";
+  const LOGIN_URL = "https://api-you-path.azurewebsites.net/api/users/login";
+
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [response, setResponse] = useState({});
 
   const loginUser = (event) => {
     console.log(event);
@@ -26,28 +30,17 @@ const Login = () => {
     axios
       .post(LOGIN_URL, request_data, { mode: "no-cors" })
       .then((res) => {
-        setResponse(res.data);
-
-        let data = response[0];
-        data = {
+        let data = res.data;
+        saveToLocale({
           email: data.email,
-          userID: data.id,
-        };
-
-        console.log(data);
-        saveToLocale(data);
+          userID: data._id,
+          key: "cred",
+        });
+        navigate("/search");
       })
       .catch((error) => {
         console.log(error);
       });
-  };
-
-  const saveToLocale = ({ email, userID }) => {
-    let data = {
-      email: email,
-      userID: userID,
-    };
-    localStorage.setItem("cred", JSON.stringify(data));
   };
 
   return (

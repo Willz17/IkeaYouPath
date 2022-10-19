@@ -6,7 +6,7 @@ const product_schema = require("../models/product");
  */
 const getAllProducts = async () => {
   try {
-    const products = product_schema.find();
+    const products = await product_schema.find();
     return products;
   } catch (e) {
     return e;
@@ -21,9 +21,8 @@ const getAllProducts = async () => {
  */
 const getProductByNameAndID = async ({ name, id }) => {
   try {
-    await product_schema.findById({ _id: id }, (err, product) => {
-      if (!err) return product;
-    });
+    const data = await product_schema.findOne({ id: id, name: name });
+    return data;
   } catch (e) {
     return e;
   }
@@ -35,14 +34,19 @@ const getProductByNameAndID = async ({ name, id }) => {
  * @returns - JSON array of products if found, empty list or error object on error.
  */
 const filter = async (term) => {
+  console.log(`/${term}/i`);
   try {
-    await product_schema.find(
-      { name: `/${term}/`, section: `/${term}/` },
-      (err, products) => {
-        if (!err) return products;
-      }
-    );
+    const data = await product_schema.find({
+      $or: [
+        { section: term },
+        {
+          name: term,
+        },
+      ],
+    });
+    return data;
   } catch (e) {
+    console.log("error", e);
     return e;
   }
 };

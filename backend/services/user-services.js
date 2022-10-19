@@ -17,7 +17,8 @@ const registerUser = async ({ name, email, password }) => {
     const user = await user_obj.save();
     return user;
   } catch (e) {
-    return e;
+    console.log(e);
+    return { error: "Email already in use" };
   }
 };
 
@@ -27,20 +28,27 @@ const registerUser = async ({ name, email, password }) => {
  * @param {*} param0 - Email and password of user
  * @returns - User object on sucess, error object on error.
  */
-const login = async ({ email, password }) => {
-  try {
-    await user_schema.findOne({ email: email }, (err, user) => {
-      if (!err)
+const loginUser = async ({ email, password }) => {
+  let res;
+  await user_schema
+    .findOne({ email: email }, function (err, user) {
+      try {
         if (user.validatePassword(password)) {
-          return user;
+          console.log("service >>", user);
+          res = user;
         } else {
-          return { message: "User doesnt exist" };
+          console.log("wrong password");
+          res = { message: "Wrong password" };
         }
-    });
-  } catch (e) {
-    return e;
-  }
+      } catch (e) {
+        console.log("error", e);
+        res = e;
+      }
+    })
+    .clone();
+  console.log("res", res);
+  return res;
 };
 
 module.exports.registerUser = registerUser;
-module.exports.login = login;
+module.exports.loginUser = loginUser;

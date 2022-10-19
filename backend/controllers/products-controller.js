@@ -3,10 +3,12 @@ const {
   getProductByNameAndID,
   filter,
 } = require("../services/product-services");
+const p_schema = require("../models/product");
 
 const getProducts = async (req, res, next) => {
   try {
-    const data = getAllProducts();
+    const data = await getAllProducts();
+    // console.log(data);
     res.json(data);
   } catch (e) {
     const error = new Error(e.message);
@@ -16,33 +18,22 @@ const getProducts = async (req, res, next) => {
 };
 
 const getSpecificProduct = async (req, res, next) => {
-  const p_name = req.params.name; // not unique
+  const name = req.params.name; // not unique
   const id = req.params.ID;
+  console.log(name, id);
 
-  try {
-    const data = getProductByNameAndID({
-      name: p_name,
-      id: id,
-    });
-    res.json(data);
-  } catch (e) {
-    const error = new Error(`Product ${res.params.name} doesn't exist`);
-    error.code = 404;
-    next(error);
-  }
+  const data = await getProductByNameAndID({ name, id });
+  console.log(data);
+  res.send(data);
 };
 
 // section
 const filterSearch = async (req, res, next) => {
   const term = req.params.term;
-  try {
-    const data = filter(term);
-    res.json(data);
-  } catch (e) {
-    const error = new Error(e.message);
-    error.code = 404;
-    next(error);
-  }
+  console.log(term);
+
+  const data = await filter(term);
+  res.send(data);
 };
 
 module.exports.getProducts = getProducts;

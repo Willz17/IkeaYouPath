@@ -7,9 +7,8 @@ const cart_schema = require("../models/cart");
  */
 const getUsersCart = async (email) => {
   try {
-    await cart_schema.find({ u_email: email }, (err, cart) => {
-      if (!err) return cart;
-    });
+    const data = await cart_schema.find({ u_email: email });
+    return data;
   } catch (e) {
     return e;
   }
@@ -20,13 +19,14 @@ const getUsersCart = async (email) => {
  * @param {*} param0 - Email, product_ID, user_ID and quanity of product to be added
  * @returns - Confirmation statement on succes or error object on error
  */
-const addItemToCart = async ({ email, product_ID, user_ID, Q }) => {
+const addItemToCart = async ({ u_email, p_ID, u_ID, Q, name }) => {
   try {
     const cart_obj = new cart_schema({
-      u_ID: user_ID,
-      p_ID: product_ID,
-      email: email,
+      u_ID: u_ID,
+      p_ID: p_ID,
+      u_email: u_email,
       Q: Q,
+      name: name,
     });
 
     const cart = await cart_obj.save();
@@ -42,10 +42,10 @@ const addItemToCart = async ({ email, product_ID, user_ID, Q }) => {
  * @param {*} email - Email of user who saved product to cart
  * @returns
  */
-const removeItemFromCart = async ({ product_ID, email }) => {
+const removeItemFromCart = async ({ p_ID, u_email }) => {
   try {
-    await cart_schema.deleteOne({ p_ID: product_ID, u_email: email });
-    return { message: "Product removed" };
+    const data = await cart_schema.deleteOne({ p_ID: p_ID, u_email: u_email });
+    return data;
   } catch (e) {
     return e;
   }
