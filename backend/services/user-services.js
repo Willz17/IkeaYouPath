@@ -34,11 +34,9 @@ const loginUser = async ({ email, password }) => {
     .findOne({ email: email }, function (err, user) {
       try {
         if (user.validatePassword(password)) {
-          console.log("service >>", user);
           res = user;
         } else {
-          console.log("wrong password");
-          res = { message: "Wrong password" };
+          res = { message: "Wrong password", code: 404 };
         }
       } catch (e) {
         console.log("error", e);
