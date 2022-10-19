@@ -2,11 +2,10 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import Row from "react-bootstrap/esm/Row";
+import Container from "react-bootstrap/esm/Container";
 import React, { useState } from "react";
 import "./Margin.css";
 import axios from "axios";
-
-import env from "react-dotenv";
 
 import "./Signup.css";
 
@@ -44,7 +43,7 @@ const Signup = () => {
   const [checked10, setChecked10] = useState(false);
 
   return (
-    <div>
+    <Container>
       <Form onSubmit={registerNewUser}>
         <Form.Group className="mb-3" controlId="formBasicText">
           <Form.Label>First name</Form.Label>
@@ -258,17 +257,21 @@ const Signup = () => {
 
         <Row className="justify-content-center pt-4">
           <Button
-            className="border"
-            style={{ width: "75%" }}
+            className="border mt-4"
+            style={{ width: "35%" }}
             variant="light"
             type="submit"
+            size="lg"
             onSubmit={registerNewUser}
           >
-            Create Account
+            Signup
+          </Button>
+          <Button variant="secondary" type="submit" size="lg" className="mt-4 mx-4" style={{width: "35%"}} href="/login">
+            Back
           </Button>
         </Row>
       </Form>
-    </div>
+    </Container>
   );
 };
 

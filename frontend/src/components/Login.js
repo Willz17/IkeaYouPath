@@ -1,13 +1,13 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/esm/Row";
+import Container from "react-bootstrap/esm/Container";
 import "./Margin.css";
 import { useState } from "react";
 import axios from "axios";
 import { saveToLocale, getFromLocale } from "../utils/storage";
 import { useNavigate } from "react-router-dom";
 
-import env from "react-dotenv";
 
 const Login = () => {
   // const LOGIN_URL = "https://api-you-path.azurewebsites.net/api/users/login";
@@ -31,6 +31,7 @@ const Login = () => {
       .post(LOGIN_URL, request_data, { mode: "no-cors" })
       .then((res) => {
         let data = res.data;
+        console.log(data);
         saveToLocale({
           email: data.email,
           userID: data._id,
@@ -44,7 +45,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <Container>
       <Form onSubmit={loginUser}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -73,7 +74,7 @@ const Login = () => {
         </Form.Group>
 
         <Row className="justify-content-center pt-3">
-          <Button style={{ width: "75%" }} variant="primary" type="submit">
+          <Button style={{ width: "75%" }} variant="primary" type="submit" size="lg">
             Login
           </Button>
         </Row>
@@ -82,6 +83,7 @@ const Login = () => {
           <Button
             className="border"
             style={{ width: "75%" }}
+            size="lg"
             variant="light"
             type="submit"
             href="/signup"
@@ -90,7 +92,7 @@ const Login = () => {
           </Button>
         </Row>
       </Form>
-    </div>
+    </Container>
   );
 };
 
