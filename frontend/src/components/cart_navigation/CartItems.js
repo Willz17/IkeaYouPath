@@ -15,7 +15,7 @@ function CartItems(props) {
       setRecomendation(false);
     }
   };
-  
+  // console.log(props.image[0])
   // Display Layout
   if (!recommendation) {
     return (
@@ -85,12 +85,12 @@ function CartItems(props) {
           <div class="col-4">
             <Row>
               <div>
-                <img className="img-sizing" src={props.recImage}></img>
+                <img className="img-sizing" src={props.recImage0}></img>
               </div>
             </Row>
             <Row>
               <div className="recom-divs rounded">
-                <b>{props.recName}</b>
+                <b>{props.recName0}</b>
               </div>
             </Row>
             <Row>
@@ -102,12 +102,12 @@ function CartItems(props) {
           <div class="col-4">
             <Row>
               <div>
-                <img className="img-sizing" src={props.recImage}></img>
+                <img className="img-sizing" src={props.recImage1}></img>
               </div>
             </Row>
             <Row>
               <div className="recom-divs rounded">
-                <b>{props.recName}</b>
+                <b>{props.recName1}</b>
               </div>
             </Row>
             <Row>
@@ -119,12 +119,12 @@ function CartItems(props) {
           <div class="col-4">
             <Row>
               <div>
-                <img className="img-sizing" src={props.recImage}></img>
+                <img className="img-sizing" src={props.recImage2}></img>
               </div>
             </Row>
             <Row>
               <div className="recom-divs rounded">
-                <b>{props.recName}</b>
+                <b>{props.recName2}</b>
               </div>
             </Row>
             <Row>
