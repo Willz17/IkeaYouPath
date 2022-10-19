@@ -16,30 +16,30 @@ function Cart(props) {
   let itemListTriggerDR2 = [
     {
       name: "ÅSVANG - Foam mattress",
-      "id": 52,
-      "section": "Bedroom",
-      "coordinates": {},
-      "price": "119",
-      "description": "Firm/white, 160x200 cm",
-      "img": "https://www.ikea.com/nl/en/images/products/asvang-foam-mattress-firm-white__0986619_pe818095_s5.jpg?f=s"
+      id: 52,
+      section: "Bedroom",
+      coordinates: {},
+      price: "119",
+      description: "Firm/white, 160x200 cm",
+      img: "https://www.ikea.com/nl/en/images/products/asvang-foam-mattress-firm-white__0986619_pe818095_s5.jpg?f=s",
     },
     {
-      "name": "ULLVIDE - Pillowcase",
-      "id": 25,
-      "section": "Bedroom",
-      "coordinates": {},
-      "price": "6",
-      "description": "White",
-      "img": "https://www.ikea.com/gb/en/images/products/ullvide-pillowcase-white__0607075_pe682722_s5.jpg?f=m"
+      name: "ULLVIDE - Pillowcase",
+      id: 25,
+      section: "Bedroom",
+      coordinates: {},
+      price: "6",
+      description: "White",
+      img: "https://www.ikea.com/gb/en/images/products/ullvide-pillowcase-white__0607075_pe682722_s5.jpg?f=m",
     },
     {
-      "name": "ULLVIDE - Fitted sheet",
-      "id": 26,
-      "section": "Bedroom",
-      "coordinates": {},
-      "price": "15",
-      "description": "White",
-      "img": "https://www.ikea.com/gb/en/images/products/ullvide-fitted-sheet-white__0604096_pe681036_s5.jpg?f=xl"
+      name: "ULLVIDE - Fitted sheet",
+      id: 26,
+      section: "Bedroom",
+      coordinates: {},
+      price: "15",
+      description: "White",
+      img: "https://www.ikea.com/gb/en/images/products/ullvide-fitted-sheet-white__0604096_pe681036_s5.jpg?f=xl",
     },
   ];
   const CARTER_URL = "https://api-you-path.azurewebsites.net/api/users/cart";
@@ -95,68 +95,172 @@ function Cart(props) {
   const [showItems, setShowItems] = useState();
   const createItems = (data) => {
     data.forEach((obj) => {
-      if (obj.section === "Dining room" ) {
+      if (obj.section === "Dining room") {
         ItemListTriggerDR.push(obj);
       }
-      if (obj.section === "Kitchen" ) {
+      if (obj.section === "Kitchen") {
         ItemListTriggerK.push(obj);
         // console.log(obj);
       }
-      if (obj.section === "Bedroom" ) {
+      if (obj.section === "Bedroom") {
         ItemListTriggerB.push(obj);
       }
-      if (obj.section === "Bathroom" ) {
+      if (obj.section === "Bathroom") {
         ItemListTriggerBT.push(obj);
       }
-      if (obj.section === "Home decoration" ) {
+      if (obj.section === "Home decoration") {
         ItemListTriggerHD.push(obj);
       }
-      if (obj.section === "Lighting" ) {
+      if (obj.section === "Lighting") {
         ItemListTriggerL.push(obj);
       }
     });
-    setNaming(ItemListTriggerB[0].name)
+    setNaming(ItemListTriggerB[0].name);
     setShowItems(
       <div>
-        
-        <SectionHeader expandCollapse={() => {setCollapse(true); setNaming(ItemListTriggerK[0].name) }}
-            secName={"Bedroom"}
-            time={minutes}
-          />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerB.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <SectionHeader
+          expandCollapse={() => {
+            setCollapse(true);
+            setNaming(ItemListTriggerK[0].name);
+          }}
+          secName={"Bedroom"}
+          time={minutes}
+        />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerB.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
         <SectionHeader secName={"Kitchen"} time={1} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerK.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerK.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
         <SectionHeader secName={"Dining Room"} time={2} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerDR.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerDR.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
         <SectionHeader secName={"Bathroom"} time={3} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerBT.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerBT.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
         <SectionHeader secName={"Home Decoration"} time={3} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerHD.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerHD.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
         <SectionHeader secName={"Lighting"} time={4} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerL.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerL.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
       </div>
     );
 
     setShowLessItems(
       <div>
         <SectionHeader
-            expandCollapse={() => {setCollapse(false); setNaming(ItemListTriggerDR[0].name) }}
-            secName={"Bedroom"}
-            time={minutes}
-          />
+          expandCollapse={() => {
+            setCollapse(false);
+            setNaming(ItemListTriggerB[0].name);
+          }}
+          secName={"Bedroom"}
+          time={minutes}
+        />
         <SectionHeader secName={"Kitchen"} time={1} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerK.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerK.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
         <SectionHeader secName={"Dining Room"} time={2} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerDR.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerDR.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
         <SectionHeader secName={"Bathroom"} time={3} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerBT.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerBT.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
         <SectionHeader secName={"Home Decoration"} time={3} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerHD.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerHD.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
         <SectionHeader secName={"Lighting"} time={4} />
-        <Section_Item ItemListing={[[...new Map(ItemListTriggerL.map(item => [item['id'], item])).values()], itemListTriggerDR2]} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerL.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
       </div>
-    )
-
+    );
   };
   // Item attributes array
   // console.log(ItemList)
@@ -165,8 +269,6 @@ function Cart(props) {
   const [collapse, setCollapse] = useState(false);
   const [naming, setNaming] = useState("");
   const [showLessItems, setShowLessItems] = useState();
-  
-  
 
   const expandCollapse = () => {
     if (collapse === false) {
@@ -194,10 +296,7 @@ function Cart(props) {
             Next on your shopping list: <b>{naming}</b>
           </p>
         </Row>
-        <Row>
-          
-          {showItems}
-        </Row>
+        <Row>{showItems}</Row>
         <div className="align-items-center mt-2 px-2">
           {testData1.map((item, idx) => (
             <ProgressBar
@@ -212,26 +311,22 @@ function Cart(props) {
   } else if (collapse) {
     return (
       <Container className="mt-4">
-      <Row class="first-row">
-        <p>
-          Next on your shopping list: <b>{naming}</b>
-        </p>
-      </Row>
-      <Row>
-        
-        {showLessItems}
-      </Row>
-      <div className="align-items-center mt-2 px-2">
-        {testData2.map((item, idx) => (
-          <ProgressBar
-            key={idx}
-            bgcolor={item.bgcolor}
-            completed={item.completed}
-          />
-        ))}
-      </div>
-    </Container>
-    
+        <Row class="first-row">
+          <p>
+            Next on your shopping list: <b>{naming}</b>
+          </p>
+        </Row>
+        <Row>{showLessItems}</Row>
+        <div className="align-items-center mt-2 px-2">
+          {testData2.map((item, idx) => (
+            <ProgressBar
+              key={idx}
+              bgcolor={item.bgcolor}
+              completed={item.completed}
+            />
+          ))}
+        </div>
+      </Container>
     );
   }
 }
