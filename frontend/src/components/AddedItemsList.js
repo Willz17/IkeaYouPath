@@ -69,7 +69,8 @@ function Cart(props) {
                 <img src={obj.img}></img>
               </div>
               <div className="col-6 text-left">
-                <Row>{obj.name}</Row>
+                <Row><h5><b>{obj.name.split(' - ')[0]}</b></h5></Row>
+                <Row><p>{obj.name.split(' - ')[1]}</p></Row>
                 <Row className="pt-5">
                   <DropdownButton id="dd_menu" title={numItems}>
                     <Dropdown.Item>1</Dropdown.Item>
@@ -78,7 +79,7 @@ function Cart(props) {
                   </DropdownButton>
                 </Row>
               </div>
-              <div className="col-3 text-left">${obj.price}</div>
+              <div className="col-3 text-left"><b>${obj.price}</b></div>
             </Row>
           </Container>
         </Row>
