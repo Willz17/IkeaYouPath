@@ -17,23 +17,17 @@ img {
   height: 30px;
 }
 .img-sizing {
-  width: 50%;
+  width: 60%;
   border-radius: 20px;
   border-color: red;
 }
 
 .recom-divs{
-  background-color: floralwhite;
-  border: 1px solid;
-  border-color: black;
-  border-width: 1px;
-  border-radius: 2px;
   text-align: center;
-  align-items: center;
-  font-size: 12px;
-  width: auto;
-  margin-left: 27%;
-
+  font-size: 15px;
+  padding: 1px;
+  width: 70%;
+  margin-left: 17%;
 }
 
 .recom-divs-subsection{
