@@ -1,69 +1,52 @@
 import Container from "react-bootstrap/esm/Container";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
-import Card from "react-bootstrap/Card";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+
+  const routeChangeInspired = () => {
+    let path = "/shoppinglist";
+    navigate(path);
+  };
+  
+  const routeChangeHurry = () => {
+    let path = "/shoppinglist";
+    navigate(path);
+  };
+  
+  let navigate = useNavigate();
+
   return (
-    <Container>
-      <Row className="text-center mt-5">
-        <h2>Hej and welcome to IKEA Kållered.</h2>
-        <h3>
-          {" "}
-          In order to give you the best experience while shopping, please select
-          the persona that you believe currently fit you the best.
-        </h3>
+    <Container className="p-5">
+      <Row className="text-center mt-5 pb-3">
+        <h1><b>Hej and welcome to IKEA Kållered.</b></h1>
       </Row>
 
-      <Card className="p-2 mt-4" bg="light" style={{ width: "auto" }}>
-        <Row className="align-items-center">
-          <div className="col-md-3 p-4">
-            <img src="inspired.png" alt="inspired" className="img-fluid"></img>
-          </div>
+      <Row className="text-center mt-3 pb-3">
+        <h2>How are you shopping today?</h2>
+      </Row>
 
-          <div className="col-md-7">
-            <h5>
-              <b>Feeling Inspired.</b> Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Integer a quam sit amet est porttitor blandit.
-              Pellentesque id turpis id tortor pharetra imperdiet. Mauris
-              interdum egestas mauris, vel mollis justo laoreet vitae. Morbi
-              faucibus, velit et luctus rutrum, urna tellus cursus tellus, vel
-              tempus massa risus eu metus. Morbi sodales volutpat turpis ac
-              convallis.
-            </h5>
-          </div>
+      <Row className="text-center mt-4 pb-3">
+        <h5>
+          {" "}
+          In order to give you the best possible IKEA experience, we'd like to know how you are shopping today. 
+          Are you looking for inspiration and would like some suggestions? Or are you trying to get your 
+          items as quick as possible, and have a focused IKEA experience?
+        </h5>
+      </Row>
 
-          <div className="col-md-2 p-4">
-            <Button className="pull-right" variant="warning">
-              I feel inspired
-            </Button>
-          </div>
-        </Row>
-      </Card>
+      <Row className="pt-4" style={{width: "50%", float: "right"}}>
+      <Button className="rounded-left rounded-right" onClick={routeChangeInspired}>
+        <h4>I feel inspired</h4>
+      </Button>
+      </Row>
 
-      <Card className="p-2 mt-4" bg="light" style={{ width: "auto" }}>
-        <Row className="align-items-center">
-          <div className="col-md-3 p-4">
-            <img src="hurry.png" alt="hurry" className="img-fluid"></img>
-          </div>
-
-          <div className="col-md-7">
-            <h5>
-              <b>In a rush.</b> Donec rutrum suscipit euismod. Nullam sed felis
-              id nulla pretium sollicitudin id in sem. Phasellus facilisis justo
-              leo, nec condimentum lectus posuere cursus. Praesent pharetra
-              semper augue, vitae malesuada lorem tempor non. Nulla nec semper
-              tortor.
-            </h5>
-          </div>
-
-          <div className="col-md-2 p-4">
-            <Button className="pull-right" variant="warning">
-              I'm in a hurry
-            </Button>
-          </div>
-        </Row>
-      </Card>
+      <Row className="pt-4" style={{width: "50%"}}>
+      <Button className="rounded-left rounded-right" onClick={routeChangeHurry}>
+        <h4>I'm in a hurry</h4>
+      </Button>
+      </Row>
     </Container>
   );
 };

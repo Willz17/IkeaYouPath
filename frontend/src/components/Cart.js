@@ -1,15 +1,20 @@
 import "./Cart.css";
 import "./cart_navigation/Buttons.css";
-import React, { useState } from "react";
+
+import "./Buttons.css";
+import CartItems from "./CartItems.js";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import SectionHeader from "./cart_navigation/SectionHeader";
 import Section_Item from "./cart_navigation/Section_Item";
 import ProgressBar from "./cart_navigation/ProgressBar";
 
+import { saveToLocale, getFromLocale } from "../utils/storage";
+
 function Cart(props) {
   // Item Creation
-  const ItemList = [
+  let ItemList = [
     {
       name: "Knife",
       section: "Kitchen",
@@ -121,6 +126,42 @@ function Cart(props) {
   const testData2 = [{ bgcolor: "#21579D", completed: 17 }];
 
   let minutes = 0;
+  //Expand or collapse section
+  const [addLabel1, setAddLabel1] = useState("Collapse");
+  const [addLabel2, setAddLabel2] = useState("Collapse");
+  const [addLabel3, setAddLabel3] = useState("Collapse");
+  const [expansion1, setExpansion1] = useState(false);
+  const [expansion2, setExpansion2] = useState(false);
+  const [expansion3, setExpansion3] = useState(false);
+
+  const handleClick1 = () => {
+    if (addLabel1 === "Collapse") {
+      setAddLabel1("Expand");
+      setExpansion1(true);
+    } else {
+      setAddLabel1("Collapse");
+      setExpansion1(false);
+    }
+  };
+  const handleClick2 = () => {
+    if (addLabel2 === "Collapse") {
+      setAddLabel2("Expand");
+      setExpansion2(true);
+    } else {
+      setAddLabel2("Collapse");
+      setExpansion2(false);
+    }
+  };
+
+  const handleClick3 = () => {
+    if (addLabel3 === "Collapse") {
+      setAddLabel3("Expand");
+      setExpansion3(true);
+    } else {
+      setAddLabel3("Collapse");
+      setExpansion3(false);
+    }
+  };
 
   //GENERAL LAYOUT
 
@@ -168,8 +209,8 @@ function Cart(props) {
           <p>
             Next on your shopping list: <b>{naming}</b>
           </p>
-        </Row>
-
+          </Row>
+          
         <Row>
           <SectionHeader
             expandCollapse={() => expandCollapse()}

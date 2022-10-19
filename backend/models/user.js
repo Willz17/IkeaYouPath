@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const bcrypt = require("bcryptjs");
+const validate = require("validator");
 
 const userSchema = new Schema({
   name: {
@@ -7,18 +9,18 @@ const userSchema = new Schema({
     required: true,
   },
   email: {
-    type: email,
+    type: String,
+    validate: [validate["isEmail"], "Invalid Email"], // valid & authentic emails
     required: true,
+    unique: true,
   },
   password: {
-    type: password,
+    type: String,
     required: true,
   },
-  cart: {
-    type: [Array],
-    required: false,
-  },
 });
+
+userSchema.index({ email: 1 }, { unique: true });
 
 // password hash and salt gen
 userSchema.methods.generateHash = function (password) {
