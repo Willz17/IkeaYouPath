@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   // const LOGIN_URL = "https://api-you-path.azurewebsites.net/api/users/login";
-  const LOGIN_URL = "http://localhost:4000/api/users/login";
+  const LOGIN_URL = "https://api-you-path.azurewebsites.net/api/users/login";
 
   const navigate = useNavigate();
 
