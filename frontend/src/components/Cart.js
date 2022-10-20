@@ -21,6 +21,7 @@ function Cart(props) {
       coordinates: {},
       price: "119",
       description: "Firm/white, 160x200 cm",
+      subsection: 23,
       img: "https://www.ikea.com/nl/en/images/products/asvang-foam-mattress-firm-white__0986619_pe818095_s5.jpg?f=s",
     },
     {
@@ -30,6 +31,7 @@ function Cart(props) {
       coordinates: {},
       price: "6",
       description: "White",
+      subsection: 72,
       img: "https://www.ikea.com/gb/en/images/products/ullvide-pillowcase-white__0607075_pe682722_s5.jpg?f=m",
     },
     {
@@ -39,6 +41,7 @@ function Cart(props) {
       coordinates: {},
       price: "15",
       description: "White",
+      subsection: 19,
       img: "https://www.ikea.com/gb/en/images/products/ullvide-fitted-sheet-white__0604096_pe681036_s5.jpg?f=xl",
     },
   ];
@@ -131,8 +134,9 @@ function Cart(props) {
                 ItemListTriggerB.map((item) => [item["id"], item])
               ).values(),
             ],
-            itemListTriggerDR2,
+            itemListTriggerDR2
           ]}
+          SSection = {'44'}
         />
         <SectionHeader secName={"Kitchen"} time={1} />
         <Section_Item
@@ -144,6 +148,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'17'}
         />
         <SectionHeader secName={"Dining Room"} time={2} />
         <Section_Item
@@ -155,6 +160,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'93'}
         />
         <SectionHeader secName={"Bathroom"} time={3} />
         <Section_Item
@@ -166,6 +172,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'75'}
         />
         <SectionHeader secName={"Home Decoration"} time={3} />
         <Section_Item
@@ -177,6 +184,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'6'}
         />
         <SectionHeader secName={"Lighting"} time={4} />
         <Section_Item
@@ -188,6 +196,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'37'}
         />
       </div>
     );
@@ -219,6 +228,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'17'}
         />
         <SectionHeader secName={"Dining Room"} time={2} />
         <Section_Item
@@ -230,6 +240,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'93'}
         />
         <SectionHeader secName={"Bathroom"} time={3} />
         <Section_Item
@@ -241,6 +252,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'75'}
         />
         <SectionHeader secName={"Home Decoration"} time={3} />
         <Section_Item
@@ -252,6 +264,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'6'}
         />
         <SectionHeader secName={"Lighting"} time={4} />
         <Section_Item
@@ -263,6 +276,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'37'}
         />
       </div>
     );
@@ -294,6 +308,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'93'}
         />
         <SectionHeader secName={"Bathroom"} time={2} />
         <Section_Item
@@ -305,6 +320,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'75'}
         />
         <SectionHeader secName={"Home Decoration"} time={2} />
         <Section_Item
@@ -316,6 +332,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'6'}
         />
         <SectionHeader secName={"Lighting"} time={3} />
         <Section_Item
@@ -327,6 +344,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'37'}
         />
       </div>
     );
@@ -359,6 +377,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'75'}
         />
         <SectionHeader secName={"Home Decoration"} time={2} />
         <Section_Item
@@ -370,6 +389,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'6'}
         />
         <SectionHeader secName={"Lighting"} time={2} />
         <Section_Item
@@ -381,6 +401,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'37'}
         />
       </div>
     );
@@ -414,6 +435,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'6'}
         />
         <SectionHeader secName={"Lighting"} time={2} />
         <Section_Item
@@ -425,6 +447,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'37'}
         />
       </div>
     );
@@ -445,7 +468,9 @@ function Cart(props) {
         <SectionHeader
           expandCollapse={() => {
             setCollapse6(true);
-            setNaming('All items collected - No more items stored in the basket ');
+            setNaming(
+              "All items collected - No more items stored in the basket "
+            );
           }}
           secName={"Lighting"}
           time={1}
@@ -459,6 +484,7 @@ function Cart(props) {
             ],
             itemListTriggerDR2,
           ]}
+          SSection = {'37'}
         />
       </div>
     );
@@ -516,28 +542,28 @@ function Cart(props) {
   ) {
     return (
       <Container className="mt-4">
-        <Row class="first-row">
-          <p>
-            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
-          </p>
-        </Row>
-        <Row class="first-row">
-          {" "}
-          <p>{naming.split(" - ")[1]}</p>
-        </Row>
         <Row>
-        <div className="align-items-center mt-2 ">
-            {testData1.map((item, idx) => (
-              <ProgressBar
-                key={idx}
-                bgcolor={item.bgcolor}
-                completed={item.completed}
-              />
-            ))}
+          <div className="col-7">
+            <p>Next on your shopping list:</p>
           </div>
-          </Row>
-          <Row>{showItems}</Row>
+          <div className="col-5">
+            <p>
+              <b>{naming.split(" - ")[0]}</b>
+            </p>
+          </div>
+        </Row>
 
+        <div className="align-items-center">
+          {testData1.map((item, idx) => (
+            <ProgressBar
+              key={idx}
+              bgcolor={item.bgcolor}
+              completed={item.completed}
+            />
+          ))}
+        </div>
+
+        {showItems}
       </Container>
     );
   } else if (
@@ -550,28 +576,28 @@ function Cart(props) {
   ) {
     return (
       <Container className="mt-4">
-        <Row class="first-row">
-          <p>
-            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
-          </p>
-        </Row>
-        <Row class="first-row">
-          {" "}
-          <p>{naming.split(" - ")[1]}</p>
+        <Row>
+          <div className="col-7">
+            <p>Next on your shopping list:</p>
+          </div>
+          <div className="col-5">
+            <p>
+              <b>{naming.split(" - ")[0]}</b>
+            </p>
+          </div>
         </Row>
         <Row>
-        <div className="align-items-center mt-2 px-2">
-          {testData2.map((item, idx) => (
-            <ProgressBar
-              key={idx}
-              bgcolor={item.bgcolor}
-              completed={item.completed}
-            />
-          ))}
-        </div>
+          <div className="align-items-center">
+            {testData2.map((item, idx) => (
+              <ProgressBar
+                key={idx}
+                bgcolor={item.bgcolor}
+                completed={item.completed}
+              />
+            ))}
+          </div>
         </Row>
         <Row>{showLessItems}</Row>
-
       </Container>
     );
   } else if (
@@ -584,26 +610,29 @@ function Cart(props) {
   ) {
     return (
       <Container className="mt-4">
-        <Row class="first-row">
-          <p>
-            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
-          </p>
+        <Row>
+          <div className="col-7">
+            <p>Next on your shopping list:</p>
+          </div>
+          <div className="col-5">
+            <p>
+              <b>{naming.split(" - ")[0]}</b>
+            </p>
+          </div>
         </Row>
-        <Row class="first-row">
+        <Row>
           {" "}
-          <p>{naming.split(" - ")[1]}</p>
+          <div className="align-items-center">
+            {testData3.map((item, idx) => (
+              <ProgressBar
+                key={idx}
+                bgcolor={item.bgcolor}
+                completed={item.completed}
+              />
+            ))}
+          </div>
         </Row>
-        <Row>        <div className="align-items-center mt-2 px-2">
-          {testData3.map((item, idx) => (
-            <ProgressBar
-              key={idx}
-              bgcolor={item.bgcolor}
-              completed={item.completed}
-            />
-          ))}
-        </div></Row>
         <Row>{showLessItems2}</Row>
-
       </Container>
     );
   } else if (
@@ -616,26 +645,29 @@ function Cart(props) {
   ) {
     return (
       <Container className="mt-4">
-        <Row class="first-row">
-          <p>
-            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
-          </p>
+        <Row>
+          <div className="col-7">
+            <p>Next on your shopping list:</p>
+          </div>
+          <div className="col-5">
+            <p>
+              <b>{naming.split(" - ")[0]}</b>
+            </p>
+          </div>
         </Row>
-        <Row class="first-row">
+        <Row>
           {" "}
-          <p>{naming.split(" - ")[1]}</p>
+          <div className="align-items-center">
+            {testData4.map((item, idx) => (
+              <ProgressBar
+                key={idx}
+                bgcolor={item.bgcolor}
+                completed={item.completed}
+              />
+            ))}
+          </div>
         </Row>
-        <Row>        <div className="align-items-center mt-2 px-2">
-          {testData4.map((item, idx) => (
-            <ProgressBar
-              key={idx}
-              bgcolor={item.bgcolor}
-              completed={item.completed}
-            />
-          ))}
-        </div></Row>
         <Row>{showLessItems3}</Row>
-
       </Container>
     );
   } else if (
@@ -648,26 +680,29 @@ function Cart(props) {
   ) {
     return (
       <Container className="mt-4">
-        <Row class="first-row">
-          <p>
-            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
-          </p>
+        <Row>
+          <div className="col-7">
+            <p>Next on your shopping list:</p>
+          </div>
+          <div className="col-5">
+            <p>
+              <b>{naming.split(" - ")[0]}</b>
+            </p>
+          </div>
         </Row>
-        <Row class="first-row">
+        <Row>
           {" "}
-          <p>{naming.split(" - ")[1]}</p>
+          <div className="align-items-center">
+            {testData5.map((item, idx) => (
+              <ProgressBar
+                key={idx}
+                bgcolor={item.bgcolor}
+                completed={item.completed}
+              />
+            ))}
+          </div>
         </Row>
-        <Row>        <div className="align-items-center mt-2 px-2">
-          {testData5.map((item, idx) => (
-            <ProgressBar
-              key={idx}
-              bgcolor={item.bgcolor}
-              completed={item.completed}
-            />
-          ))}
-        </div></Row>
         <Row>{showLessItems4}</Row>
-
       </Container>
     );
   } else if (
@@ -680,30 +715,32 @@ function Cart(props) {
   ) {
     return (
       <Container className="mt-4">
-        <Row class="first-row">
-          <p>
-            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
-          </p>
+        <Row>
+          <div className="col-7">
+            <p>Next on your shopping list:</p>
+          </div>
+          <div className="col-5">
+            <p>
+              <b>{naming.split(" - ")[0]}</b>
+            </p>
+          </div>
         </Row>
-        <Row class="first-row">
+        <Row>
           {" "}
-          <p>{naming.split(" - ")[1]}</p>
+          <div className="align-items-center">
+            {testData6.map((item, idx) => (
+              <ProgressBar
+                key={idx}
+                bgcolor={item.bgcolor}
+                completed={item.completed}
+              />
+            ))}
+          </div>
         </Row>
-        <Row>        <div className="align-items-center mt-2 px-2">
-          {testData6.map((item, idx) => (
-            <ProgressBar
-              key={idx}
-              bgcolor={item.bgcolor}
-              completed={item.completed}
-            />
-          ))}
-        </div></Row>
         <Row>{showLessItems5}</Row>
-
       </Container>
     );
-  }
-  else if (
+  } else if (
     collapse &&
     collapse2 &&
     collapse3 &&
@@ -713,26 +750,29 @@ function Cart(props) {
   ) {
     return (
       <Container className="mt-4">
-        <Row class="first-row">
-          <p>
-            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
-          </p>
+        <Row>
+          <div className="col-7">
+            <p>Next on your shopping list:</p>
+          </div>
+          <div className="col-5">
+            <p>
+              <b>{naming.split(" - ")[0]}</b>
+            </p>
+          </div>
         </Row>
-        <Row class="first-row">
+        <Row>
           {" "}
-          <p>{naming.split(" - ")[1]}</p>
+          <div className="align-items-center">
+            {testData7.map((item, idx) => (
+              <ProgressBar
+                key={idx}
+                bgcolor={item.bgcolor}
+                completed={item.completed}
+              />
+            ))}
+          </div>
         </Row>
-        <Row>        <div className="align-items-center mt-2">
-          {testData7.map((item, idx) => (
-            <ProgressBar
-              key={idx}
-              bgcolor={item.bgcolor}
-              completed={item.completed}
-            />
-          ))}
-        </div></Row>
         <Row>{showLessItems6}</Row>
-
       </Container>
     );
   }

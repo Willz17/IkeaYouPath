@@ -8,7 +8,7 @@ function SectionHeader(props) {
   return (
     <Container
       style={{ backgroundColor: "white" }}
-      className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
+      className="mt-3 p-2 square border border-1 rounded mb-0 w-100"
     >
       <Row className="text-center">
         <div className="fs-6 col-5">

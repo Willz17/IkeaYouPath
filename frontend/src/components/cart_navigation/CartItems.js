@@ -16,19 +16,13 @@ function CartItems(props) {
     }
   };
 
-  const getRandomInt = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min);
-  };
-
   // console.log(props.image[0])
   // Display Layout
   if (!recommendation) {
     return (
       <Container
         style={{ backgroundColor: "white" }}
-        className="mx-3 p-1 square"
+        className=" p-1 square"
       >
         <Row className="align-items-center">
           <div class="col-4">
@@ -46,8 +40,8 @@ function CartItems(props) {
             </div>
           </div>
 
-          <div class="col-2">
-            <p>Shelf {getRandomInt(1,100)}</p>
+          <div class="rec-text-size col-2">
+            <p>Shelf {props.subsection}</p>
           </div>
 
           <div class="align-items-left col-2">
@@ -60,7 +54,7 @@ function CartItems(props) {
     return (
       <Container
         style={{ backgroundColor: "white" }}
-        className="mx-3 p-1 square "
+        className=" p-1 square "
       >
         <Row className="align-items-center">
           <div class="col-4">
@@ -78,8 +72,8 @@ function CartItems(props) {
             </div>
           </div>
 
-          <div class="col-2">
-            <p>Shelf {getRandomInt(1,100)}</p>
+          <div class="col-2 rec-text-size">
+            <p>Shelf {props.subsection}</p>
           </div>
 
           <div class="align-items-left col-2">
@@ -106,7 +100,7 @@ function CartItems(props) {
               </div>
             </Row>
             <Row>
-              <div className="recom-divs-subsection rounded">Shelf {getRandomInt(1,100)}</div>
+              <div className="recom-divs-subsection rounded">Shelf {props.recSS0}</div>
             </Row>
           </div>
           <div class="col-4">
@@ -122,7 +116,7 @@ function CartItems(props) {
               </div>
             </Row>
             <Row>
-              <div className="recom-divs-subsection rounded">Shelf {getRandomInt(1,100)}</div>
+              <div className="recom-divs-subsection rounded">Shelf {props.recSS1}</div>
             </Row>
           </div>
           <div class="col-4">
@@ -138,7 +132,7 @@ function CartItems(props) {
               </div>
             </Row>
             <Row>
-              <div className="recom-divs-subsection rounded">Shelf {getRandomInt(1,100)}</div>
+              <div className="recom-divs-subsection rounded">Shelf {props.recSS2}</div>
             </Row>
           </div>
         </Row>
