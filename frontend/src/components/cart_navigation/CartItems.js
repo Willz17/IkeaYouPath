@@ -15,13 +15,14 @@ function CartItems(props) {
       setRecomendation(false);
     }
   };
+
   // console.log(props.image[0])
   // Display Layout
   if (!recommendation) {
     return (
       <Container
         style={{ backgroundColor: "white" }}
-        className="mx-3 p-1 square"
+        className=" p-1 square"
       >
         <Row className="align-items-center">
           <div class="col-4">
@@ -30,16 +31,17 @@ function CartItems(props) {
             </div>
           </div>
 
-          <div class="col-3">
-            <div className="p-3">
+          <div class="col-4">
+            <div className="p-3 rec-text-size">
               <p>
-                <b>{props.name}</b>
+                <Row><b>{props.name.split(' - ')[0]}</b></Row>
+                <Row><p>{props.name.split(' - ')[1]}</p></Row>
               </p>
             </div>
           </div>
 
-          <div class="col-3">
-            <p>{props.subSection}</p>
+          <div class="rec-text-size col-2">
+            <p>Shelf {props.subsection}</p>
           </div>
 
           <div class="align-items-left col-2">
@@ -52,7 +54,7 @@ function CartItems(props) {
     return (
       <Container
         style={{ backgroundColor: "white" }}
-        className="mx-3 p-1 square "
+        className=" p-1 square "
       >
         <Row className="align-items-center">
           <div class="col-4">
@@ -61,16 +63,17 @@ function CartItems(props) {
             </div>
           </div>
 
-          <div class="col-3">
-            <div className="p-3">
+          <div class="col-4">
+            <div className="rec-text-size p-3">
               <p>
-                <b>{props.name}</b>
+              <Row><b>{props.name.split(' - ')[0]}</b></Row>
+                <Row><p>{props.name.split(' - ')[1]}</p></Row>
               </p>
             </div>
           </div>
 
-          <div class="col-3">
-            <p>Shelf 44</p>
+          <div class="col-2 rec-text-size">
+            <p>Shelf {props.subsection}</p>
           </div>
 
           <div class="align-items-left col-2">
@@ -79,7 +82,9 @@ function CartItems(props) {
         </Row>
 
         <Row className="">
-          <div className="fs-6 mb-2"><b>You might also like:</b></div>
+          <div className="fs-6 mb-2">
+            <b>You might also like:</b>
+          </div>
         </Row>
         <Row>
           <div class="col-4">
@@ -89,14 +94,13 @@ function CartItems(props) {
               </div>
             </Row>
             <Row>
-              <div className="recom-divs rounded">
-                <b>{props.recName0}</b>
+              <div className="recom-divs rec-text-size rounded">
+                <Row><b>{props.recName0.split(' - ')[0]}</b></Row>
+                <Row><p>{props.recName0.split(' - ')[1]}</p></Row>
               </div>
             </Row>
             <Row>
-              <div className="recom-divs-subsection rounded">
-              Shelf 44
-              </div>
+              <div className="recom-divs-subsection rounded">Shelf {props.recSS0}</div>
             </Row>
           </div>
           <div class="col-4">
@@ -106,14 +110,13 @@ function CartItems(props) {
               </div>
             </Row>
             <Row>
-              <div className="recom-divs rounded">
-                <b>{props.recName1}</b>
+              <div className="recom-divs rec-text-size rounded">
+                <Row><b>{props.recName1.split(' - ')[0]}</b></Row>
+                <Row><p>{props.recName1.split(' - ')[1]}</p></Row>
               </div>
             </Row>
             <Row>
-              <div className="recom-divs-subsection rounded">
-              Shelf 44
-              </div>
+              <div className="recom-divs-subsection rounded">Shelf {props.recSS1}</div>
             </Row>
           </div>
           <div class="col-4">
@@ -123,14 +126,13 @@ function CartItems(props) {
               </div>
             </Row>
             <Row>
-              <div className="recom-divs rounded">
-                <b>{props.recName2}</b>
+              <div className="recom-divs rec-text-size rounded">
+                <Row><b>{props.recName2.split(' - ')[0]}</b></Row>
+                <Row><p>{props.recName2.split(' - ')[1]}</p></Row>
               </div>
             </Row>
             <Row>
-              <div className="recom-divs-subsection rounded">
-              Shelf 44
-              </div>
+              <div className="recom-divs-subsection rounded">Shelf {props.recSS2}</div>
             </Row>
           </div>
         </Row>

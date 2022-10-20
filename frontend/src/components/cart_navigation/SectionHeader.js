@@ -5,10 +5,13 @@ import Button from "react-bootstrap/Button"
 function SectionHeader(props) {
   const { expandCollapse } = props;
   let section = props.secName;
+
+  let arrowDown = "down-arrow.png"
+  let arrowUp = "up-arrow.png"
   return (
     <Container
       style={{ backgroundColor: "white" }}
-      className="mx-2 mt-3 p-2 square border border-1 rounded mb-0 w-100"
+      className="mt-3 p-2 square border border-1 rounded mb-0 w-100"
     >
       <Row className="text-center">
         <div className="fs-6 col-5">
@@ -16,7 +19,7 @@ function SectionHeader(props) {
         </div>
         <div className="col-3">
           <Button variant="outline-none" onClick={() => expandCollapse()}>
-          <img src="down-arrow.png" alt="basket" style={{ width: "1.2rem" }}></img>
+          <img src={props.arrow} alt="basket" style={{ width: "1.2rem" }}></img>
           </Button>
         </div>
         <div className="fs-6 col-4">{props.time} minutes</div>

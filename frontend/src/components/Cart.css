@@ -13,6 +13,22 @@
 }
 
 .first-row{
-    text-align: left;
+    text-align: center;
     font-size: 1rem;
 }
+
+.fixPosition{
+    position: fixed;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('https://media0.giphy.com/media/hWZBZjMMuMl7sWe0x8/giphy.gif?cid=ecf05e479v1b9i2wv8vv1lu18513retd9ydm5p1lthlr4wum&rid=giphy.gif&ct=g') 50% 50% no-repeat white;
+}
+

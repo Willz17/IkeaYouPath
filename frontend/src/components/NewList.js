@@ -101,7 +101,7 @@ const NewList = () => {
               top: "10%",
             }}
           >
-            ${name} added to cart!
+            {name} added to cart!
           </Alert>
         );
         // After 2 seconds we want the alert to dissapear
@@ -136,7 +136,8 @@ const NewList = () => {
             ></img>
           </div>
           <div className="col-md-6 fontStyling">
-            {itemName[index]}{" "}
+            {itemName[index].split(' - ')[0]}{" "}
+            <br></br><span className="nameOfItem">{itemName[index].split(' - ')[1]} </span>
             <p className="priceStyling">
               <span className="dollarStyling">$</span>
               {+itemPrice[index]}{" "}
@@ -253,7 +254,7 @@ const NewList = () => {
 
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = "/shoppinglist";
+    let path = "/welcome";
     navigate(path);
   };
   const getSpecificProduct = (event) => {
@@ -273,7 +274,8 @@ const NewList = () => {
           <div className="shift-it-to-left">
             <form
               onSubmit={getSpecificProduct}
-              className="input-group mb-3 mt-5 w-75 center"
+              className="input-group mb-3 mt-5 center"
+              style={{width: "78%"}}
             >
               {beforeSearch}
               {/* {productList.map(p => <div>{p.name}</div>)} */}
