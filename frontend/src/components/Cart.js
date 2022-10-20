@@ -74,6 +74,8 @@ function Cart(props) {
       setItemList(anotherlist);
     }
   }, []);
+  const [showLoader, setShowLoader] = useState();
+  let counter = 0;
 
   let anotherlist = [];
   const getIt = async (name, id, len) => {
@@ -82,7 +84,13 @@ function Cart(props) {
       .then((res) => {
         if (anotherlist.length < len) {
           anotherlist.push(res.data);
-          createItems(anotherlist);
+          // createItems(anotherlist);
+          counter++;
+          if (counter===len) {
+            createItems(anotherlist, false);
+          }else{
+            createItems(anotherlist, true);
+          }
           return res.data;
         }
       });
@@ -95,7 +103,78 @@ function Cart(props) {
   const ItemListTriggerHD = [];
   const ItemListTriggerL = [];
   const [showItems, setShowItems] = useState();
-  const createItems = (data) => {
+  const createItems = (data, loadingPage) => {
+    if (loadingPage) {
+      setShowLoader(
+        <div>
+          <div class="loader"></div>
+          <div class="outer-box">
+            <nav class="social">
+              <div class="box">
+                <p>
+                  Showing a display Loading Icon Until the Page Loads
+                  Completely..
+                </p>
+              </div>
+              <ul>
+                <li>
+                  <a
+                    target="_blank"
+                    href="http://virender-bartwal.blogspot.in/"
+                  >
+                    <i
+                      class="fa fa-link fa-3x text-success"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" href="https://twitter.com/veerbartwal">
+                    <i
+                      class="fa fa-twitter fa-3x text-success"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" href="https://codepen.io/bartwal">
+                    <i
+                      class="fa fa-codepen fa-3x text-success"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    href="https://in.linkedin.com/in/local-seo-freelancer-delhi"
+                  >
+                    <i
+                      class="fa fa-linkedin-square fa-3x text-success"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    target="_blank"
+                    href="https://plus.google.com/+Virender-bartwalBlogspotIn"
+                  >
+                    <i
+                      class="fa fa-google-plus fa-3x text-success"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      );
+    } else {
+      setShowLoader("");
+    }
     data.forEach((obj) => {
       if (obj.section === "Dining room") {
         ItemListTriggerDR.push(obj);
@@ -577,7 +656,7 @@ function Cart(props) {
             />
           ))}
         </div>
-
+        {showLoader}
         {showItems}
       </Container>
     );
