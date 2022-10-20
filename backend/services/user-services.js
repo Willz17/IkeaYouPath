@@ -15,10 +15,10 @@ const registerUser = async ({ name, email, password }) => {
 
   try {
     const user = await user_obj.save();
-    return user;
+    return { user: user, code: 200 };
   } catch (e) {
     console.log(e);
-    return { error: "Email already in use" };
+    return { message: "Email already in use", code: 400 };
   }
 };
 
@@ -34,9 +34,9 @@ const loginUser = async ({ email, password }) => {
     .findOne({ email: email }, async function (err, user) {
       try {
         if (user.validatePassword(password)) {
-          res = user;
+          res = { user: user, code: 200 };
         } else {
-          res = { message: "Wrong password", code: 404 };
+          res = { message: "Wrong password", code: 400 };
         }
       } catch (e) {
         console.log("error", e);

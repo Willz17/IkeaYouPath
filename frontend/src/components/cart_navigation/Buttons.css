@@ -11,7 +11,10 @@
 .checkbox1{
 	height: 30px;
   width: 30px;
-
+  border-top-right-radius: 5em;
+  border-bottom-right-radius: 2em;
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
 
 }
 
@@ -23,4 +26,8 @@
   height: auto;
   margin-right: 25px;
   align-self: center;
+}
+
+.round {
+  position: relative;
 }
