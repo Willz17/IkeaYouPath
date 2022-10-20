@@ -13,6 +13,10 @@
 }
 
 .first-row{
-    text-align: left;
+    text-align: center;
     font-size: 1rem;
+}
+
+.fixPosition{
+    position: fixed;
 }
