@@ -47,7 +47,6 @@ function Cart(props) {
     "https://api-you-path.azurewebsites.net/api/products";
 
   const [ItemList, setItemList] = useState([]);
-  const [showCards, setShowCards] = useState();
 
   useEffect(() => {
     if (getFromLocale("cred")) {
@@ -100,7 +99,6 @@ function Cart(props) {
       }
       if (obj.section === "Kitchen") {
         ItemListTriggerK.push(obj);
-        // console.log(obj);
       }
       if (obj.section === "Bedroom") {
         ItemListTriggerB.push(obj);
@@ -124,7 +122,7 @@ function Cart(props) {
             setNaming(ItemListTriggerK[0].name);
           }}
           secName={"Bedroom"}
-          time={minutes}
+          time={0}
         />
         <Section_Item
           ItemListing={[
@@ -202,9 +200,16 @@ function Cart(props) {
             setNaming(ItemListTriggerB[0].name);
           }}
           secName={"Bedroom"}
-          time={minutes}
+          time={0}
         />
-        <SectionHeader secName={"Kitchen"} time={1} />
+        <SectionHeader
+          expandCollapse={() => {
+            setCollapse2(true);
+            setNaming(ItemListTriggerDR[0].name);
+          }}
+          secName={"Kitchen"}
+          time={0}
+        />
         <Section_Item
           ItemListing={[
             [
@@ -261,62 +266,300 @@ function Cart(props) {
         />
       </div>
     );
+    setShowLessItems2(
+      <div>
+        <SectionHeader secName={"Bedroom"} time={0} />
+        <SectionHeader
+          expandCollapse={() => {
+            setCollapse2(false);
+            setNaming(ItemListTriggerK[0].name);
+          }}
+          secName={"Kitchen"}
+          time={0}
+        />
+        <SectionHeader
+          secName={"Dining Room"}
+          expandCollapse={() => {
+            setCollapse3(true);
+            setNaming(ItemListTriggerBT[0].name);
+          }}
+          time={1}
+        />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerDR.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
+        <SectionHeader secName={"Bathroom"} time={2} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerBT.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
+        <SectionHeader secName={"Home Decoration"} time={2} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerHD.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
+        <SectionHeader secName={"Lighting"} time={3} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerL.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
+      </div>
+    );
+    setShowLessItems3(
+      <div>
+        <SectionHeader secName={"Bedroom"} time={0} />
+        <SectionHeader secName={"Kitchen"} time={0} />
+        <SectionHeader
+          secName={"Dining Room"}
+          expandCollapse={() => {
+            setCollapse3(false);
+            setNaming(ItemListTriggerDR[0].name);
+          }}
+          time={0}
+        />
+        <SectionHeader
+          expandCollapse={() => {
+            setCollapse4(true);
+            setNaming(ItemListTriggerHD[0].name);
+          }}
+          secName={"Bathroom"}
+          time={1}
+        />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerBT.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
+        <SectionHeader secName={"Home Decoration"} time={2} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerHD.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
+        <SectionHeader secName={"Lighting"} time={2} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerL.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
+      </div>
+    );
+    setShowLessItems4(
+      <div>
+        <SectionHeader secName={"Bedroom"} time={0} />
+        <SectionHeader secName={"Kitchen"} time={0} />
+        <SectionHeader secName={"Dining Room"} time={0} />
+        <SectionHeader
+          expandCollapse={() => {
+            setCollapse4(false);
+            setNaming(ItemListTriggerBT[0].name);
+          }}
+          secName={"Bathroom"}
+          time={0}
+        />
+        <SectionHeader
+          expandCollapse={() => {
+            setCollapse5(true);
+            setNaming(ItemListTriggerL[0].name);
+          }}
+          secName={"Home Decoration"}
+          time={1}
+        />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerHD.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
+        <SectionHeader secName={"Lighting"} time={2} />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerL.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
+      </div>
+    );
+    setShowLessItems5(
+      <div>
+        <SectionHeader secName={"Bedroom"} time={0} />
+        <SectionHeader secName={"Kitchen"} time={0} />
+        <SectionHeader secName={"Dining Room"} time={0} />
+        <SectionHeader secName={"Bathroom"} time={0} />
+        <SectionHeader
+          expandCollapse={() => {
+            setCollapse5(false);
+            setNaming(ItemListTriggerHD[0].name);
+          }}
+          secName={"Home Decoration"}
+          time={0}
+        />
+        <SectionHeader
+          expandCollapse={() => {
+            setCollapse6(true);
+            setNaming('All items collected - No more items stored in the basket ');
+          }}
+          secName={"Lighting"}
+          time={1}
+        />
+        <Section_Item
+          ItemListing={[
+            [
+              ...new Map(
+                ItemListTriggerL.map((item) => [item["id"], item])
+              ).values(),
+            ],
+            itemListTriggerDR2,
+          ]}
+        />
+      </div>
+    );
+    setShowLessItems6(
+      <div>
+        <SectionHeader secName={"Bedroom"} time={0} />
+        <SectionHeader secName={"Kitchen"} time={0} />
+        <SectionHeader secName={"Dining Room"} time={0} />
+        <SectionHeader secName={"Bathroom"} time={0} />
+        <SectionHeader secName={"Home Decoration"} time={0} />
+        <SectionHeader
+          expandCollapse={() => {
+            setCollapse6(false);
+            setNaming(ItemListTriggerL[0].name);
+          }}
+          secName={"Lighting"}
+          time={0}
+        />
+      </div>
+    );
   };
-  // Item attributes array
-  // console.log(ItemList)
+
   //Differentiate within Sections
 
   const [collapse, setCollapse] = useState(false);
-  const [naming, setNaming] = useState("");
+  const [collapse2, setCollapse2] = useState(false);
+  const [collapse3, setCollapse3] = useState(false);
+  const [collapse4, setCollapse4] = useState(false);
+  const [collapse5, setCollapse5] = useState(false);
+  const [collapse6, setCollapse6] = useState(false);
   const [showLessItems, setShowLessItems] = useState();
-
-  const expandCollapse = () => {
-    if (collapse === false) {
-      setCollapse(true);
-      setNaming("Hello");
-    } else {
-      setNaming("Hello");
-      setCollapse(false);
-    }
-  };
-
+  const [showLessItems2, setShowLessItems2] = useState();
+  const [showLessItems3, setShowLessItems3] = useState();
+  const [showLessItems4, setShowLessItems4] = useState();
+  const [showLessItems5, setShowLessItems5] = useState();
+  const [showLessItems6, setShowLessItems6] = useState();
+  const [naming, setNaming] = useState("");
   const testData1 = [{ bgcolor: "#21579D", completed: 0 }];
   const testData2 = [{ bgcolor: "#21579D", completed: 17 }];
+  const testData3 = [{ bgcolor: "#21579D", completed: 34 }];
+  const testData4 = [{ bgcolor: "#21579D", completed: 50 }];
+  const testData5 = [{ bgcolor: "#21579D", completed: 67 }];
+  const testData6 = [{ bgcolor: "#21579D", completed: 83 }];
+  const testData7 = [{ bgcolor: "#21579D", completed: 100 }];
 
-  let minutes = 0;
-  //Expand or collapse section
+  //GENERAL LAYOUT -----------------------------------------------------------------
 
-  //GENERAL LAYOUT
-
-  if (!collapse) {
+  if (
+    !collapse &&
+    !collapse2 &&
+    !collapse3 &&
+    !collapse4 &&
+    !collapse5 &&
+    !collapse6
+  ) {
     return (
       <Container className="mt-4">
         <Row class="first-row">
           <p>
-            Next on your shopping list: <b>{naming}</b>
+            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
           </p>
         </Row>
-        <Row>{showItems}</Row>
-        <div className="align-items-center mt-2 px-2">
-          {testData1.map((item, idx) => (
-            <ProgressBar
-              key={idx}
-              bgcolor={item.bgcolor}
-              completed={item.completed}
-            />
-          ))}
-        </div>
+        <Row class="first-row">
+          {" "}
+          <p>{naming.split(" - ")[1]}</p>
+        </Row>
+        <Row>
+        <div className="align-items-center mt-2 ">
+            {testData1.map((item, idx) => (
+              <ProgressBar
+                key={idx}
+                bgcolor={item.bgcolor}
+                completed={item.completed}
+              />
+            ))}
+          </div>
+          </Row>
+          <Row>{showItems}</Row>
+
       </Container>
     );
-  } else if (collapse) {
+  } else if (
+    collapse &&
+    !collapse2 &&
+    !collapse3 &&
+    !collapse4 &&
+    !collapse5 &&
+    !collapse6
+  ) {
     return (
       <Container className="mt-4">
         <Row class="first-row">
           <p>
-            Next on your shopping list: <b>{naming}</b>
+            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
           </p>
         </Row>
-        <Row>{showLessItems}</Row>
+        <Row class="first-row">
+          {" "}
+          <p>{naming.split(" - ")[1]}</p>
+        </Row>
+        <Row>
         <div className="align-items-center mt-2 px-2">
           {testData2.map((item, idx) => (
             <ProgressBar
@@ -326,6 +569,170 @@ function Cart(props) {
             />
           ))}
         </div>
+        </Row>
+        <Row>{showLessItems}</Row>
+
+      </Container>
+    );
+  } else if (
+    collapse &&
+    collapse2 &&
+    !collapse3 &&
+    !collapse4 &&
+    !collapse5 &&
+    !collapse6
+  ) {
+    return (
+      <Container className="mt-4">
+        <Row class="first-row">
+          <p>
+            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
+          </p>
+        </Row>
+        <Row class="first-row">
+          {" "}
+          <p>{naming.split(" - ")[1]}</p>
+        </Row>
+        <Row>        <div className="align-items-center mt-2 px-2">
+          {testData3.map((item, idx) => (
+            <ProgressBar
+              key={idx}
+              bgcolor={item.bgcolor}
+              completed={item.completed}
+            />
+          ))}
+        </div></Row>
+        <Row>{showLessItems2}</Row>
+
+      </Container>
+    );
+  } else if (
+    collapse &&
+    collapse2 &&
+    collapse3 &&
+    !collapse4 &&
+    !collapse5 &&
+    !collapse6
+  ) {
+    return (
+      <Container className="mt-4">
+        <Row class="first-row">
+          <p>
+            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
+          </p>
+        </Row>
+        <Row class="first-row">
+          {" "}
+          <p>{naming.split(" - ")[1]}</p>
+        </Row>
+        <Row>        <div className="align-items-center mt-2 px-2">
+          {testData4.map((item, idx) => (
+            <ProgressBar
+              key={idx}
+              bgcolor={item.bgcolor}
+              completed={item.completed}
+            />
+          ))}
+        </div></Row>
+        <Row>{showLessItems3}</Row>
+
+      </Container>
+    );
+  } else if (
+    collapse &&
+    collapse2 &&
+    collapse3 &&
+    collapse4 &&
+    !collapse5 &&
+    !collapse6
+  ) {
+    return (
+      <Container className="mt-4">
+        <Row class="first-row">
+          <p>
+            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
+          </p>
+        </Row>
+        <Row class="first-row">
+          {" "}
+          <p>{naming.split(" - ")[1]}</p>
+        </Row>
+        <Row>        <div className="align-items-center mt-2 px-2">
+          {testData5.map((item, idx) => (
+            <ProgressBar
+              key={idx}
+              bgcolor={item.bgcolor}
+              completed={item.completed}
+            />
+          ))}
+        </div></Row>
+        <Row>{showLessItems4}</Row>
+
+      </Container>
+    );
+  } else if (
+    collapse &&
+    collapse2 &&
+    collapse3 &&
+    collapse4 &&
+    collapse5 &&
+    !collapse6
+  ) {
+    return (
+      <Container className="mt-4">
+        <Row class="first-row">
+          <p>
+            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
+          </p>
+        </Row>
+        <Row class="first-row">
+          {" "}
+          <p>{naming.split(" - ")[1]}</p>
+        </Row>
+        <Row>        <div className="align-items-center mt-2 px-2">
+          {testData6.map((item, idx) => (
+            <ProgressBar
+              key={idx}
+              bgcolor={item.bgcolor}
+              completed={item.completed}
+            />
+          ))}
+        </div></Row>
+        <Row>{showLessItems5}</Row>
+
+      </Container>
+    );
+  }
+  else if (
+    collapse &&
+    collapse2 &&
+    collapse3 &&
+    collapse4 &&
+    collapse5 &&
+    collapse6
+  ) {
+    return (
+      <Container className="mt-4">
+        <Row class="first-row">
+          <p>
+            Next on your shopping list: <b>{naming.split(" - ")[0]}</b>
+          </p>
+        </Row>
+        <Row class="first-row">
+          {" "}
+          <p>{naming.split(" - ")[1]}</p>
+        </Row>
+        <Row>        <div className="align-items-center mt-2">
+          {testData7.map((item, idx) => (
+            <ProgressBar
+              key={idx}
+              bgcolor={item.bgcolor}
+              completed={item.completed}
+            />
+          ))}
+        </div></Row>
+        <Row>{showLessItems6}</Row>
+
       </Container>
     );
   }

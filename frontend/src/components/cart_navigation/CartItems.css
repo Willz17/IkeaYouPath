@@ -10,10 +10,7 @@ img {
   width: 100%;
 }
 
-.big-checkbox {
-  width: 30px;
-  height: 30px;
-}
+
 .img-sizing {
   width: 60%;
   border-radius: 20px;
@@ -35,4 +32,7 @@ img {
   padding: 1px;
   width: 70%;
   margin-left: 17%;
+}
+.rec-text-size{
+  font-size: 12px;
 }
