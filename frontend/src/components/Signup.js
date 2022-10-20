@@ -263,6 +263,7 @@ const Signup = () => {
             type="submit"
             size="lg"
             onSubmit={registerNewUser}
+            href="/login"
           >
             Signup
           </Button>
