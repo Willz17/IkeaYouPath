@@ -126,6 +126,7 @@ function Cart(props) {
           }}
           secName={"Bedroom"}
           time={0}
+          arrow="down-arrow.png"
         />
         <Section_Item
           ItemListing={[
@@ -138,7 +139,7 @@ function Cart(props) {
           ]}
           SSection = {'44'}
         />
-        <SectionHeader secName={"Kitchen"} time={1} />
+        <SectionHeader arrow="down-arrow.png" secName={"Kitchen"} time={1} />
         <Section_Item
           ItemListing={[
             [
@@ -150,7 +151,7 @@ function Cart(props) {
           ]}
           SSection = {'17'}
         />
-        <SectionHeader secName={"Dining Room"} time={2} />
+        <SectionHeader arrow="down-arrow.png" secName={"Dining Room"} time={2} />
         <Section_Item
           ItemListing={[
             [
@@ -162,7 +163,7 @@ function Cart(props) {
           ]}
           SSection = {'93'}
         />
-        <SectionHeader secName={"Bathroom"} time={3} />
+        <SectionHeader arrow="down-arrow.png" secName={"Bathroom"} time={3} />
         <Section_Item
           ItemListing={[
             [
@@ -174,7 +175,7 @@ function Cart(props) {
           ]}
           SSection = {'75'}
         />
-        <SectionHeader secName={"Home Decoration"} time={3} />
+        <SectionHeader arrow="down-arrow.png" secName={"Home Decoration"} time={3} />
         <Section_Item
           ItemListing={[
             [
@@ -186,7 +187,7 @@ function Cart(props) {
           ]}
           SSection = {'6'}
         />
-        <SectionHeader secName={"Lighting"} time={4} />
+        <SectionHeader arrow="down-arrow.png" secName={"Lighting"} time={4} />
         <Section_Item
           ItemListing={[
             [
@@ -210,6 +211,7 @@ function Cart(props) {
           }}
           secName={"Bedroom"}
           time={0}
+          arrow="up-arrow.png"
         />
         <SectionHeader
           expandCollapse={() => {
@@ -218,6 +220,7 @@ function Cart(props) {
           }}
           secName={"Kitchen"}
           time={0}
+          arrow="down-arrow.png"
         />
         <Section_Item
           ItemListing={[
@@ -230,7 +233,7 @@ function Cart(props) {
           ]}
           SSection = {'17'}
         />
-        <SectionHeader secName={"Dining Room"} time={2} />
+        <SectionHeader arrow="down-arrow.png" secName={"Dining Room"} time={2} />
         <Section_Item
           ItemListing={[
             [
@@ -242,7 +245,7 @@ function Cart(props) {
           ]}
           SSection = {'93'}
         />
-        <SectionHeader secName={"Bathroom"} time={3} />
+        <SectionHeader arrow="down-arrow.png" secName={"Bathroom"} time={3} />
         <Section_Item
           ItemListing={[
             [
@@ -254,7 +257,7 @@ function Cart(props) {
           ]}
           SSection = {'75'}
         />
-        <SectionHeader secName={"Home Decoration"} time={3} />
+        <SectionHeader arrow="down-arrow.png" secName={"Home Decoration"} time={3} />
         <Section_Item
           ItemListing={[
             [
@@ -266,7 +269,7 @@ function Cart(props) {
           ]}
           SSection = {'6'}
         />
-        <SectionHeader secName={"Lighting"} time={4} />
+        <SectionHeader arrow="down-arrow.png" secName={"Lighting"} time={4} />
         <Section_Item
           ItemListing={[
             [
@@ -282,7 +285,7 @@ function Cart(props) {
     );
     setShowLessItems2(
       <div>
-        <SectionHeader secName={"Bedroom"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Bedroom"} time={0} />
         <SectionHeader
           expandCollapse={() => {
             setCollapse2(false);
@@ -290,6 +293,7 @@ function Cart(props) {
           }}
           secName={"Kitchen"}
           time={0}
+          arrow="up-arrow.png"
         />
         <SectionHeader
           secName={"Dining Room"}
@@ -298,6 +302,8 @@ function Cart(props) {
             setNaming(ItemListTriggerBT[0].name);
           }}
           time={1}
+          arrow="down-arrow.png"
+          
         />
         <Section_Item
           ItemListing={[
@@ -310,7 +316,7 @@ function Cart(props) {
           ]}
           SSection = {'93'}
         />
-        <SectionHeader secName={"Bathroom"} time={2} />
+        <SectionHeader arrow="down-arrow.png" secName={"Bathroom"} time={2} />
         <Section_Item
           ItemListing={[
             [
@@ -322,7 +328,7 @@ function Cart(props) {
           ]}
           SSection = {'75'}
         />
-        <SectionHeader secName={"Home Decoration"} time={2} />
+        <SectionHeader arrow="down-arrow.png" secName={"Home Decoration"} time={2} />
         <Section_Item
           ItemListing={[
             [
@@ -334,7 +340,7 @@ function Cart(props) {
           ]}
           SSection = {'6'}
         />
-        <SectionHeader secName={"Lighting"} time={3} />
+        <SectionHeader arrow="down-arrow.png" secName={"Lighting"} time={3} />
         <Section_Item
           ItemListing={[
             [
@@ -350,8 +356,8 @@ function Cart(props) {
     );
     setShowLessItems3(
       <div>
-        <SectionHeader secName={"Bedroom"} time={0} />
-        <SectionHeader secName={"Kitchen"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Bedroom"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Kitchen"} time={0} />
         <SectionHeader
           secName={"Dining Room"}
           expandCollapse={() => {
@@ -359,12 +365,14 @@ function Cart(props) {
             setNaming(ItemListTriggerDR[0].name);
           }}
           time={0}
+          arrow="up-arrow.png"
         />
         <SectionHeader
           expandCollapse={() => {
             setCollapse4(true);
             setNaming(ItemListTriggerHD[0].name);
           }}
+          arrow="down-arrow.png"
           secName={"Bathroom"}
           time={1}
         />
@@ -379,7 +387,7 @@ function Cart(props) {
           ]}
           SSection = {'75'}
         />
-        <SectionHeader secName={"Home Decoration"} time={2} />
+        <SectionHeader arrow="down-arrow.png" secName={"Home Decoration"} time={2} />
         <Section_Item
           ItemListing={[
             [
@@ -391,7 +399,7 @@ function Cart(props) {
           ]}
           SSection = {'6'}
         />
-        <SectionHeader secName={"Lighting"} time={2} />
+        <SectionHeader arrow="down-arrow.png" secName={"Lighting"} time={2} />
         <Section_Item
           ItemListing={[
             [
@@ -407,9 +415,9 @@ function Cart(props) {
     );
     setShowLessItems4(
       <div>
-        <SectionHeader secName={"Bedroom"} time={0} />
-        <SectionHeader secName={"Kitchen"} time={0} />
-        <SectionHeader secName={"Dining Room"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Bedroom"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Kitchen"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Dining Room"} time={0} />
         <SectionHeader
           expandCollapse={() => {
             setCollapse4(false);
@@ -417,6 +425,7 @@ function Cart(props) {
           }}
           secName={"Bathroom"}
           time={0}
+          arrow="up-arrow.png"
         />
         <SectionHeader
           expandCollapse={() => {
@@ -425,6 +434,7 @@ function Cart(props) {
           }}
           secName={"Home Decoration"}
           time={1}
+          arrow="down-arrow.png"
         />
         <Section_Item
           ItemListing={[
@@ -437,7 +447,7 @@ function Cart(props) {
           ]}
           SSection = {'6'}
         />
-        <SectionHeader secName={"Lighting"} time={2} />
+        <SectionHeader arrow="down-arrow.png" secName={"Lighting"} time={2} />
         <Section_Item
           ItemListing={[
             [
@@ -453,10 +463,10 @@ function Cart(props) {
     );
     setShowLessItems5(
       <div>
-        <SectionHeader secName={"Bedroom"} time={0} />
-        <SectionHeader secName={"Kitchen"} time={0} />
-        <SectionHeader secName={"Dining Room"} time={0} />
-        <SectionHeader secName={"Bathroom"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Bedroom"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Kitchen"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Dining Room"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Bathroom"} time={0} />
         <SectionHeader
           expandCollapse={() => {
             setCollapse5(false);
@@ -464,6 +474,7 @@ function Cart(props) {
           }}
           secName={"Home Decoration"}
           time={0}
+          arrow="up-arrow.png"
         />
         <SectionHeader
           expandCollapse={() => {
@@ -474,6 +485,7 @@ function Cart(props) {
           }}
           secName={"Lighting"}
           time={1}
+          arrow="down-arrow.png"
         />
         <Section_Item
           ItemListing={[
@@ -485,16 +497,18 @@ function Cart(props) {
             itemListTriggerDR2,
           ]}
           SSection = {'37'}
+          arrow="up-arrow.png"
         />
       </div>
     );
     setShowLessItems6(
       <div>
-        <SectionHeader secName={"Bedroom"} time={0} />
-        <SectionHeader secName={"Kitchen"} time={0} />
-        <SectionHeader secName={"Dining Room"} time={0} />
-        <SectionHeader secName={"Bathroom"} time={0} />
-        <SectionHeader secName={"Home Decoration"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Bedroom"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Kitchen"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Dining Room"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Bathroom"} time={0} />
+        <SectionHeader arrow="up-arrow.png" secName={"Home Decoration"} time={0} />
+
         <SectionHeader
           expandCollapse={() => {
             setCollapse6(false);
@@ -502,6 +516,7 @@ function Cart(props) {
           }}
           secName={"Lighting"}
           time={0}
+          arrow="up-arrow.png"
         />
       </div>
     );
