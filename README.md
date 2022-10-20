@@ -1,20 +1,26 @@
-## <em>Setup backend<em>
+# IKEA YouPath
+
+## <em>Backend local setup<em>
 
 > `pwd: Nordics-Team`
 >
 > `cd /backend`
 >
 > `npm install`
+>
+> `npm start`
 
-## <em>Setup Frontend<em>
+## <em>Frontend local setup<em>
 
 > `pwd: Nordics-Team`
 >
 > `cd /frontend`
 >
 > `npm install`
+>
+> `npm start`
 
-## _WireFrame_
+## _Initial WireFrame_
 
 > ### _Home page_ (Webview & Mobile)
 >
@@ -49,7 +55,7 @@
 ## _API services_
 
 > All routes exposed by the API are handled by its respective service function via its respective controller function and script.
-> ![img](resource/imgs/API-service-ex.png)
+> ![img](resource/imgs/register-user-service.png)
 >
 > <figcaption>Services example to register new users</figcaption>
 
@@ -57,7 +63,7 @@
 
 > | Name                                                | Use                                |
 > | --------------------------------------------------- | ---------------------------------- |
-> | [Sqlite](https://www.sqlite.org/index.html)         | SQL database                       |
+> | [MongoDb](https://www.sqlite.org/index.html)        | SQL database                       |
 > | [Express Js](https://www.npmjs.com/package/express) | Node js Framework                  |
 > | [React JS](https://reactjs.org/)                    | Frontend web Development framework |
 > | [Node js](https://nodejs.org/en/)                   | Backend web development framework  |
@@ -68,9 +74,8 @@
 > | ---------------------------------------------------------------- | ----------------------------------------------------------- |
 > | [cors](https://www.npmjs.com/package/cors)                       | Node.js middleware to handle cors options                   |
 > | [nodemon](https://www.npmjs.com/package/nodemon)                 | Watch and automatically restart Node.js application changes |
-> | [better-sqlite3](https://www.npmjs.com/package/better-sqlite3)   | Sqlite library                                              |
 > | [dotenv](https://www.npmjs.com/package/dotenv)                   | Save and load env. varaibles                                |
-> | [bcrypt](https://www.npmjs.com/package/bcrypt)                   | Hashing and password validation                             |
+> | [bcryptjs](https://www.npmjs.com/package/bcryptjs)               | Hashing and password validation                             |
 > | [axios](https://www.npmjs.com/package/axios)                     | Promise based library for HTTP API calls                    |
 > | [bootstrap](https://www.npmjs.com/package/bootstrap)             | Stylizing                                                   |
 > | [react-bootstrap](https://www.npmjs.com/package/react-bootstrap) | Stylizing                                                   |
@@ -79,3 +84,9 @@
 ### _Project board_
 
 > [Trello board](https://trello.com/invite/b/RGnhvL5z/3c26943152807981dca96904aa77f50b/nordics-team-dev)
+
+### _Deployment_
+
+> The Frontend and backend applications are deployed as seperate app services on Azure.
+>
+> Deployment URL: [youPath](https://youpath.azurewebsites.net/)
