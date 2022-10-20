@@ -48,11 +48,12 @@
 
 .fontStyling{
     font-weight: bold;
-    font-size: small;
+    /* font-size: small; */
+    font-size: 1rem;
 }
 
 .priceStyling{
-    font-size: large;
+    font-size: 1.3rem;
     font-weight: bold;
 }
 
@@ -64,4 +65,9 @@
 .dollarStyling{
     font-weight: bold;
     font-size: small;
+}
+
+.nameOfItem{
+    font-size: small;
+    font-weight: normal;
 }

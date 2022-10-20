@@ -44,21 +44,98 @@ function Cart(props) {
       setItemList(anotherlist);
     }
   }, []);
-
   let anotherlist = [];
+  let counter = 0;
   const getIt = async (name, id, len) => {
     await axios
       .get(SPECIFIC_PRODUCT_URL + `/${name}/${id}`, { mode: "no-cors" })
       .then((res) => {
         if (anotherlist.length < len) {
           anotherlist.push(res.data);
-          createCards(anotherlist);
+          counter++;
+          if (counter===len) {
+            createCards(anotherlist, false);
+          }else{
+            createCards(anotherlist, true);
+
+          }
           return res.data;
         }
       });
   };
+  const [showLoader, setShowLoader] = useState();
+  const createCards = (data, loadingPage) => {
+    if (loadingPage) {
+      setShowLoader(
+        <div>
+          <div class="loader"></div>
+          <div class="outer-box">
+            <nav class="social">
+              <div class="box">
+                <p>
+                  Showing a display Loading Icon Until the Page Loads
+                  Completely..
+                </p>
+              </div>
+              <ul>
+                <li>
+                  <a
+                    target="_blank"
+                    href="http://virender-bartwal.blogspot.in/"
+                  >
+                    <i
+                      class="fa fa-link fa-3x text-success"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" href="https://twitter.com/veerbartwal">
+                    <i
+                      class="fa fa-twitter fa-3x text-success"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" href="https://codepen.io/bartwal">
+                    <i
+                      class="fa fa-codepen fa-3x text-success"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    href="https://in.linkedin.com/in/local-seo-freelancer-delhi"
+                  >
+                    <i
+                      class="fa fa-linkedin-square fa-3x text-success"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
 
-  const createCards = (data) => {
+                <li>
+                  <a
+                    target="_blank"
+                    href="https://plus.google.com/+Virender-bartwalBlogspotIn"
+                  >
+                    <i
+                      class="fa fa-google-plus fa-3x text-success"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      );
+    } else {
+      setShowLoader("");
+    }
     setShowCards(
       data.map((obj, index) => (
         <Row>
@@ -69,8 +146,14 @@ function Cart(props) {
                 <img src={obj.img}></img>
               </div>
               <div className="col-6 text-left">
-                <Row><h5><b>{obj.name.split(' - ')[0]}</b></h5></Row>
-                <Row><p>{obj.name.split(' - ')[1]}</p></Row>
+                <Row>
+                  <h5>
+                    <b>{obj.name.split(" - ")[0]}</b>
+                  </h5>
+                </Row>
+                <Row>
+                  <p>{obj.name.split(" - ")[1]}</p>
+                </Row>
                 <Row className="pt-5">
                   <DropdownButton id="dd_menu" title={numItems}>
                     <Dropdown.Item>1</Dropdown.Item>
@@ -79,7 +162,9 @@ function Cart(props) {
                   </DropdownButton>
                 </Row>
               </div>
-              <div className="col-3 text-left"><b>${obj.price}</b></div>
+              <div className="col-3 text-left">
+                <b>${obj.price}</b>
+              </div>
             </Row>
           </Container>
         </Row>
@@ -123,7 +208,7 @@ function Cart(props) {
       <Row className="pb-2">
         <h2>Your shopping cart</h2>
       </Row>
-
+      {showLoader}
       {showCards}
 
       <Container className="pt-5">
