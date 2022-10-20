@@ -45,9 +45,8 @@ function Cart(props) {
       img: "https://www.ikea.com/gb/en/images/products/ullvide-fitted-sheet-white__0604096_pe681036_s5.jpg?f=xl",
     },
   ];
-  const CARTER_URL = "https://api-you-path.azurewebsites.net/api/users/cart";
-  const SPECIFIC_PRODUCT_URL =
-    "https://api-you-path.azurewebsites.net/api/products";
+  const CARTER_URL = process.env.REACT_APP_API_URL + "/users/cart";
+  const SPECIFIC_PRODUCT_URL = process.env.REACT_APP_API_URL + "/products";
 
   const [ItemList, setItemList] = useState([]);
 

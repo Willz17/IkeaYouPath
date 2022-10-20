@@ -5,12 +5,11 @@ import Container from "react-bootstrap/esm/Container";
 import "./Margin.css";
 import { useState } from "react";
 import axios from "axios";
-import { saveToLocale, getFromLocale } from "../utils/storage";
+import { saveToLocale } from "../utils/storage";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  // const LOGIN_URL = "https://api-you-path.azurewebsites.net/api/users/login";
-  const LOGIN_URL = "https://api-you-path.azurewebsites.net/api/users/login";
+  const LOGIN_URL = process.env.REACT_APP_API_URL + "/users/login";
 
   const navigate = useNavigate();
 
@@ -30,13 +29,18 @@ const Login = () => {
       .post(LOGIN_URL, request_data, { mode: "no-cors" })
       .then((res) => {
         let data = res.data;
-        console.log(data);
-        saveToLocale({
-          email: data.email,
-          userID: data._id,
-          key: "cred",
-        });
-        navigate("/search");
+        if (data.code === 200) {
+          console.log(data);
+          saveToLocale({
+            email: data.obj.email,
+            userID: data.obj._id,
+            key: "cred",
+          });
+
+          navigate("/search");
+        } else {
+          alert(data.message);
+        }
       })
       .catch((error) => {
         console.log(error);

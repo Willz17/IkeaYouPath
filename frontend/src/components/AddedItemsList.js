@@ -4,23 +4,21 @@ import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/esm/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { Await, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-import { saveToLocale, getFromLocale } from "../utils/storage";
+import { getFromLocale } from "../utils/storage";
 
 import "./AddedItemsList.css";
 
 function Cart(props) {
-  const CARTER_URL = "https://api-you-path.azurewebsites.net/api/users/cart";
-  const SPECIFIC_PRODUCT_URL =
-    "https://api-you-path.azurewebsites.net/api/products";
+  const CARTER_URL = process.env.REACT_APP_API_URL + "/users/cart";
+  const SPECIFIC_PRODUCT_URL = process.env.REACT_APP_API_URL + "/products";
 
   const [ItemList, setItemList] = useState([]);
   const [showCards, setShowCards] = useState();
-  const [updater, setUpdater] = useState();
-  const [theList, setTheList] = useState();
+
   useEffect(() => {
     if (getFromLocale("cred")) {
       let email = getFromLocale("cred").email;

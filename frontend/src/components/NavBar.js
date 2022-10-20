@@ -1,16 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { getFromLocale } from "../utils/storage";
 
 const NavBar = () => {
-  let loggedIn;
+  const [loggedIn, setLoggedIn] = useState("transparent");
 
-  if (getFromLocale("cred")) {
-    loggedIn = "yellow";
-    console.log("signed in");
-  } else loggedIn = "transparent";
-  console.log("loaded", loggedIn);
+  useEffect(() => {
+    if (getFromLocale("cred")) {
+      console.log("signed in");
+      setLoggedIn("yellow");
+    } else setLoggedIn("transparent");
+    console.log("loaded", loggedIn);
+  });
 
   return (
     <Navbar
