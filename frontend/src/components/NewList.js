@@ -256,7 +256,7 @@ const NewList = () => {
 
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = "/shoppinglist";
+    let path = "/welcome";
     navigate(path);
   };
   const getSpecificProduct = (event) => {
