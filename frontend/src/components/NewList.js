@@ -9,16 +9,14 @@ import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
 import axios from "axios";
-import { saveToLocale, getFromLocale } from "../utils/storage";
-
-import env from "react-dotenv";
+import { getFromLocale } from "../utils/storage";
 
 let CARTED_IDS = [];
 
 const NewList = () => {
-  const PRODUCT_URL = "https://api-you-path.azurewebsites.net/api/products";
+  const PRODUCT_URL = process.env.REACT_APP_API_URL + "/products";
 
-  const CARTER_URL = "https://api-you-path.azurewebsites.net/api/users/cart";
+  const CARTER_URL = process.env.REACT_APP_API_URL + "/users/cart";
 
   const [productList, setProductList] = useState([]);
 

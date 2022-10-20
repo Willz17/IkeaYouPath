@@ -4,31 +4,40 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import Row from "react-bootstrap/esm/Row";
 import Container from "react-bootstrap/esm/Container";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Margin.css";
 import axios from "axios";
 
 import "./Signup.css";
 
 const Signup = () => {
-  const REGISTER_URL =
-    "https://api-you-path.azurewebsites.net/api/users/register";
+  const REGISTER_URL = process.env.REACT_APP_API_URL + "/users/register";
+  const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const registerNewUser = (event) => {
+  const registerNewUser = async (event) => {
     console.log(event);
     event.preventDefault();
     console.log(email);
+
     const request_data = {
       name: `${firstName} ${lastName}`,
       email: email,
       password: password,
     };
 
-    axios.post(REGISTER_URL, request_data, { mode: "no-cors" });
+    const res = await axios.post(REGISTER_URL, request_data, {
+      mode: "no-cors",
+    });
+    let data = res.data;
+    if (data.code === 200) {
+      alert("Account successfully registered!");
+      navigate("/login");
+    } else alert("Email already in use!");
   };
 
   const [checked1, setChecked1] = useState(false);
@@ -266,7 +275,14 @@ const Signup = () => {
           >
             Signup
           </Button>
-          <Button variant="secondary" type="submit" size="lg" className="mt-4 mx-4" style={{width: "35%"}} href="/login">
+          <Button
+            variant="secondary"
+            type="submit"
+            size="lg"
+            className="mt-4 mx-4"
+            style={{ width: "35%" }}
+            href="/login"
+          >
             Back
           </Button>
         </Row>

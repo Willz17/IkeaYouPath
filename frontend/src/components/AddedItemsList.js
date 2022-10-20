@@ -4,23 +4,21 @@ import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/esm/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { Await, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-import { saveToLocale, getFromLocale } from "../utils/storage";
+import { getFromLocale } from "../utils/storage";
 
 import "./AddedItemsList.css";
 
 function Cart(props) {
-  const CARTER_URL = "https://api-you-path.azurewebsites.net/api/users/cart";
-  const SPECIFIC_PRODUCT_URL =
-    "https://api-you-path.azurewebsites.net/api/products";
+  const CARTER_URL = process.env.REACT_APP_API_URL + "/users/cart";
+  const SPECIFIC_PRODUCT_URL = process.env.REACT_APP_API_URL + "/products";
 
   const [ItemList, setItemList] = useState([]);
   const [showCards, setShowCards] = useState();
-  const [updater, setUpdater] = useState();
-  const [theList, setTheList] = useState();
+
   useEffect(() => {
     if (getFromLocale("cred")) {
       let email = getFromLocale("cred").email;
@@ -69,8 +67,14 @@ function Cart(props) {
                 <img src={obj.img}></img>
               </div>
               <div className="col-6 text-left">
-                <Row><h5><b>{obj.name.split(' - ')[0]}</b></h5></Row>
-                <Row><p>{obj.name.split(' - ')[1]}</p></Row>
+                <Row>
+                  <h5>
+                    <b>{obj.name.split(" - ")[0]}</b>
+                  </h5>
+                </Row>
+                <Row>
+                  <p>{obj.name.split(" - ")[1]}</p>
+                </Row>
                 <Row className="pt-5">
                   <DropdownButton id="dd_menu" title={numItems}>
                     <Dropdown.Item>1</Dropdown.Item>
@@ -79,7 +83,9 @@ function Cart(props) {
                   </DropdownButton>
                 </Row>
               </div>
-              <div className="col-3 text-left"><b>${obj.price}</b></div>
+              <div className="col-3 text-left">
+                <b>${obj.price}</b>
+              </div>
             </Row>
           </Container>
         </Row>
